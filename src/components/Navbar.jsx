@@ -5,21 +5,18 @@ import Image from "next/image";
 
 export default function NavBar() {
   return (
-    <Navbar fluid rounded>
+    <Navbar fluid className="bg-gray-800 dark:bg-gray-800">
       <Navbar.Brand  href="https://flowbite-react.com">
         <Image
-          src="/favicon.svg"
-          className="mr-3 h-6 sm:h-9"
-          alt="Flowbite React Logo"
-          width={200}
-          height={150}
+          src="https://eventos.tuentrada.com/light_custom/lightTheme/logo_tue_secutix.png"
+          alt="TuEntrada"
+          width={197}
+          height={89}
         />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          Flowbite React
-        </span>
+        
       </Navbar.Brand>
-      <Navbar.Toggle />
-      <Navbar.Collapse>
+      {/* <Navbar.Toggle /> */}
+      {/* <Navbar.Collapse>
         <Navbar.Link href="#" active>
           Home
         </Navbar.Link>
@@ -29,7 +26,7 @@ export default function NavBar() {
         <Navbar.Link href="#">Services</Navbar.Link>
         <Navbar.Link href="#">Pricing</Navbar.Link>
         <Navbar.Link href="#">Contact</Navbar.Link>
-      </Navbar.Collapse>
+      </Navbar.Collapse> */}
     </Navbar>
   );
 }
