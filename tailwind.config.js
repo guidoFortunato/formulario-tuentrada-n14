@@ -13,6 +13,15 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      gradientColorStops: {
+        "blue-dark": "#1955A5",
+        "maroon-dark": "#220D16",
+        "blue-light": "#0893DD",
+      },
+      colors: {
+        "blue-dark": "#1955A5",
+        "blue-light": "#0893DD",
+      },
     },
   },
   plugins: [require("flowbite/plugin")],
