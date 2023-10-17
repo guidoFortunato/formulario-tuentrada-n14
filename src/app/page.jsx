@@ -8,7 +8,7 @@ export default function Home() {
         <h1 className="text-[1.5rem] md:text-[2rem] text-blue-dark font-semibold mb-3">¿Necesitás ayuda?</h1>
         <InputBusqueda />
       </section>
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-6 mx-auto mt-8">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-3 mx-auto mt-8">
         <CardCategoria />
         <CardCategoria />
         <CardCategoria />

@@ -17,10 +17,13 @@ module.exports = {
         "blue-dark": "#1955A5",
         "maroon-dark": "#220D16",
         "blue-light": "#0893DD",
+        "color-card1": "#1F83BF",
+        "color-card2": "#1C6CB2",
       },
       colors: {
         "blue-dark": "#1955A5",
         "blue-light": "#0893DD",
+        "hover-button-card": "#1C6CB2",
       },
     },
   },
