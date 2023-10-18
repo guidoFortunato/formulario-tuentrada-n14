@@ -9,16 +9,18 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        'gradient-image': 'linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0)), url("https://preprod.tuentrada.com/themes/custom/tu_entrada_theme/images/background_footer.png")'
       },
       gradientColorStops: {
         "blue-dark": "#1955A5",
         "maroon-dark": "#220D16",
         "blue-light": "#0893DD",
-        "color-card1": "#1F83BF",
-        "color-card2": "#1C6CB2",
+        "card-blue-light": "#1F83BF",
+        "card-blue-dark": "#1C6CB2",
+        "card-pink-light": "#8A2883",
+        "card-pink-dark": "#583C92",
+        "footer-light": "rgba(255,255,255,0)",
+        "foter-dark": "rgba(0,0,0,0.9)",
       },
       colors: {
         "blue-dark": "#1955A5",
