@@ -1,16 +1,11 @@
-import CardCategoria from "@/components/CardCategoria";
-import InputBusqueda from "@/components/InputBusqueda";
+import CardCategoria from "@/components/main/CardCategoria";
+import InputBusqueda from "@/components/header/InputBusqueda";
 
 export default function Home() {
   return (
-    <main className="container mx-auto py-10 bg-main-image bg-no-repeat bg-left-50  ">
-      <section className="flex justify-center items-center flex-col">
-        <h1 className="text-[1.5rem] md:text-[2rem] text-blue-dark font-semibold mb-3">
-          ¿Necesitás ayuda?
-        </h1>
-        <InputBusqueda />
-      </section>
-
+    <main>
+    <InputBusqueda/>
+    <div className="container mx-auto bg-main-image bg-no-repeat bg-left-50 pb-10">
       <section className="w-[80%] grid grid-cols-1 lg:grid-cols-3 justify-items-center gap-4 mx-auto mt-8">
         <CardCategoria color={"pink"} />
         <CardCategoria color={"pink"}/>
@@ -24,6 +19,7 @@ export default function Home() {
       <section className="w-[80%] grid grid-cols-1 justify-items-center mx-auto mt-4">
         <CardCategoria color={"pink"}/>
       </section>
+    </div>
     </main>
   );
 }
