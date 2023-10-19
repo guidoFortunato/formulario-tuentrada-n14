@@ -2,34 +2,32 @@
 import { useState } from "react";
 
 const Accordion = () => {
-  
   const [open, setOpen] = useState(false);
 
   const handleClick = (e) => {
-    setOpen( prevstate => !prevstate )
-    
-  }
+    setOpen((prevstate) => !prevstate);
+  };
 
   return (
     <div
       id="accordion-flush"
       data-accordion="collapse"
-      data-active-classes="bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
-      data-inactive-classes="text-gray-500 dark:text-gray-400"
+      data-active-classes="bg-white text-gray-900"
+      data-inactive-classes="text-gray-500"
     >
       <h2 id="accordion-flush-heading-1">
         <button
           type="button"
-          className="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400"
+          className="flex items-center justify-center  w-full pt-3 font-medium text-left text-gray-200 border-b border-gray-200"
           data-accordion-target="#accordion-flush-body-1"
           aria-expanded="true"
           aria-controls="accordion-flush-body-1"
-          onClick={ handleClick }
+          onClick={handleClick}
         >
-          <span>What is Flowbite?</span>
-          <svg
+          <span className="py-1 px-7 bg-slate-800 opacity-70 rounded-t-xl text-white active:bg-blue-700 active:opacity-70 ">{open ? "CERRAR ▲":"MÁS INFORMACIÓN ▼"}</span>
+          {/* <svg
             data-accordion-icon
-            className="w-3 h-3 rotate-180 shrink-0"
+            className="w-3 h-3 mx-2 rotate-180 shrink-0"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -42,34 +40,52 @@ const Accordion = () => {
               strokeWidth="2"
               d="M9 5 5 1 1 5"
             />
-          </svg>
+          </svg> */}
         </button>
       </h2>
       <div
         id="accordion-flush-body-1"
-        className={ open ? "" : "hidden" }
+        className={`${open ? "":"hidden"}`}
         aria-labelledby="accordion-flush-heading-1"
       >
-        <div className="py-5 border-b border-gray-200 dark:border-gray-700">
-          <p className="mb-2 text-gray-500 dark:text-gray-400">
-            Flowbite is an open-source library of interactive components built
-            on top of Tailwind CSS including buttons, dropdowns, modals,
-            navbars, and more.
-          </p>
-          <p className="text-gray-500 dark:text-gray-400">
-            Check out this guide to learn how to{" "}
-            <a
-              href="/docs/getting-started/introduction/"
-              className="text-blue-600 dark:text-blue-500 hover:underline"
-            >
-              get started
-            </a>{" "}
-            and start developing websites even faster with components on top of
-            Tailwind CSS.
-          </p>
+       
+        <div className="py-5 border-gray-200 flex justify-evenly flex-col md:flex-row text-gray-200 mb-2 text-lg font-semibold">
+          <div className="text-center mt-5 md:mt-0">
+            <p>Categorías</p>
+            <ul className="text-[12px] font-normal leading-relaxed text-gray-400">
+              <li><a href="#" target="_new">Conciertos</a></li>
+              <li><a href="#" target="_new">Exposiciones</a></li>
+              <li><a href="#" target="_new">Familia</a></li>
+              <li><a href="#" target="_new">Teatro</a></li>
+              <li><a href="#" target="_new">Deportes</a></li>
+              <li><a href="#" target="_new">Cine</a></li>
+            </ul>
+          </div>
+          <div className="text-center mt-5 md:mt-0">
+            <p>La empresa</p>
+            <ul className="text-[12px] font-normal leading-relaxed text-gray-400">
+              <li><a href="#" target="_new">Quienes somos</a></li>
+
+              <li><a href="#" target="_new">Descargar logos</a></li>
+              <li><a href="#" target="_new">Términos y condiciones</a></li>
+              <li><a href="#" target="_new">Contáctenos</a></li>
+              <li><a href="#" target="_new">TuBoleta Colombia</a></li>
+            </ul>
+          </div>
+          <div className="text-center mt-5 md:mt-0">
+            <p>Enlaces de interés</p>
+            <ul className="text-[12px] font-normal leading-relaxed text-gray-400">
+              <li><a href="#" target="_new">Botón de arrepentimiento</a></li>
+              <li><a href="#" target="_new">Protege TuEntrada</a></li>
+              <li><a href="#" target="_new">Familia</a></li>
+              <li><a href="#" target="_new">Requisitos de imágenes</a></li>
+              <li><a href="#" target="_new">TuEntrada Wallet</a></li>
+              <li><a href="#" target="_new">Fan a Fan</a></li>
+            </ul>
+          </div>
         </div>
+       
       </div>
-     
     </div>
   );
 };

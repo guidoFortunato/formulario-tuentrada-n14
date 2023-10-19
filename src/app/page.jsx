@@ -3,7 +3,7 @@ import InputBusqueda from "@/components/InputBusqueda";
 
 export default function Home() {
   return (
-    <main className="container mx-auto py-10">
+    <main className="container mx-auto py-10 bg-main-image bg-no-repeat bg-left-50  ">
       <section className="flex justify-center items-center flex-col">
         <h1 className="text-[1.5rem] md:text-[2rem] text-blue-dark font-semibold mb-3">
           ¿Necesitás ayuda?
