@@ -50,10 +50,16 @@ const AccordionSubCat = () => {
         aria-labelledby="accordion-flush-heading-1"
       >
         <div className="py-5 border-b border-gray-200">
-          <p className="mb-2 text-gray-500">
-            Flowbite is an open-source library of interactive components built
-            on top of Tailwind CSS including buttons, dropdowns, modals,
-            navbars, and more.
+          
+          <p className="text-gray-500">
+            Check out this guide to learn how to{" "}
+            <a
+              href="/docs/getting-started/introduction/"
+              className="text-blue-600 hover:underline"
+            >
+              get started
+            </a>{" "}
+            
           </p>
           <p className="text-gray-500">
             Check out this guide to learn how to{" "}
@@ -63,8 +69,27 @@ const AccordionSubCat = () => {
             >
               get started
             </a>{" "}
-            and start developing websites even faster with components on top of
-            Tailwind CSS.
+            
+          </p>
+          <p className="text-gray-500">
+            Check out this guide to learn how to{" "}
+            <a
+              href="/docs/getting-started/introduction/"
+              className="text-blue-600 hover:underline"
+            >
+              get started
+            </a>{" "}
+            
+          </p>
+          <p className="text-gray-500">
+            Check out this guide to learn how to{" "}
+            <a
+              href="/docs/getting-started/introduction/"
+              className="text-blue-600 hover:underline"
+            >
+              get started
+            </a>{" "}
+            
           </p>
         </div>
       </div>
