@@ -3,6 +3,8 @@
 
 module.exports = {
     images: {
-        domains: ['eventos.tuentrada.com'], // Agrega aquí tu dominio
+       domains: ['eventos.tuentrada.com', 'picsum.photos'],
       },
+     
 }
+

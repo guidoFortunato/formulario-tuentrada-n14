@@ -1,7 +1,13 @@
+import InputBusqueda from "@/components/header/InputBusqueda";
+import Articulo from "@/components/main/Articulo";
+
 const page = () => {
   
   return (
-    <div>subcategoría</div>
+    <>
+    <InputBusqueda />
+    <Articulo/>
+    </>
   )
 }
 export default page
