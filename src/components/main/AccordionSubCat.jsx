@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import Link from "next/link";
+import { useState } from "react";
 
-const AccordionSubCat = () => {
+const AccordionSubCat = ({slug}) => {
   const [open, setOpen] = useState(false);
+  
 
   const handleClick = (e) => {
     setOpen((prevstate) => !prevstate);
@@ -25,7 +27,7 @@ const AccordionSubCat = () => {
           aria-controls="accordion-flush-body-1"
           onClick={handleClick}
         >
-          <span>What is Flowbite?</span>
+          <span>Problemas al iniciar sesión</span>
           <svg
             data-accordion-icon
             className="w-3 h-3 rotate-180 shrink-0"
@@ -52,45 +54,26 @@ const AccordionSubCat = () => {
         <div className="py-5 border-b border-gray-200">
           
           <p className="text-gray-500">
-            Check out this guide to learn how to{" "}
-            <a
-              href="/docs/getting-started/introduction/"
+            
+            <Link
+              href={`${slug}/recuperar-contrasenia`}
               className="text-blue-600 hover:underline"
             >
-              get started
-            </a>{" "}
+              Recuperar contraseña
+            </Link>{" "}
             
           </p>
           <p className="text-gray-500">
-            Check out this guide to learn how to{" "}
-            <a
-              href="/docs/getting-started/introduction/"
+            
+            <Link
+              href={`${slug}/recuperar-contrasenia`}
               className="text-blue-600 hover:underline"
             >
-              get started
-            </a>{" "}
+             Recuperar contraseña
+            </Link>
             
           </p>
-          <p className="text-gray-500">
-            Check out this guide to learn how to{" "}
-            <a
-              href="/docs/getting-started/introduction/"
-              className="text-blue-600 hover:underline"
-            >
-              get started
-            </a>{" "}
-            
-          </p>
-          <p className="text-gray-500">
-            Check out this guide to learn how to{" "}
-            <a
-              href="/docs/getting-started/introduction/"
-              className="text-blue-600 hover:underline"
-            >
-              get started
-            </a>{" "}
-            
-          </p>
+       
         </div>
       </div>
     </div>

@@ -1,11 +1,12 @@
 import SubCategoria from "@/components/main/SubCategoria";
 import InputBusqueda from "@/components/header/InputBusqueda";
 
-const page = () => {
+const page = ({params}) => {
+  // console.log({params});
   return (
     <>
       <InputBusqueda />
-      <SubCategoria />
+      <SubCategoria slug={params.categoria} />
     </>
   );
 };
