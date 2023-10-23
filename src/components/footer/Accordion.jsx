@@ -18,7 +18,7 @@ const Accordion = () => {
       <h2 id="accordion-flush-heading-1">
         <button
           type="button"
-          className="flex items-center justify-center  w-full pt-3 font-medium text-left text-gray-200 border-b border-gray-200"
+          className={`flex items-center justify-center  w-full pt-3 font-medium text-left text-gray-200 ${open && "border-b border-gray-200"}`}
           data-accordion-target="#accordion-flush-body-1"
           aria-expanded="true"
           aria-controls="accordion-flush-body-1"
