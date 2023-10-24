@@ -1,6 +1,6 @@
 import React from "react";
 
-const Form = () => {
+const Form2 = () => {
   return (
     <div className="container mx-auto bg-main-image bg-no-repeat bg-left-50 pb-10 px-10 md:px-20 flex-1">
       <h2 className="text-2xl text-blue-dark font-semibold mb-10">
@@ -63,12 +63,12 @@ const Form = () => {
           </div>
         </li>
       </ol>
-      <form action="#">
-        <h3 className="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">
+      <form action="#" className="mt-10">
+        {/* <h3 className="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">
           Invoice details
-        </h3>
+        </h3> */}
         <div className="grid gap-4 mb-4 sm:grid-cols-2">
-          <div>
+          {/* <div>
             <label
               htmlFor="username"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -83,7 +83,7 @@ const Form = () => {
               placeholder="username.example"
               required=""
             />
-          </div>
+          </div> */}
           <div>
             <label
               htmlFor="email"
@@ -102,21 +102,21 @@ const Form = () => {
           </div>
           <div>
             <label
-              htmlFor="password"
+              htmlFor="emailConfirmation"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
-              Password
+              Confirmación email
             </label>
             <input
-              type="password"
-              name="password"
-              id="password"
+              type="email"
+              name="emailConfirmation"
+              id="emailConfirmation"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="•••••••••"
+              placeholder="name@company.com"
               required=""
             />
           </div>{" "}
-          <div>
+          {/* <div>
             <label
               htmlFor="confirm-password"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -131,17 +131,17 @@ const Form = () => {
               placeholder="•••••••••"
               required=""
             />
-          </div>
+          </div> */}
         </div>
         <div className="justify-center flex">
           <button
-            type="submit"
+            type="button"
             className="text-white bg-gradient-to-r from-gray-300 to-gray-500 focus:ring-4 focus:outline-none opacity-70 focus:ring-blue-300  font-medium rounded-md text-sm px-5 py-2.5 text-center mr-2 mb-2 mt-10 w-[150px]"
           >
             Volver
           </button>
           <button
-            type="submit"
+            type="button"
             className="text-white bg-gradient-to-r from-blue-light to-blue-dark hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300  font-medium rounded-md text-sm px-5 py-2.5 text-center mr-2 mb-2 mt-10 w-[150px]"
           >
             Siguiente
@@ -152,4 +152,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default Form2;
