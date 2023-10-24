@@ -3,6 +3,8 @@ import React from 'react'
 const Form = () => {
   return (
     <div className="container mx-auto bg-main-image bg-no-repeat bg-left-50 pb-10 px-10 md:px-20 flex-1">
+         <h2 className="text-2xl text-blue-dark font-semibold mb-10">Formulario de Contacto
+      </h2>
 <ol className="flex items-center w-full mb-4 sm:mb-5">
     <li className="flex w-full items-center text-blue-dark dark:text-blue-500 after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-800">
         <div className="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-12 lg:w-12 dark:bg-blue-800 shrink-0">
@@ -62,9 +64,15 @@ const Form = () => {
 <div className="justify-center flex">
 <button
           type="submit"
-          className="text-white bg-gradient-to-r from-blue-light to-blue-dark hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300  font-medium rounded-md text-sm px-5 py-2.5 text-center mr-2 mb-2 mt-10"
+          className="text-white bg-gradient-to-r from-gray-300 to-gray-500 focus:ring-4 focus:outline-none opacity-70 focus:ring-blue-300  font-medium rounded-md text-sm px-5 py-2.5 text-center mr-2 mb-2 mt-10 w-[150px]"
         >
-          Siguiente paso
+          Volver
+        </button>
+        <button
+          type="submit"
+          className="text-white bg-gradient-to-r from-blue-light to-blue-dark hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300  font-medium rounded-md text-sm px-5 py-2.5 text-center mr-2 mb-2 mt-10 w-[150px]"
+        >
+          Siguiente
         </button>
 </div>
 </form>

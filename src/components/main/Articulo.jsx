@@ -6,7 +6,7 @@ import React from "react";
 const Articulo = ({subcategoria}) => {
   return (
     <div className="container mx-auto bg-main-image bg-no-repeat bg-left-50 pb-10 px-10 md:px-20 flex-1">
-      <h2 className="text-2xl text-blue-dark font-semibold">
+      <h2 className="text-2xl text-blue-dark font-semibold mb-10">
         Devoluciones: Recuperar Contraseña
       </h2>
       <section className="w-full text-justify items-center justify-items-center flex flex-col mx-auto mt-4">
@@ -57,7 +57,7 @@ const Articulo = ({subcategoria}) => {
       <Link href={`${subcategoria}/formulario`} className="flex justify-center">
         <button
           type="button"
-          className="text-white bg-gradient-to-r from-blue-light to-blue-dark hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300  font-medium rounded-md text-sm px-5 py-2.5 text-center mr-2 mb-2 mt-10"
+          className="text-white bg-gradient-to-r from-blue-light to-blue-dark hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:blue-dark  font-medium rounded-md text-sm px-5 py-2.5 text-center mr-2 mb-2 mt-10"
         >
           Completar Formulario
         </button>
