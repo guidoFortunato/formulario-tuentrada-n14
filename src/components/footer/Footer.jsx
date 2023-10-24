@@ -17,6 +17,7 @@ const Footer = () => {
               width={138}
               height={38}
               priority
+              style={{ width: "auto", height: "auto" }}
             />
           </a>
           <span className="mb-4 text-gray-700 ">
