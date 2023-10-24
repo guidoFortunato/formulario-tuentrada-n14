@@ -23,7 +23,7 @@ const CardCategoria = ({ color, title, slug }) => {
       <p className="mb-7 font-normal">Podes solicitar devoluciones</p>
       <Link
         href={slug}
-        className="text-white border-2 border-white hover:bg-white hover:text-hover-button-card transition duration-150 ease-out hover:ease-in  font-medium rounded-lg text-sm px-10 py-2.5 text-center mr-2"
+        className="text-white border-2 border-white hover:bg-white hover:text-hover-button-card transition duration-150 ease-out hover:ease-in rounded-lg text-sm px-10 py-2.5 text-center mr-2 font-semibold"
       >
         Saber más
       </Link>

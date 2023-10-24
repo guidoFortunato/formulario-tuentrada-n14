@@ -19,7 +19,7 @@ const InputBusqueda = () => {
         />
         <button
           type="submit"
-          className="absolute top-0 right-0 p-4 text-sm font-medium h-full text-white bg-gradient-to-b from-blue-light to-blue-dark rounded-r-lg border border-gray-300  focus:border-blue-dark  focus:ring-blue-dark"
+          className="absolute top-0 right-0 p-4 text-sm h-full text-white bg-gradient-to-r from-blue-light to-blue-dark hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:blue-dark  font-medium rounded-r-md" 
         >
           <svg
             className="w-4 h-4"

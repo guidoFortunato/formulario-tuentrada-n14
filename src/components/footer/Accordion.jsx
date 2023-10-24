@@ -1,13 +1,22 @@
 "use client";
 
+
 import { useState } from "react";
+import { animateScroll as scroll } from "react-scroll";
 
 const Accordion = () => {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
-    window.scrollTo(0, document.body.scrollHeight);
     setOpen((prevState) => !prevState);
+
+    // Si el acordeón se abre (open === true), realiza un desplazamiento suave al final de la página
+    if (!open) {
+      scroll.scrollToBottom({
+        duration: 500, // Duración de la animación en milisegundos
+        smooth: "easeInOutQuart", // Tipo de animación
+      });
+    }
   };
 
   return (
@@ -19,6 +28,11 @@ const Accordion = () => {
         {open ? "CERRAR ▲" : "MÁS INFORMACIÓN ▼"}
       </button>
       <div
+        className={`accordion-content ${
+          open ? "max-h-screen" : "max-h-0"
+        } transition-max-h ease-in-out duration-500 overflow-hidden w-full border-t border-gray-200`}
+      >
+        <div
         className={`accordion-content ${
           open ? "max-h-screen" : "max-h-0"
         } transition-max-h ease-in-out duration-500 overflow-hidden w-full border-t border-gray-200`}
@@ -126,6 +140,7 @@ const Accordion = () => {
             </ul>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
