@@ -27,7 +27,7 @@ const AccordionSubCat = ({slug}) => {
           aria-controls="accordion-flush-body-1"
           onClick={handleClick}
         >
-          <span>Problemas al iniciar sesión</span>
+          <span className="font-semibold text-lg text-blue-dark">Problemas al iniciar sesión</span>
           <svg
             data-accordion-icon
             className="w-3 h-3 rotate-180 shrink-0"
@@ -57,7 +57,7 @@ const AccordionSubCat = ({slug}) => {
             
             <Link
               href={`${slug}/recuperar-contrasenia`}
-              className="text-blue-600 hover:underline"
+              className="text-blue-dark hover:underline"
             >
               Recuperar contraseña
             </Link>{" "}
@@ -67,7 +67,7 @@ const AccordionSubCat = ({slug}) => {
             
             <Link
               href={`${slug}/recuperar-contrasenia`}
-              className="text-blue-600 hover:underline"
+              className="text-blue-dark hover:underline"
             >
              Recuperar contraseña
             </Link>

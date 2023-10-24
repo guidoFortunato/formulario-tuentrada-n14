@@ -1,12 +1,12 @@
 import InputBusqueda from "@/components/header/InputBusqueda";
 import Articulo from "@/components/main/Articulo";
 
-const page = () => {
+const page = ({params}) => {
   
   return (
     <>
     <InputBusqueda />
-    <Articulo/>
+    <Articulo subcategoria={params.subcategoria}/>
     </>
   )
 }

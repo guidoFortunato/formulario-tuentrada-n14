@@ -13,6 +13,7 @@ const CardCategoria = ({ color, title, slug }) => {
     <div
       className={`w-full p-6 text-white border border-gray-200 rounded-lg shadow text-center ${colorVariants[color]}`}
     >
+      
       <div className="flex justify-center">
         <CiMoneyCheck1 className="text-[100px] text-center" />
       </div>
