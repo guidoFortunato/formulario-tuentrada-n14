@@ -12,13 +12,13 @@ const FormPage = () => {
   useEffect(() => {
    
       const getInfo = async () => {
-        const { data } = await getData(
-          "https://testapi.tuentrada.com/api/v1/site/venue/",
+        const data = await getData(
+          "https://testapi.tuentrada.com/api/v1/site/venues.tuentrada.com",
           "gfortunato@tuentrada.com",
           "Correa.3030"
         );
-        // console.log({dataCalendario: data})
-        setData(data);
+        console.log({data})
+        // setData(data);
       };
       // getInfo();
     

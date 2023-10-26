@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Articulo = ({subcategoria}) => {
+const Articulo = ({ subcategoria }) => {
   return (
     <div className="container mx-auto bg-main-image bg-no-repeat bg-left-50 pb-10 px-10 md:px-20 flex-1">
       <h2 className="text-2xl text-blue-dark font-semibold mb-10">

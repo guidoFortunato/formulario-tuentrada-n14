@@ -60,7 +60,7 @@ const getData = async (URL, email, password) => {
   } else {
     try {
       const { token } = await getToken(email, password);
-      // console.log("Uso token de getToken para hacer la peticion: " + token);
+      console.log("Uso token de getToken para hacer la peticion: " + token);
       const response = await fetch(URL, {
         credentials: "include",
         method: "GET",
@@ -69,7 +69,7 @@ const getData = async (URL, email, password) => {
           accept: "application/json",
         },
       });
-      // console.log(response);
+      console.log(response);
       if (!response.ok) {
         console.error(
           `Error getData sin TS !response.ok: ${response.status}: ${response.statusText} `
