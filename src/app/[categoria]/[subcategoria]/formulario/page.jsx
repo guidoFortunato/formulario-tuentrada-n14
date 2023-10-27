@@ -15,6 +15,7 @@ async function FormPage(){
   const dataToken = await getTokenPrueba()
   const { token, tokenExpires  } = dataToken
   console.log({ token, tokenExpires  })
+  console.log(new Date().times)
   return (
     <>
       <InputBusqueda />
