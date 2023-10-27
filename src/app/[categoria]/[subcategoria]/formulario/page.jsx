@@ -1,28 +1,18 @@
-"use client"
+
 
 import Form1 from "@/components/formulario/Form1";
 import Form2 from "@/components/formulario/Form2";
 import InputBusqueda from "@/components/header/InputBusqueda";
 import getData from "@/helpers/getData";
-import { useEffect, useState } from "react";
+import { getDataPrueba } from "@/helpers/getDataPrueba";
 
-const FormPage = () => {
-  const [data, setData] = useState(null);
 
-  useEffect(() => {
-   
-      const getInfo = async () => {
-        const { data } = await getData(
-          "https://testapi.tuentrada.com/api/v1/site/venue/",
-          "gfortunato@tuentrada.com",
-          "Correa.3030"
-        );
-        // console.log({dataCalendario: data})
-        setData(data);
-      };
-      // getInfo();
-    
-  }, []);
+
+async function FormPage(){
+  
+  const info = await getDataPrueba("https://testapi.tuentrada.com/api/v1/atencion-cliente/categories")//https://testapi.tuentrada.com/api/v1/atencion-cliente/categories
+  // console.log({info: info.data.products })
+  console.log({info: info.data.categories })
   return (
     <>
       <InputBusqueda />
