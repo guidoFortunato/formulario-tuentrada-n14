@@ -1,14 +1,11 @@
-"use client"
-
-import Form1 from "@/components/formulario/Form1";
+// import Form1 from "@/components/formulario/Form1";
 import Form2 from "@/components/formulario/Form2";
 import InputBusqueda from "@/components/header/InputBusqueda";
-import getData from "@/helpers/getData";
-import { useEffect, useState } from "react";
+// import getData from "@/helpers/getData";
+import { getDataPrueba, getTokenPrueba } from "@/helpers/getInfoTest";
 
-const FormPage = () => {
-  const [data, setData] = useState(null);
 
+<<<<<<< HEAD
   useEffect(() => {
    
       const getInfo = async () => {
@@ -23,6 +20,19 @@ const FormPage = () => {
       getInfo();
     
   }, []);
+=======
+
+async function FormPage(){
+  
+  // const info = await getDataPrueba("https://testapi.tuentrada.com/api/v1/atencion-cliente/categories")//https://testapi.tuentrada.com/api/v1/ayuda.tuentrada.com
+  // console.log({info: info.data.products })
+  // console.log({info: info.data.categories })
+
+  const dataToken = await getTokenPrueba()
+  const { token, tokenExpires  } = dataToken
+  console.log({ token, tokenExpires  })
+  console.log(new Date().times)
+>>>>>>> 138fbb8fc2273bb5e7307838b16db1405ff48559
   return (
     <>
       <InputBusqueda />
