@@ -20,7 +20,7 @@ const FormPage = () => {
         console.log({data})
         // setData(data);
       };
-      // getInfo();
+      getInfo();
     
   }, []);
   return (
