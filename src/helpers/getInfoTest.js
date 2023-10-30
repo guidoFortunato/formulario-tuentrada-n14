@@ -1,16 +1,7 @@
-export async function getDataPrueba(url) {
-  const res = await fetch(url, {
-    headers: {
-      Authorization: "Bearer 2861|71cMVUWNgT6Bovm4fNUxkADKfZdMDbqUoZ9qGMrD",
-    },
-  });
-  const data = await res.json();
-  return data;
-}
-
 export async function getTokenPrueba(email = "gfortunato@tuentrada.com", password = "Correa.3030") {
   try {
     const res = await fetch("https://testapi.tuentrada.com/api/login", {
+      // next: { revalidate: 1800},
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,7 +11,7 @@ export async function getTokenPrueba(email = "gfortunato@tuentrada.com", passwor
         password,
       }),
     });
-
+    console.log({resToken: res})
     if (!res.ok) {
         throw new Error(
           `Error getToken !res.ok: ${res.status}. ${res.statusText}`
@@ -35,3 +26,19 @@ export async function getTokenPrueba(email = "gfortunato@tuentrada.com", passwor
     throw new Error(`Error catch getToken: ${error}`);
   }
 }
+export async function getDataPrueba(url) {
+  const {token, tokenExpires} = await getTokenPrueba();
+  const res = await fetch(url, {
+    next: { revalidate: 1800},
+    credentials: "include",
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      accept: 'application/json',
+    },
+  });
+  const data = await res.json();
+  return data;
+}
+
+
