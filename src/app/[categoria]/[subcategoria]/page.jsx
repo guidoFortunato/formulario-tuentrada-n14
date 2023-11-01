@@ -1,7 +1,7 @@
 import InputBusqueda from "@/components/header/InputBusqueda";
 import Articulo from "@/components/main/Articulo";
 
-const page = ({ params }) => {
+const ItemSubCategorie = ({ params }) => {
   return (
     <>
       <InputBusqueda />
@@ -9,4 +9,4 @@ const page = ({ params }) => {
     </>
   );
 };
-export default page;
+export default ItemSubCategorie;

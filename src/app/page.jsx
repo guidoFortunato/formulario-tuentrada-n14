@@ -3,20 +3,23 @@ import InputBusqueda from "@/components/header/InputBusqueda";
 import { getDataPrueba } from "@/helpers/getInfoTest";
 
 export default async function Home() {
-  const info = await getDataPrueba(
-    "https://testapi.tuentrada.com/api/v1/atencion-cliente/categories"
-  );
+  const info = await getDataPrueba("https://testapi.tuentrada.com/api/v1/atencion-cliente/categories");
   // console.log({ info: info.data.categories });
   const { categories } = info.data;
-  console.log({ categories });
+  // console.log({ largo: categories.length });
+
+  const firstCategories = categories.slice(0,2)
+  const restCategories = categories.slice(2)
+
   return (
     <main>
       <InputBusqueda />
       <div className="container mx-auto bg-main-image bg-no-repeat bg-left-50 pb-10 flex-1">
+
+        
         <section className="w-[80%] grid grid-cols-1 md:grid-cols-2 justify-items-center gap-4 mx-auto mt-4">
-          {/* <CardCategoria color={"blue"} title={"Devoluciones"} slug={"devoluciones"} />
-          <CardCategoria color={"blue"} title={"Devoluciones"} slug={"devoluciones"} /> */}
-          {categories.map((item) => (
+          
+          {firstCategories.length > 0 && firstCategories.map((item) => (
             <CardCategoria
               color={item.color}
               title={item.name}
@@ -27,27 +30,23 @@ export default async function Home() {
             />
           ))}
         </section>
-        {/* <section className="w-[80%] grid grid-cols-1 lg:grid-cols-3 justify-items-center gap-4 mx-auto mt-8">
-          <CardCategoria
-            color={"pink"}
-            title={"Inicio sesión"}
-            slug={"inicio-sesion"}
-          />
-          <CardCategoria color={"pink"} title={"Wallet"} slug={"wallet"} />
-        </section>
         <section className="w-[80%] grid grid-cols-1 lg:grid-cols-3 justify-items-center gap-4 mx-auto mt-8">
-          <CardCategoria
-            color={"azul"}
-            title={"Devoluciones"}
-            slug={"devoluciones"}
-          />
-          <CardCategoria
-            color={"azul"}
-            title={"Inicio sesión"}
-            slug={"inicio-sesion"}
-          />
-          <CardCategoria color={"azul"} title={"Wallet"} slug={"wallet"} />
-        </section> */}
+        {
+          restCategories.length > 0 && (
+            restCategories.map((item) => (
+              <CardCategoria
+                color={item.color}
+                title={item.name}
+                slug={item.slug}
+                key={item.id}
+                description={item.refenrece}
+                icon={item.svg}
+              />
+            ))
+          )
+        }
+        </section>
+        
       </div>
     </main>
   );

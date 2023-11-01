@@ -1,8 +1,6 @@
-
-
 import Link from "next/link";
 import dompurify from "isomorphic-dompurify";
-import { BsFillPersonCheckFill } from "react-icons/bs";
+// import { BsFillPersonCheckFill } from "react-icons/bs";
 
 const CardCategoria = ({ color, title, slug, description, icon }) => {
   const sanitizer = dompurify.sanitize;
@@ -11,11 +9,7 @@ const CardCategoria = ({ color, title, slug, description, icon }) => {
     azul: "bg-gradient-to-b from-card-blue-light to-card-blue-dark",
     violeta: "bg-gradient-to-b from-card-pink-light to-card-pink-dark",
   };
-  const colorVariantsText = {
-    azul: "hover:text-card-blue-dark",
-    violeta: "hover:text-card-pink-dark",
-  };
-  console.log({ icon });
+
   return (
     <div
       className={`w-full p-6 text-white border border-gray-200 rounded-lg shadow text-center ${colorVariantsBg[color]}`}

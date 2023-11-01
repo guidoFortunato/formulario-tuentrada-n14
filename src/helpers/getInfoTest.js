@@ -1,7 +1,10 @@
-export async function getTokenPrueba(email = "gfortunato@tuentrada.com", password = "Correa.3030") {
+export async function getTokenPrueba(
+  email = "gfortunato@tuentrada.com",
+  password = "Correa.3030"
+) {
   try {
     const res = await fetch("https://testapi.tuentrada.com/api/login", {
-      next: { revalidate: 1800},
+      next: { revalidate: 1800 },
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -13,10 +16,10 @@ export async function getTokenPrueba(email = "gfortunato@tuentrada.com", passwor
     });
     // console.log({resToken: res})
     if (!res.ok) {
-        throw new Error(
-          `Error getToken !res.ok: ${res.status}. ${res.statusText}`
-        );
-      }
+      throw new Error(
+        `Error getToken !res.ok: ${res.status}. ${res.statusText}`
+      );
+    }
 
     const data = await res.json();
     const { token } = data;
@@ -27,18 +30,25 @@ export async function getTokenPrueba(email = "gfortunato@tuentrada.com", passwor
   }
 }
 export async function getDataPrueba(url) {
-  const {token, tokenExpires} = await getTokenPrueba();
-  const res = await fetch(url, {
-    next: { revalidate: 1800},
-    credentials: "include",
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      accept: 'application/json',
-    },
-  });
-  const data = await res.json();
-  return data;
+  try {
+    const { token, tokenExpires } = await getTokenPrueba();
+    const res = await fetch(url, {
+      next: { revalidate: 1800 },
+      credentials: "include",
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        accept: "application/json",
+      },
+    });
+    if (!res.ok) {
+      throw new Error(
+        `Error getDataPrueba !res.ok: ${res.status}. ${res.statusText}`
+      );
+    }
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    throw new Error(`Error getDataPrueba getToken: ${error}`);
+  }
 }
-
-

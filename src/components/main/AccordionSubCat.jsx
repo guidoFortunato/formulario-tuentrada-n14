@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { useState } from "react";
 
-const AccordionSubCat = ({ slug }) => {
+const AccordionSubCat = ({ name, slug, articles }) => {
   const [open, setOpen] = useState(false);
+
+  console.log({ articles });
 
   const handleClick = (e) => {
     setOpen((prevstate) => !prevstate);
@@ -26,9 +28,7 @@ const AccordionSubCat = ({ slug }) => {
           aria-controls="accordion-flush-body-1"
           onClick={handleClick}
         >
-          <span className="font-semibold text-lg text-blue-dark">
-            Problemas al iniciar sesión
-          </span>
+          <span className="font-semibold text-lg text-blue-dark">{name}</span>
           <svg
             data-accordion-icon
             className="w-3 h-3 rotate-180 shrink-0"
@@ -53,22 +53,17 @@ const AccordionSubCat = ({ slug }) => {
         aria-labelledby="accordion-flush-heading-1"
       >
         <div className="py-5 border-b border-gray-200">
-          <p className="text-gray-500">
-            <Link
-              href={`${slug}/recuperar-contrasenia`}
-              className="text-blue-dark hover:underline"
-            >
-              Recuperar contraseña
-            </Link>{" "}
-          </p>
-          <p className="text-gray-500">
-            <Link
-              href={`${slug}/recuperar-contrasenia`}
-              className="text-blue-dark hover:underline"
-            >
-              Recuperar contraseña
-            </Link>
-          </p>
+          {articles.length > 0 &&
+            articles.map((item) => (
+              <p className="text-gray-500" key={item.id}>
+                <Link
+                  href={`${item.slug}/recuperar-contrasenia`}
+                  className="text-blue-dark hover:underline"
+                >
+                  {item.title}
+                </Link>
+              </p>
+            ))}
         </div>
       </div>
     </div>
