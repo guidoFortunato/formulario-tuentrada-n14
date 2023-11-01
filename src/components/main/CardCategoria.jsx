@@ -1,29 +1,49 @@
-"use client";
+
 
 import Link from "next/link";
-import { CiMoneyCheck1 } from "react-icons/ci";
+import dompurify from "isomorphic-dompurify";
+import { BsFillPersonCheckFill } from "react-icons/bs";
 
-const CardCategoria = ({ color, title, slug }) => {
-  
-  const colorVariants = {
-    blue: "bg-gradient-to-b from-card-blue-light to-card-blue-dark",
-    pink: "bg-gradient-to-b from-card-pink-light to-card-pink-dark",
+const CardCategoria = ({ color, title, slug, description, icon }) => {
+  const sanitizer = dompurify.sanitize;
+
+  const colorVariantsBg = {
+    azul: "bg-gradient-to-b from-card-blue-light to-card-blue-dark",
+    violeta: "bg-gradient-to-b from-card-pink-light to-card-pink-dark",
   };
+  const colorVariantsText = {
+    azul: "hover:text-card-blue-dark",
+    violeta: "hover:text-card-pink-dark",
+  };
+  console.log({ icon });
   return (
     <div
-      className={`w-full p-6 text-white border border-gray-200 rounded-lg shadow text-center ${colorVariants[color]}`}
+      className={`w-full p-6 text-white border border-gray-200 rounded-lg shadow text-center ${colorVariantsBg[color]}`}
     >
-      
       <div className="flex justify-center">
-        <CiMoneyCheck1 className="text-[100px] text-center" />
+        {/* <BsFillPersonCheckFill /> */}
+        <svg
+          xmlns={icon.xmlns}
+          x="0px"
+          y="0px"
+          width={icon.width}
+          height={icon.height}
+          fill={icon.fill}
+          viewBox={icon.viewBox}
+        >
+          <path d={icon.path}></path>
+        </svg>
       </div>
-      <h5 className="mb-1 text-[1.5rem] font-bold tracking-tight">
-        {title}
-      </h5>
-      <p className="mb-7 font-normal">Podes solicitar devoluciones</p>
+      <h5 className="mb-1 text-[1.5rem] font-bold tracking-tight">{title}</h5>
+      <div
+        className="mb-7 font-normal"
+        dangerouslySetInnerHTML={{
+          __html: sanitizer(description),
+        }}
+      ></div>
       <Link
         href={slug}
-        className="text-white border-2 border-white hover:bg-white hover:text-hover-button-card transition duration-150 ease-out hover:ease-in rounded-lg text-sm px-10 py-2.5 text-center mr-2 font-semibold"
+        className={`text-white border-2 border-white hover:bg-white hover:text-black transition duration-150 ease-out hover:ease-in rounded-lg text-sm px-10 py-2.5 text-center mr-2 font-semibold`}
       >
         Saber más
       </Link>

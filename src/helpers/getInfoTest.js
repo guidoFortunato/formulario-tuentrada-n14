@@ -1,7 +1,7 @@
 export async function getTokenPrueba(email = "gfortunato@tuentrada.com", password = "Correa.3030") {
   try {
     const res = await fetch("https://testapi.tuentrada.com/api/login", {
-      // next: { revalidate: 1800},
+      next: { revalidate: 1800},
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -11,7 +11,7 @@ export async function getTokenPrueba(email = "gfortunato@tuentrada.com", passwor
         password,
       }),
     });
-    console.log({resToken: res})
+    // console.log({resToken: res})
     if (!res.ok) {
         throw new Error(
           `Error getToken !res.ok: ${res.status}. ${res.statusText}`
