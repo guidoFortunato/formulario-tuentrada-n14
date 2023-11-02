@@ -7,7 +7,7 @@ const AccordionSubCat = ({ name, slug, articles, params }) => {
   const [open, setOpen] = useState(false);
 
   // console.log({ articles });
-  console.log({ params });
+  // console.log({ params });
 
   const handleClick = (e) => {
     setOpen((prevstate) => !prevstate);
@@ -61,7 +61,7 @@ const AccordionSubCat = ({ name, slug, articles, params }) => {
                   href={`${params.categoria}/${item.slug}`}
                   className="text-blue-dark hover:underline"
                 >
-                  {item.title}
+                  ▸{item.title}
                 </Link>
               </p>
             ))}

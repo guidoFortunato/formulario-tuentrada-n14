@@ -40,7 +40,7 @@ export default async function Home() {
               title={item.name}
               slug={item.slug}
               key={item.id}
-              description={item.refenrece}
+              description={item.reference}
               icon={item.svg}
             />
           ))}
@@ -55,7 +55,7 @@ export default async function Home() {
                 title={item.name}
                 slug={item.slug}
                 key={item.id}
-                description={item.refenrece}
+                description={item.reference}
                 icon={item.svg}
               />
             ))
