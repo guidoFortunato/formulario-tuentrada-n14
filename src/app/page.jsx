@@ -9,7 +9,8 @@ export default async function Home() {
   // console.log({ largo: categories.length });
 
   const firstCategories = categories.slice(0,2)
-  const restCategories = categories.slice(2)
+  const thirdCategory = categories.slice(2,3)
+  const restCategories = categories.slice(3)
 
   return (
     <main>
@@ -25,12 +26,27 @@ export default async function Home() {
               title={item.name}
               slug={item.slug}
               key={item.id}
+              description={item.reference}
+              icon={item.svg}
+            />
+          ))}
+        </section>
+
+        <section className="w-[80%] grid grid-cols-1 justify-items-center gap-4 mx-auto mt-4">
+          
+          {thirdCategory.length > 0 && thirdCategory.map((item) => (
+            <CardCategoria
+              color={item.color}
+              title={item.name}
+              slug={item.slug}
+              key={item.id}
               description={item.refenrece}
               icon={item.svg}
             />
           ))}
         </section>
-        <section className="w-[80%] grid grid-cols-1 lg:grid-cols-3 justify-items-center gap-4 mx-auto mt-8">
+
+        <section className="w-[80%] grid grid-cols-1 lg:grid-cols-3 justify-items-center gap-4 mx-auto mt-4">
         {
           restCategories.length > 0 && (
             restCategories.map((item) => (

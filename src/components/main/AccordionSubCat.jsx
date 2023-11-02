@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { useState } from "react";
 
-const AccordionSubCat = ({ name, slug, articles }) => {
+const AccordionSubCat = ({ name, slug, articles, params }) => {
   const [open, setOpen] = useState(false);
 
-  console.log({ articles });
+  // console.log({ articles });
+  console.log({ params });
 
   const handleClick = (e) => {
     setOpen((prevstate) => !prevstate);
@@ -57,7 +58,7 @@ const AccordionSubCat = ({ name, slug, articles }) => {
             articles.map((item) => (
               <p className="text-gray-500" key={item.id}>
                 <Link
-                  href={`${item.slug}/recuperar-contrasenia`}
+                  href={`${params.categoria}/${item.slug}`}
                   className="text-blue-dark hover:underline"
                 >
                   {item.title}

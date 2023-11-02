@@ -1,6 +1,6 @@
 import AccordionSubCat from "./AccordionSubCat";
 
-const SubCategoria = ({ category }) => {
+const SubCategoria = ({ category, params }) => {
   // console.log({params})
   const {subCategories} = category
   
@@ -11,7 +11,7 @@ const SubCategoria = ({ category }) => {
       </h2>
       {
         subCategories.length > 0 && subCategories.map( item => (
-          <AccordionSubCat slug={item.slug} key={item.id} name={item.name} articles={item.articles} />
+          <AccordionSubCat params={params} slug={item.slug} key={item.id} name={item.name} articles={item.articles} />
         ))
       }
       {/* <AccordionSubCat slug={slug} />
