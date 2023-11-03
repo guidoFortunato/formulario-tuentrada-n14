@@ -4,7 +4,7 @@ import SocialMedia from "./SocialMedia";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-image shadow relative bottom-0 w-full ">
+    <footer className="bg-gradient-image shadow relative bottom-0 w-full pb-[2px]">
       <div className="w-full max-w-screen-xl mx-auto pt-4 md:pt-8">
         <div className="flex items-center flex-col">
           <a
