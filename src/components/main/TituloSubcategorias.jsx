@@ -1,10 +1,4 @@
-"use client"
-
-import { useRouter } from "next/navigation";
-
-const TituloSubcategorias = ({item, index}) => {
-  const router = useRouter()
-  console.log({router})
+const TituloSubcategorias = ({ item, index }) => {
   return (
     <a
       key={item.title}
