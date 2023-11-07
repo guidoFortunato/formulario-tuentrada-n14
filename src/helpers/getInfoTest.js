@@ -33,11 +33,11 @@ export async function getDataPrueba(url) {
   try {
     // const { token, tokenExpires } = await getTokenPrueba();
     const res = await fetch(url, {
-      next: { revalidate: 1800 },
+      // next: { revalidate: 1800 },
       credentials: "include",
       method: "GET",
       headers: {
-        Authorization: `Bearer 4198|DgBofEHDhED9KaZLGUaZZyt0P8kUKf7QthjEc3lh`,
+        Authorization: `Bearer 4219|FuduEVPwkRxCIpCEhr5dtvPkaik2zHR2YKAi3MLc`,
         accept: "application/json",
       },
     });

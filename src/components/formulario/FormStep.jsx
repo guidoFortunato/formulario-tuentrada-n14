@@ -11,6 +11,6 @@ export const FormStep = ({newLengthSteps, dataForm}) => {
     case 1:
       return <Form2 newLengthSteps={newLengthSteps} />;
     default:
-      return <FormsApi dataForm={dataForm} />;
+      return <FormsApi dataForm={dataForm} newLengthSteps={newLengthSteps} />;
   }
 };
