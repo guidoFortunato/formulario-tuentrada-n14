@@ -14,12 +14,12 @@ export const TypeFormSelect = ({ item }) => {
       </label>
       <select {...register(item.name)}>
         {item.options.map((option) => (
-          <option value={option.slice(0, 2)} key={option}>
+          <option value={option} key={option}>
             {option}
           </option>
         ))}
       </select>
-      {watch(item.name).toLowerCase() === "ot" && (
+      { watch(item.name) ? watch(item.name).slice(0,2).toLowerCase() === "ot" ? (
         <>
           <input
             type="text"
@@ -46,7 +46,7 @@ export const TypeFormSelect = ({ item }) => {
             </span>
           )}
         </>
-      )}
+      ) : null : null}
       {errors[item.name] && (
         <span className="text-red-600 text-sm block mt-1">
           {errors[item.name].message}

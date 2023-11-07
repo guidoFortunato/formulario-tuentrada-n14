@@ -19,14 +19,23 @@ export const TypeFormFile = ({ item }) => {
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark block w-full p-2.5"
         placeholder={item.placeholder}
         {...register(item.name, {
-          
+          required: {
+            value: item.required === 1 ? true : false,
+            message: "Este campo es obligatorio", //`El ${item.name.toLowerCase()} es obligatorio`,
+          },
           validate: (value) => {
-            if (value[0]?.size > 60000) {
-              return "El archivo debe pesar menos de 60kb"
+            console.log({ value });
+            if (value.length > 0) {
+              return value[0]?.type !== "image/jpeg" &&
+                value[0]?.type !== "image/png" &&
+                value[0]?.type !== "image/jpg"
+                ? item.helperText
+                : value[0]?.size > 60000
+                ? "El archivo debe pesar menos de 60kb"
+                : true;
             }
-            return (value[0]?.type === "image/jpeg" || value[0]?.type === 'image/png' || value[0]?.type === 'image/jpg') || item.helperText
-          }
-          
+            return true;
+          },
         })}
       />
       {errors[item.name] && (

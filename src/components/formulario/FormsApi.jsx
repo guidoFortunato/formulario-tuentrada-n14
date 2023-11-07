@@ -37,7 +37,7 @@ export const FormsApi = ({ dataForm, newLengthSteps }) => {
     return null;
   });
 
-  console.log({ errors });
+  // console.log({ errors });
   const onSubmit = async (data, event) => {
     event.preventDefault();
     // console.log({ info });
