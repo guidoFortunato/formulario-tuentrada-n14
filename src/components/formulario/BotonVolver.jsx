@@ -1,6 +1,8 @@
-import React from "react";
+import { useContext } from "react";
+import { FormContext } from "@/context/FormContext";
 
-export const BotonVolver = ({ changeStep, currentStep, isFirstStep }) => {
+export const BotonVolver = () => {
+  const { changeStep, currentStep, isFirstStep  } = useContext(FormContext);
   return (
     <>
       {!isFirstStep && (

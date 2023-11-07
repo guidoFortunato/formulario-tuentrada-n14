@@ -10,11 +10,7 @@ const apiCategoria = 'https://testapi.tuentrada.com/api/v1/atencion-cliente/cate
 
 const dataPrueba = []
 
-export const useData = () => {
-  const context = useContext(DataContext);
-  if (!context) throw new Error("useData must be used within a provider");
-  return context;
-};
+
 
 const DataProvider = ({ children }) => {
   const [dataGeneral, setDataGeneral] = useState(null);

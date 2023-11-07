@@ -2,7 +2,6 @@ import NavBar from "@/components/header/Navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Footer from "@/components/footer/Footer";
-import StepsProvider from "@/context/StepContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,13 +17,11 @@ export default function RootLayout({ children }) {
         className={`${inter.className} flex flex-col min-h-[100vh] m-0`}
         suppressHydrationWarning={true}
       >
-        <StepsProvider>
-          <header>
-            <NavBar />
-          </header>
-          {children}
-          <Footer />
-        </StepsProvider>
+        <header>
+          <NavBar />
+        </header>
+        {children}
+        <Footer />
       </body>
     </html>
   );

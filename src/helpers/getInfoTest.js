@@ -31,16 +31,17 @@ export async function getTokenPrueba(
 }
 export async function getDataPrueba(url) {
   try {
-    const { token, tokenExpires } = await getTokenPrueba();
+    // const { token, tokenExpires } = await getTokenPrueba();
     const res = await fetch(url, {
       next: { revalidate: 1800 },
       credentials: "include",
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer 4198|DgBofEHDhED9KaZLGUaZZyt0P8kUKf7QthjEc3lh`,
         accept: "application/json",
       },
     });
+    // console.log({res})
     if (!res.ok) {
       throw new Error(
         `Error getDataPrueba !res.ok: ${res.status}. ${res.statusText}`
@@ -49,6 +50,10 @@ export async function getDataPrueba(url) {
     const data = await res.json();
     return data;
   } catch (error) {
-    throw new Error(`Error getDataPrueba getToken: ${error}`);
+    throw new Error({
+      status: false,
+      message: error,
+
+    });
   }
 }
