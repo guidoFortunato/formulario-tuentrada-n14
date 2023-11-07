@@ -1,16 +1,15 @@
 "use client";
 import { useContext } from "react";
+
 import { FormContext } from "@/context/FormContext";
 import { BotonSiguiente, BotonVolver } from ".";
 import { getDataPrueba } from "@/helpers/getInfoTest";
 
 export const Form1 = ({dataForm, newLengthSteps }) => {
 
+  // console.log({dataForm})  
 
-  // console.log({dataForm})
-
-  const { handleSubmit, register, errors, watch, currentStep, changeStep } = useContext(FormContext);
- 
+  const { register, handleSubmit, errors, watch, reset, nextStep } = useContext(FormContext); 
   
   
   const onSubmit = async (data, event) => {
@@ -19,7 +18,7 @@ export const Form1 = ({dataForm, newLengthSteps }) => {
     // console.log({ info });
     console.log("se envia form 1");
     console.log({ data });
-    changeStep(currentStep + 1);
+    nextStep();
     // reset()
   };
 

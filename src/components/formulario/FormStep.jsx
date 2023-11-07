@@ -1,18 +1,16 @@
 import { FormContext } from "@/context/FormContext";
 import { useContext } from "react";
-import { Form1 } from "./Form1";
-import { Form2 } from ".";
-import { Form3 } from "./Form3";
+import { Form1, Form2, Form3, FormsApi } from "./";
 
-export const FormStep = () => {
+export const FormStep = ({newLengthSteps, dataForm}) => {
   const { currentStep } = useContext(FormContext);
 
   switch (currentStep) {
     case 0:
-      return <Form1 />;
+      return <Form1 newLengthSteps={newLengthSteps} />;
     case 1:
-      return <Form2 />;
+      return <Form2 newLengthSteps={newLengthSteps} />;
     default:
-      return <Form3 />;
+      return <FormsApi dataForm={dataForm} />;
   }
 };

@@ -2,8 +2,10 @@ import { useContext } from "react";
 import { FormContext } from "@/context/FormContext";
 import { BotonSiguiente, BotonVolver } from ".";
 
+
 export const Form3 = ({ dataForm, newLengthSteps }) => {
-  const { handleSubmit, register, errors, watch, changeStep, currentStep } = useContext(FormContext);
+  
+  const { register, handleSubmit, errors, watch, reset } = useContext(FormContext);
 
   const onSubmit = (data, event) => {
     event.preventDefault();
