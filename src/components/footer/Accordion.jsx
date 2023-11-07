@@ -29,14 +29,14 @@ const Accordion = () => {
       <div
         className={`accordion-content ${
           open ? "max-h-screen" : "max-h-0"
-        } transition-max-h ease-in-out duration-500 overflow-hidden w-full ${open && "border-t border-gray-200"}`}
+        } transition-max-h ease-in-out duration-500 overflow-hidden w-full ${open && "border-t border-[#8d858959]"}`}
       >
         <div
           className={`accordion-content ${
             open ? "max-h-screen" : "max-h-0"
-          } transition-max-h ease-in-out duration-500 overflow-hidden w-full border-t border-gray-200`}
+          } transition-max-h ease-in-out duration-500 overflow-hidden w-full border-t border-[#8d858959]`}
         >
-          <div className="py-5 border-gray-200 flex justify-evenly flex-col md:flex-row text-gray-200 mb-2 text-lg font-semibold">
+          <div className="py-5 border-[#8d858959] flex justify-evenly flex-col md:flex-row text-gray-200 mb-2 text-lg font-semibold">
             <div className="text-center mt-5 md:mt-0">
               <p>Categorías</p>
               <ul className="text-[12px] font-normal leading-relaxed text-gray-400">
