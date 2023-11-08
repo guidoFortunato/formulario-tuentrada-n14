@@ -14,7 +14,7 @@ export const Form1 = ({dataForm, newLengthSteps }) => {
   
   const onSubmit = async (data, event) => {
     event.preventDefault();
-    const info = await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/contact/a.r.hamze@live.com`);
+    //const info = await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/contact/a.r.hamze@live.com`);
     // console.log({ info });
     console.log("se envia form 1");
     console.log({ data });

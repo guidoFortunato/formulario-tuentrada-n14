@@ -42,7 +42,7 @@ export const FormsApi = ({ dataForm, newLengthSteps }) => {
     // console.log({ info });
     console.log("se envia form api 1");
     console.log({ data });
-
+    nextStep()
     // reset()
   };
 
