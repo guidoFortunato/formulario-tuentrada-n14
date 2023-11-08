@@ -17,7 +17,7 @@ export const Formularios = ({ dataForm }) => {
         Formulario
       </h2>
 
-      <Steps />
+      <Steps newLengthSteps={newLengthSteps} dataForm={dataForm} />
 
       <FormStep newLengthSteps={newLengthSteps} dataForm={dataForm} />
     </div>

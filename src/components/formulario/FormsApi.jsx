@@ -5,9 +5,8 @@ import { BotonSiguiente } from "./BotonSiguiente";
 import { TypeFormFile, TypeFormInput, TypeFormSelect, TypeFormTextarea } from "./typeform";
 
 export const FormsApi = ({ dataForm, newLengthSteps }) => {
-  const { register, handleSubmit, errors, watch, reset, nextStep } =
-    useContext(FormContext);
-  console.log({ dataForm });
+  const { register, handleSubmit, errors, watch, reset, nextStep } = useContext(FormContext);
+  // console.log({ dataForm });
 
   // const fieldsForStep = dataForm.fields.filter((item) => item.stepId === step.id);
   // const fieldsForStep = dataForm.steps.map((itemStep) => {

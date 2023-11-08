@@ -10,7 +10,9 @@ export const FormStep = ({newLengthSteps, dataForm}) => {
       return <Form1 newLengthSteps={newLengthSteps} />;
     case 1:
       return <Form2 newLengthSteps={newLengthSteps} />;
-    default:
+    case 2:
       return <FormsApi dataForm={dataForm} newLengthSteps={newLengthSteps} />;
+    case 3:
+      return <Form3 newLengthSteps={newLengthSteps} />;
   }
 };

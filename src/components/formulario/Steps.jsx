@@ -1,9 +1,9 @@
 import { FormContext } from "@/context/FormContext";
 import { useContext } from "react";
 
-export const Steps = () => {
+export const Steps = ({ newLengthSteps, dataForm }) => {
   const { currentStep } = useContext(FormContext);
-  // console.log({currentStep})
+  console.log({ currentStep, newLengthSteps, dataForm });
   return (
     <ol className="flex items-center w-full mb-4 sm:mb-5">
       <li
@@ -30,24 +30,6 @@ export const Steps = () => {
       >
         <div
           className={`flex items-center justify-center w-10 h-10 ${
-            currentStep >= 1 ? "bg-blue-200" : "bg-gray-100"
-          } rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0`}
-        >
-          <svg
-            className="w-4 h-4 text-blue-dark lg:w-6 lg:h-6 dark:text-blue-300"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 20 14"
-          >
-            <path d="M18 0H2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2ZM2 12V6h16v6H2Z" />
-            <path d="M6 8H4a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2Zm8 0H9a1 1 0 0 0 0 2h5a1 1 0 1 0 0-2Z" />
-          </svg>
-        </div>
-      </li>
-      <li className="flex w-full items-center after:content-['']">
-        <div
-          className={`flex items-center justify-center w-10 h-10 ${
             currentStep >= 2 ? "bg-blue-200" : "bg-gray-100"
           } rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0`}
         >
@@ -63,6 +45,33 @@ export const Steps = () => {
           </svg>
         </div>
       </li>
+      {dataForm.steps.map((item) => (
+        <li
+          key={item.id}
+          className={`flex w-full items-center after:content-['']  ${
+            currentStep === 3 ? "after:w-full after:h-1 after:border-b after:border-blue-200 after:border-4 after:inline-block" : "after:w-full after:h-1 after:border-b after:border-gray-200 after:border-4 after:inline-block"
+          }  
+            
+             `}
+        >
+          <div
+            className={`flex items-center justify-center w-10 h-10 ${
+              currentStep === 2 ? "bg-blue-200" : "bg-gray-100"
+            } rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0`}
+          >
+            <svg
+              className="w-4 h-4 text-blue-dark lg:w-6 lg:h-6 dark:text-blue-300"
+              aria-hidden="true"
+              xmlns={item.svg.xmlns}
+              fill="currentColor" //{item.svg.fill}
+              viewBox={item.svg.viewBox}
+            >
+              <path d={item.svg.path} />
+              {/* <path d="M6 8H4a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2Zm8 0H9a1 1 0 0 0 0 2h5a1 1 0 1 0 0-2Z" /> */}
+            </svg>
+          </div>
+        </li>
+      ))}
     </ol>
   );
 };
