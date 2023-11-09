@@ -4,14 +4,44 @@ import { useContext } from "react";
 export const Steps = ({ newLengthSteps, dataForm }) => {
   const { currentStep, stepsEstaticos } = useContext(FormContext);
   // console.log({ currentStep, newLengthSteps, dataForm });
-  const lengthSteps = 0
-
+  
   const { steps } =  dataForm
   const newSteps = [...stepsEstaticos, ...steps]
+  const lengthSteps = newSteps.length
   console.log({newSteps})
   return (
     <ol className="flex items-center w-[80%] mx-auto">
-      <li
+
+      {newSteps.map((item) => (
+        <li
+          key={item.id}
+          className={`${ (item.step === lengthSteps) ? "" : (currentStep > item.step + 1 ) ? "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-200 after:border-4 after:inline-block" : "flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-4 after:inline-block" 
+          }  
+            
+             `}
+        >
+          <div
+            className={`flex items-center justify-center w-10 h-10 ${
+              (currentStep >= item.step + 1) ? "bg-blue-200" : "bg-gray-200"
+            } rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0`}
+          >
+            <svg
+              className="w-4 h-4 text-blue-dark lg:w-6 lg:h-6 dark:text-blue-300"
+              aria-hidden="true"
+              xmlns={item.svg.xmlns}
+              fill="currentColor" //{item.svg.fill}
+              viewBox={item.svg.viewBox}
+            >
+              <path d={item.svg.path} />
+             
+            </svg>
+          </div>
+        </li>
+      ))}
+
+
+
+      {/* <li
         className={`flex w-full items-center text-blue-dark dark:text-blue-500 after:content-[''] after:w-full after:h-1 after:border-b ${
           currentStep >= 1 ? "after:border-blue-200" : "after:border-gray-00"
         } after:border-4 after:inline-block dark:after:border-blue-800`}
@@ -49,7 +79,7 @@ export const Steps = ({ newLengthSteps, dataForm }) => {
             <path d="M6 8H4a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2Zm8 0H9a1 1 0 0 0 0 2h5a1 1 0 1 0 0-2Z" />
           </svg>
         </div>
-      </li>
+      </li> */}
       
      
       {/* {dataForm.steps.map((item) => (
