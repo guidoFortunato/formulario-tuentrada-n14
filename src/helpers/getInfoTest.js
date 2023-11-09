@@ -41,19 +41,11 @@ export async function getDataPrueba(url) {
         accept: "application/json",
       },
     });
-    // console.log({res})
-    if (!res.ok) {
-      throw new Error(
-        `Error getDataPrueba !res.ok: ${res.status}. ${res.statusText}`
-      );
-    }
+    
     const data = await res.json();
+    // console.log({data})
     return data;
   } catch (error) {
-    throw new Error({
-      status: false,
-      message: error,
-
-    });
+    console.log('error prueba')
   }
 }
