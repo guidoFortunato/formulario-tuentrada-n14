@@ -61,14 +61,24 @@ const Articulo = ({ params = "", dataArticle = {} }) => {
             {" "}
             Te sirvió la información?
           </h4>
+          <div>
           <Link href={`${params.subcategoria}//formulario`}>
             <button
               type="button"
-              className="w-auto text-white bg-gradient-to-r from-blue-light to-blue-dark hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:blue-dark  font-medium rounded-md text-sm px-5 py-2.5 text-center  mb-10"
+              className="w-[70px] mr-2 text-white bg-gradient-to-r from-blue-light to-blue-dark hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:blue-dark  font-medium rounded-md text-sm px-5 py-2.5 text-center  mb-10"
             >
-              Completar Formulario
+             Si
+            </button>
+            </Link>
+          <Link href={`${params.subcategoria}//formulario`}>
+            <button
+              type="button"
+              className="w-[70px] mr-2 text-white bg-gradient-to-r from-blue-light to-blue-dark hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:blue-dark  font-medium rounded-md text-sm px-5 py-2.5 text-center  mb-10"
+            >
+             No
             </button>
           </Link>
+          </div>
         </div>
         <hr />
 
