@@ -1,16 +1,19 @@
-import React  from "react";
+import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 import TituloSubcategorias from "./TituloSubcategorias";
 import dompurify from "isomorphic-dompurify";
+import { RespuestaLike } from "./like/RespuestaLike";
+import { ButtonFormulario } from "./like/ButtonFormulario";
+import { RespuestaButton } from "./like/RespuestaButton";
 
 const Articulo = ({ params = "", dataArticle = {} }) => {
   const sanitizer = dompurify.sanitize;
   const { content } = dataArticle;
- 
-
+  console.log({ dataArticle });
+  const dataArticleForm = dataArticle.form;
   
+
   return (
     <>
       <div className=" container mx-auto bg-main-image bg-no-repeat bg-left-50 pb-10 px-10 md:px-20 flex-1">
@@ -32,7 +35,7 @@ const Articulo = ({ params = "", dataArticle = {} }) => {
                     __html: sanitizer(item.description),
                   }}
                 ></span>
-               
+
                 {item.image && (
                   <Image
                     src={item.image}
@@ -49,38 +52,44 @@ const Articulo = ({ params = "", dataArticle = {} }) => {
           <div className="lg:col-span-2  col-span-4 order-1 lg:order-2">
             <div className="w-auto sticky top-10 text-sm font-medium text-gray-900 bg-white border border-gray-200 ">
               {content.map((item, index) => (
-                 <TituloSubcategorias item={item} index={index} key={item.title} />
+                <TituloSubcategorias
+                  item={item}
+                  index={index}
+                  key={item.title}
+                />
               ))}
             </div>
           </div>
         </section>
         <hr />
+        {dataArticle.enableHelpful === 1 && (
+          <>
+            <div className="flex justify-center items-center flex-col mb-5">
+              <h4 className="font-semibold text-center text-blue-dark mt-10 mb-2">
+                {" "}
+                Te sirvió la información?
+              </h4>
+              <RespuestaLike params={params} dataArticleForm={dataArticleForm} />
+            </div>
+            <hr />
+          </>
+        )}
 
-        <div className="flex justify-center items-center flex-col">
-          <h4 className="font-semibold text-center text-blue-dark mt-10 mb-2">
-            {" "}
-            Te sirvió la información?
-          </h4>
-          <div>
-          <Link href={`${params.subcategoria}//formulario`}>
-            <button
-              type="button"
-              className="w-[70px] mr-2 text-white bg-gradient-to-r from-blue-light to-blue-dark hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:blue-dark  font-medium rounded-md text-sm px-5 py-2.5 text-center  mb-10"
-            >
-             Si
-            </button>
-            </Link>
-          <Link href={`${params.subcategoria}//formulario`}>
-            <button
-              type="button"
-              className="w-[70px] mr-2 text-white bg-gradient-to-r from-blue-light to-blue-dark hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:blue-dark  font-medium rounded-md text-sm px-5 py-2.5 text-center  mb-10"
-            >
-             No
-            </button>
-          </Link>
-          </div>
-        </div>
-        <hr />
+      
+
+        {dataArticle.enableHelpful === 0 && dataArticleForm !== null &&
+            (
+              <>
+                <div className="flex justify-center items-center flex-col mb-5">
+                  <h4 className="font-semibold text-center text-blue-dark mt-10 mb-2">
+                    {" "}
+                    Escribinos tu consulta:
+                  </h4>
+                  <ButtonFormulario params={params} />
+                </div>
+                <hr />
+              </>
+            )}
 
         <div className="flex justify-evenly mt-24 ">
           <div>

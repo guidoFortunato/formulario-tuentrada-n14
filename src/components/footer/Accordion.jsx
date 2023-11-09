@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { animateScroll as scroll } from "react-scroll";
 
-const Accordion = () => {
+const Accordion = ({data}) => {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
@@ -40,6 +40,7 @@ const Accordion = () => {
             <div className="text-center mt-5 md:mt-0">
               <p>Categorías</p>
               <ul className="text-[12px] font-normal leading-relaxed text-gray-400">
+
                 <li>
                   <a href="#" target="_new">
                     Conciertos
