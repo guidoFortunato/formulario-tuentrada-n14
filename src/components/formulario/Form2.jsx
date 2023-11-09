@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { FormContext } from "@/context/FormContext";
 import { BotonSiguiente, BotonVolver } from ".";
 
-export const Form2 = ({ dataForm, newLengthSteps }) => {
+export const Form2 = ({ dataForm, lengthSteps }) => {
   const { register, handleSubmit, errors, watch, reset, nextStep } = useContext(FormContext);
  
   const onSubmit = (data, event) => {
@@ -114,7 +114,7 @@ export const Form2 = ({ dataForm, newLengthSteps }) => {
       </div>
       <div className="justify-center flex pb-10">
         <BotonVolver />
-        <BotonSiguiente newLengthSteps={newLengthSteps} />
+        <BotonSiguiente lengthSteps={lengthSteps} />
       </div>
     </form>
   );

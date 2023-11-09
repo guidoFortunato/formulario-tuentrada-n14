@@ -5,7 +5,7 @@ import { FormContext } from "@/context/FormContext";
 import { BotonSiguiente, BotonVolver } from ".";
 import { getDataPrueba } from "@/helpers/getInfoTest";
 
-export const Form1 = ({dataForm, newLengthSteps }) => {
+export const Form1 = ({dataForm, lengthSteps }) => {
 
   // console.log({dataForm})  
 
@@ -89,7 +89,7 @@ export const Form1 = ({dataForm, newLengthSteps }) => {
       </div>
       <div className="justify-center flex pb-10">
         <BotonVolver />
-        <BotonSiguiente newLengthSteps={newLengthSteps} />
+        <BotonSiguiente lengthSteps={lengthSteps} />
       </div>
     </form>
   );

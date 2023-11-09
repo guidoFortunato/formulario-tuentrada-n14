@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 export const FormContext = createContext();
 
 const FormProvider = ({ children }) => {
-  const [currentStep, setCurrentStep] = useState(3);
+  const [currentStep, setCurrentStep] = useState(0);
   const {
     register,
     handleSubmit,
@@ -33,7 +33,7 @@ const FormProvider = ({ children }) => {
           subtype: "text",
           options: null,
           placeholder: "Ingrese su email",
-          pattern: null,
+          pattern: /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/,
           helperText: null,
           min: null,
           max: null,
@@ -118,8 +118,6 @@ const FormProvider = ({ children }) => {
     },
   ];
 
-  const lengthSteps = 2;
-
   const nextStep = () => {
     setCurrentStep((prev) => prev + 1);
   };
@@ -138,7 +136,6 @@ const FormProvider = ({ children }) => {
         currentStep,
         nextStep,
         prevStep,
-        lengthSteps,
         stepsEstaticos,
       }}
     >
