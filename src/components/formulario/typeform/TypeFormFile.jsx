@@ -24,7 +24,7 @@ export const TypeFormFile = ({ item }) => {
             message: "Este campo es obligatorio", //`El ${item.name.toLowerCase()} es obligatorio`,
           },
           validate: (value) => {
-            console.log({ value });
+            // console.log({ value });
             if (value.length > 0) {
               return value[0]?.type !== "image/jpeg" &&
                 value[0]?.type !== "image/png" &&

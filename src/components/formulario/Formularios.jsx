@@ -6,7 +6,7 @@ import { FormStep, Steps } from ".";
 
 export const Formularios = ({ dataForm }) => {
   const { lengthSteps } = useContext(FormContext);
-  const newLengthSteps = lengthSteps + dataForm.steps.length;
+  const newLengthSteps = 0
   // console.log({currentStep})
 
   return (

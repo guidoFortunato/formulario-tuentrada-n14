@@ -11,9 +11,9 @@ async function FormPage({ params }) {
     `https://testapi.tuentrada.com/api/v1/atencion-cliente/articulo/${params.subcategoria}/formulario`
   );
 
-  // console.log({infoForm: info.data})
+  // console.log({infoForm: info.data.steps})
   // console.log({ info: info.data.form.fields });
-  const dataForm = info.data.form;
+  const dataForm = info.data;
 
   return (
     <>
