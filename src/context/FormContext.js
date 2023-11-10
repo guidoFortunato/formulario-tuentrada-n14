@@ -126,9 +126,9 @@ const FormProvider = ({ children }) => {
     setDataContacto(contacto);
   };
 
-  const joinContacto = (nuevoContacto)=>{
-    setDataContacto( prev => [...prev, ...nuevoContacto] );
-  }
+  // const joinContacto = (nuevoContacto)=>{
+  //   setDataContacto( prev => {{...prev, ...nuevoContacto}} );
+  // }
 
   const handleStatusForm = (status) => {
     setStatusForm(status);
@@ -158,7 +158,8 @@ const FormProvider = ({ children }) => {
         statusForm,
         stepsEstaticos,
         watch,
-        joinContacto,
+        // joinContacto,
+        setDataContacto,
       }}
     >
       {children}

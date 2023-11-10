@@ -4,7 +4,7 @@ import { FormContext } from "@/context/FormContext";
 import { BotonSiguiente, BotonVolver } from ".";
 
 export const Form2 = ({ dataForm, lengthSteps }) => {
-  const { register, handleSubmit, errors, nextStep, dataContacto, setValue, statusForm, handleStatusForm, handleContacto } = useContext(FormContext);
+  const { register, handleSubmit, errors, nextStep, dataContacto, setValue, statusForm, handleStatusForm, handleContacto, setDataContacto } = useContext(FormContext);
   console.log({dataContactoEnForm2: dataContacto, statusForm})
 
   useEffect(() => {
@@ -34,7 +34,10 @@ export const Form2 = ({ dataForm, lengthSteps }) => {
       last_name: data.lastname,
       phone_number1: data.phone,
       document: data.dni,
+      email: data.email,
+      email_confirm: data.emailConfirm
     })
+    console.log({dataContactoSubmitForm2: dataContacto})
     console.log("se envia form 2");
     console.log({ data });
     handleStatusForm(true)

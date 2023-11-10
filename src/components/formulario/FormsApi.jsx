@@ -21,7 +21,7 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
     currentStep,
     reset,
     handleContacto,
-    joinContacto,
+    setDataContacto,
   } = useContext(FormContext);
 
   const { steps } = dataForm;
@@ -56,7 +56,7 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
     event.preventDefault();
     // console.log({ info });
     console.log("se envia form api 1");
-    joinContacto( data )
+    setDataContacto( {...dataContacto, ...data} )
     console.log({dataContacto})
     console.log({ data });
     if (!(currentStep + 1 === lengthSteps)) {
