@@ -37,15 +37,9 @@ export const TypeFormFile = ({ item }) => {
             }
             return true;
           },
-<<<<<<< HEAD
-        })}
-      />
-      {errors[name] && (
-=======
         })}/>
         
-      {errors[item.name] && (
->>>>>>> de64509566c79c990763515bbe9f0471aead9555
+      {errors[name] && (
         <span className="text-red-600 text-sm block mt-1">
           {errors[name].message}
         </span>
