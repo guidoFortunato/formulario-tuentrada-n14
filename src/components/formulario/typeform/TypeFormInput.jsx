@@ -2,8 +2,7 @@ import { useContext } from "react";
 import { FormContext } from "@/context/FormContext";
 
 export const TypeFormInput = ({ item }) => {
-  const { register, handleSubmit, errors, watch, reset, nextStep } =
-    useContext(FormContext);
+  const { register, handleSubmit, errors, watch, reset, nextStep } = useContext(FormContext);
   return (
     <div>
       <label

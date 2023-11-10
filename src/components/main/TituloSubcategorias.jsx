@@ -8,6 +8,7 @@ const TituloSubcategorias = ({ item, index }) => {
     >
       {item.title}
     </a>
+    
   );
 };
 export default TituloSubcategorias;

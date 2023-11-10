@@ -5,7 +5,7 @@ import { FormContext } from "@/context/FormContext";
 import { BotonSiguiente, BotonVolver } from ".";
 import { getDataPrueba } from "@/helpers/getInfoTest";
 
-export const Form1 = ({dataForm, newLengthSteps }) => {
+export const Form1 = ({dataForm, lengthSteps }) => {
 
   // console.log({dataForm})  
 
@@ -14,8 +14,8 @@ export const Form1 = ({dataForm, newLengthSteps }) => {
   
   const onSubmit = async (data, event) => {
     event.preventDefault();
-    //const info = await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/contact/a.r.hamze@live.com`);
-    // console.log({ info });
+    const info = await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/contact/a.r.hamze@live.coma`);
+    console.log({ info });
     console.log("se envia form 1");
     console.log({ data });
     nextStep();
@@ -89,7 +89,7 @@ export const Form1 = ({dataForm, newLengthSteps }) => {
       </div>
       <div className="justify-center flex pb-10">
         <BotonVolver />
-        <BotonSiguiente newLengthSteps={newLengthSteps} />
+        <BotonSiguiente lengthSteps={lengthSteps} />
       </div>
     </form>
   );

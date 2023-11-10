@@ -37,23 +37,15 @@ export async function getDataPrueba(url) {
       credentials: "include",
       method: "GET",
       headers: {
-        Authorization: `Bearer 4226|EK1Le1CTDTYD8DzkQSC8Rg71eduApE1I1h0uDV1c`,
+        Authorization: `Bearer 4235|yaJsqO9f3WJg9jFCi04Rv5f4dY4z8pLp3EhYZp0W`,
         accept: "application/json",
       },
     });
-    // console.log({res})
-    if (!res.ok) {
-      throw new Error(
-        `Error getDataPrueba !res.ok: ${res.status}. ${res.statusText}`
-      );
-    }
+    
     const data = await res.json();
+    // console.log({data})
     return data;
   } catch (error) {
-    throw new Error({
-      status: false,
-      message: error,
-
-    });
+    console.log('error prueba')
   }
 }
