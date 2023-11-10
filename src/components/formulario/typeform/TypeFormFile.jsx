@@ -15,9 +15,9 @@ export const TypeFormFile = ({ item }) => {
 
       <input
         type={item.type}
-        name={item.name}
-        id={item.name}
-        className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark block w-full  "
+        name={name}
+        id={name}
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark block w-full p-2.5"
         placeholder={item.placeholder}
         {...register(name, {
           required: {
@@ -37,8 +37,8 @@ export const TypeFormFile = ({ item }) => {
             }
             return true;
           },
-        })}/>
-        
+        })}
+      />
       {errors[name] && (
         <span className="text-red-600 text-sm block mt-1">
           {errors[name].message}

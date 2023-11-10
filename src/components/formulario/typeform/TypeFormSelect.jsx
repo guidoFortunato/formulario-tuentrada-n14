@@ -13,7 +13,7 @@ export const TypeFormSelect = ({ item }) => {
       >
         {item.name}
       </label>
-      <select {...register(item.name)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark w-full block p-2.5 mt-2">
+      <select {...register(name)}>
         {item.options.map((option) => (
           <option value={option} key={option}>
             {option}
