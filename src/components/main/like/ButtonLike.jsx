@@ -2,10 +2,13 @@ export const ButtonLike = ({
   name,
   handleLike,
   handleDisLike,
+  handleOpinion,
   result,
+  opinion,
   like,
 }) => {
   const handleClick = () => {
+    handleOpinion()
     if (result) {
       handleLike();
     }
@@ -15,11 +18,10 @@ export const ButtonLike = ({
   };
   return (
     <>
-      {like === false ? (
+      {opinion ? (
         <button
           type="button"
           className={`w-[70px] cursor-default mr-2 text-white bg-gradient-to-r from-gray-300 to-gray-400 rounded-md text-sm px-5 py-2.5 text-center mb-5`}
-        
         >
           {name}
         </button>

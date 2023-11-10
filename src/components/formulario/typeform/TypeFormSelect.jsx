@@ -4,22 +4,23 @@ import { FormContext } from "@/context/FormContext";
 export const TypeFormSelect = ({ item }) => {
   const { register, handleSubmit, errors, watch, reset, nextStep } =
     useContext(FormContext);
+  const name = (item.name).toLowerCase().split(' ').join('_')
   return (
     <div>
       <label
-        htmlFor={item.name}
+        htmlFor={name}
         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
       >
         {item.name}
       </label>
-      <select {...register(item.name)}>
+      <select {...register(name)}>
         {item.options.map((option) => (
           <option value={option} key={option}>
             {option}
           </option>
         ))}
       </select>
-      { watch(item.name) ? watch(item.name).slice(0,2).toLowerCase() === "ot" ? (
+      { watch(name) ? watch(name).slice(0,2).toLowerCase() === "ot" ? (
         <>
           <input
             type="text"
@@ -47,9 +48,9 @@ export const TypeFormSelect = ({ item }) => {
           )}
         </>
       ) : null : null}
-      {errors[item.name] && (
+      {errors[name] && (
         <span className="text-red-600 text-sm block mt-1">
-          {errors[item.name].message}
+          {errors[name].message}
         </span>
       )}
     </div>

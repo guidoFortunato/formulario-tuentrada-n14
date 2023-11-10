@@ -4,6 +4,7 @@ import { Form1, Form2, Form3, FormsApi } from "./";
 
 export const FormStep = ({dataForm}) => {
   const { currentStep, stepsEstaticos } = useContext(FormContext);
+  
   const { steps } = dataForm;
 
   const newSteps = [...stepsEstaticos, ...steps];

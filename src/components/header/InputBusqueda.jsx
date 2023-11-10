@@ -1,4 +1,29 @@
+"use client"
+
+import { useState } from "react";
+import { alertaWarning } from "@/helpers/Alertas";
+
 const InputBusqueda = () => {
+  const [keyword, setKeyword] = useState("");
+  
+  const handleKeyword = (nombreKeyword) => {
+    if (!nombreKeyword.trim()) {
+      setKeyword("");
+      return;
+    }
+    setKeyword(nombreKeyword);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (keyword.length === 0) {
+      alertaWarning();
+      return;
+    }
+
+    handleKeyword("");
+    console.log('click')
+  };
   return (
     <>
     <div className="flex justify-center flex-col items-center my-10">
@@ -7,15 +32,18 @@ const InputBusqueda = () => {
       ¿Necesitás ayuda?
     </h1>
   </section>
+
   
-    <form className="w-[95%] md:w-2/5 ">
+  
+    <form className="w-[95%] md:w-2/5" onSubmit={handleSubmit}>
       <div className="relative">
         <input
           type="search"
           id="default-search"
           className="block w-full p-4 pr-12 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-dark focus:border-blue-dark"
           placeholder="Buscar categoría, subcategoría..."
-          required
+          value={keyword}
+          onChange={(e) => handleKeyword(e.target.value)}
         />
         <button
           type="submit"

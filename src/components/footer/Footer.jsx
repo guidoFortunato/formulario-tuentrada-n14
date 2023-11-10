@@ -2,7 +2,7 @@ import Image from "next/image";
 import Accordion from "./Accordion";
 import SocialMedia from "./SocialMedia";
 
-const Footer = ({data}) => {
+const Footer = ({ data }) => {
   return (
     <footer className="bg-gradient-image shadow relative bottom-0 w-full pb-[2px]">
       <div className="w-full max-w-screen-xl mx-auto pt-4 md:pt-8">

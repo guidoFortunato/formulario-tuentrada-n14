@@ -1,15 +1,43 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { FormContext } from "@/context/FormContext";
 import { BotonSiguiente, BotonVolver } from ".";
 
 export const Form2 = ({ dataForm, lengthSteps }) => {
-  const { register, handleSubmit, errors, watch, reset, nextStep } = useContext(FormContext);
- 
+  const { register, handleSubmit, errors, nextStep, dataContacto, setValue, statusForm, handleStatusForm, handleContacto } = useContext(FormContext);
+  console.log({dataContactoEnForm2: dataContacto, statusForm})
+
+  useEffect(() => {
+    if ( dataContacto !== null && statusForm ) {
+      setValue("name", dataContacto.first_name)
+      setValue("lastname", dataContacto.last_name)
+      setValue("phone", dataContacto.phone_number1)
+      setValue("dni", dataContacto.document)
+    }
+    if (dataContacto !== null && !statusForm) {
+      setValue("name", "")
+      setValue("lastname", "")
+      setValue("phone", "")
+      setValue("dni", "")
+    }
+    
+  }, [dataContacto]);
+
+
+
+
+
   const onSubmit = (data, event) => {
     event.preventDefault();
+    handleContacto({
+      first_name: data.name,
+      last_name: data.lastname,
+      phone_number1: data.phone,
+      document: data.dni,
+    })
     console.log("se envia form 2");
     console.log({ data });
+    handleStatusForm(true)
     nextStep();
   };
 
@@ -76,7 +104,7 @@ export const Form2 = ({ dataForm, lengthSteps }) => {
             Teléfono
           </label>
           <input
-            type="number"
+            type="text"
             name="phone"
             id="phone"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
