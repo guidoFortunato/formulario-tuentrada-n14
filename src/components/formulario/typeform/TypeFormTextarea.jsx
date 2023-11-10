@@ -25,8 +25,8 @@ export const TypeFormTextarea = ({ item }) => {
             message: "Este campo es obligatorio" //`El ${item.name.toLowerCase()} es obligatorio`,
           },
           maxLength: {
-            value: 400,
-            message: "No debe poseer mas de 400 caracteres" //`El ${item.name.toLowerCase()} es obligatorio`,
+            value: 900,
+            message: "No debe poseer mas de 900 caracteres" //`El ${item.name.toLowerCase()} es obligatorio`,
           }
           
         })}

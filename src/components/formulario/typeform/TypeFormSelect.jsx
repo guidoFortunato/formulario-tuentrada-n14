@@ -13,7 +13,7 @@ export const TypeFormSelect = ({ item }) => {
       >
         {item.name}
       </label>
-      <select {...register(name)}>
+      <select {...register(item.name)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark w-full block p-2.5 mt-2">
         {item.options.map((option) => (
           <option value={option} key={option}>
             {option}
@@ -26,7 +26,7 @@ export const TypeFormSelect = ({ item }) => {
             type="text"
             name="otra"
             id="otra"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark block w-full p-2.5 mt-2"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark  block w-full p-2.5 mt-2"
             placeholder={item.helperText}
             {...register("otra", {
               required: {
