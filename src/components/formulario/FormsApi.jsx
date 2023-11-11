@@ -9,6 +9,7 @@ import {
   TypeFormTextarea,
 } from "./typeform";
 import { alertaSuccess } from "@/helpers/Alertas";
+import { useRouter } from "next/navigation";
 
 
 export const FormsApi = ({ dataForm, lengthSteps }) => {
@@ -26,6 +27,7 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
 
   const { steps } = dataForm;
   const newSteps = [...stepsEstaticos, ...steps];
+  const router = useRouter()
   // console.log({ currentStep, lengthSteps: newSteps.length });
   
   
@@ -64,9 +66,12 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
     }
     if ((currentStep + 1 === lengthSteps)) {
       alertaSuccess()
-      
+      reset()
+      setTimeout(() => {
+        router.push('/');
+        
+      }, 3000);
     }
-    // reset()
   };
 
   return (

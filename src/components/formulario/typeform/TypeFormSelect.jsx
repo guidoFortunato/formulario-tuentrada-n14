@@ -13,9 +13,11 @@ export const TypeFormSelect = ({ item }) => {
       >
         {item.name}
       </label>
-      <select {...register(name)}>
+      
+      <select {...register(name)} defaultValue="Selecciona una opción">
+       
         {item.options.map((option) => (
-          <option value={option} key={option}>
+          <option value={option} key={option} >
             {option}
           </option>
         ))}
