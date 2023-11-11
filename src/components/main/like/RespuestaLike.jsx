@@ -8,7 +8,7 @@ export const RespuestaLike = ({ params, dataArticleForm }) => {
   const [like, setLike] = useState(true);
 
   const handleLike = () => {
-    setLike(true);
+    setLike(false);
   };
   const handleDisLike = () => {
     setLike(false);

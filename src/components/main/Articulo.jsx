@@ -12,7 +12,6 @@ const Articulo = ({ params = "", dataArticle = {} }) => {
   const { content } = dataArticle;
   console.log({ dataArticle });
   const dataArticleForm = dataArticle.form;
-  
 
   return (
     <>
@@ -69,27 +68,27 @@ const Articulo = ({ params = "", dataArticle = {} }) => {
                 {" "}
                 Te sirvió la información?
               </h4>
-              <RespuestaLike params={params} dataArticleForm={dataArticleForm} />
+              <RespuestaLike
+                params={params}
+                dataArticleForm={dataArticleForm}
+              />
             </div>
             <hr />
           </>
         )}
 
-      
-
-        {dataArticle.enableHelpful === 0 && dataArticleForm !== null &&
-            (
-              <>
-                <div className="flex justify-center items-center flex-col mb-5">
-                  <h4 className="font-semibold text-center text-blue-dark mt-10 mb-2">
-                    {" "}
-                    Escribinos tu consulta:
-                  </h4>
-                  <ButtonFormulario params={params} />
-                </div>
-                <hr />
-              </>
-            )}
+        {dataArticle.enableHelpful === 0 && dataArticleForm !== null && (
+          <>
+            <div className="flex justify-center items-center flex-col mb-5">
+              <h4 className="font-semibold text-center text-blue-dark mt-10 mb-2">
+                {" "}
+                Escribinos tu consulta:
+              </h4>
+              <ButtonFormulario params={params} />
+            </div>
+            <hr />
+          </>
+        )}
 
         <div className="flex justify-evenly mt-24 ">
           <div>
