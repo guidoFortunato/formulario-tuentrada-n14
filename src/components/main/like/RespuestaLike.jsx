@@ -5,13 +5,18 @@ import { useState } from "react";
 import { ButtonFormulario } from "./ButtonFormulario";
 
 export const RespuestaLike = ({ params, dataArticleForm }) => {
-  const [like, setLike] = useState(true);
+  const [like, setLike] = useState(null);
+  const [opinion, setOpinion] = useState(false);
 
   const handleLike = () => {
     setLike(false);
   };
   const handleDisLike = () => {
     setLike(false);
+  };
+
+  const handleOpinion = () => {
+    setOpinion(true);
   };
 
   return (
@@ -23,6 +28,8 @@ export const RespuestaLike = ({ params, dataArticleForm }) => {
           handleLike={handleLike}
           handleDisLike={handleDisLike}
           like={like}
+          handleOpinion={handleOpinion}
+          opinion={opinion}
         />
 
         <ButtonLike
@@ -31,27 +38,48 @@ export const RespuestaLike = ({ params, dataArticleForm }) => {
           handleLike={handleLike}
           handleDisLike={handleDisLike}
           like={like}
+          handleOpinion={handleOpinion}
+          opinion={opinion}
         />
       </div>
-      {dataArticleForm === null ? (
+      {dataArticleForm === null && (
         <div
-          className={`${like ? "hidden" : ""} flex flex-col items-center mb-2`}
+          className={`${
+            opinion === false ? "hidden" : ""
+          } flex flex-col items-center mb-2`}
         >
           <p className="mb-2 text-blue-dark font-base">
             Gracias por su opinión :)
           </p>
-          
         </div>
-      ) : (
+      )}
+
+      {dataArticleForm !== null && like === true && (
         <div
-          className={`${like ? "hidden" : ""} flex flex-col items-center mb-2`}
+          className={`${
+            opinion === false ? "hidden" : ""
+          } flex flex-col items-center mb-2`}
+        >
+          <p className="mb-2 text-blue-dark font-base">
+            Gracias por su opinión :)
+          </p>
+        </div>
+      )}
+
+      { dataArticleForm !== null && like === false &&
+        <div
+          className={`${
+            opinion === false
+              ? "hidden"
+              : ""
+          } flex flex-col items-center mb-2`}
         >
           <p className="mb-2 text-gray-500 font-base">
-            Si necesitás más información:{" "}
+          Escribinos tu consulta:
           </p>
           <ButtonFormulario params={params} />
         </div>
-      )}
+      }
     </>
   );
 };

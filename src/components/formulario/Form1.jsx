@@ -9,15 +9,28 @@ export const Form1 = ({dataForm, lengthSteps }) => {
 
   // console.log({dataForm})  
 
-  const { register, handleSubmit, errors, watch, reset, nextStep } = useContext(FormContext); 
+  const { register, handleSubmit, errors, watch, nextStep, handleContacto, handleStatusForm } = useContext(FormContext); 
   
   
   const onSubmit = async (data, event) => {
     event.preventDefault();
-    const info = await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/contact/a.r.hamze@live.coma`);
-    console.log({ info });
     console.log("se envia form 1");
+    const info = await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/contact/${data.email}`);
+    console.log({ info });
     console.log({ data });
+    if (info.status) {
+      handleStatusForm(true)
+      handleContacto({
+        id: info.data.contact.id,
+        document: info.data.contact.document,
+        first_name: info.data.contact.first_name,
+        last_name: info.data.contact.last_name,
+        phone_number1: info.data.contact.phone_number1,
+      })
+    }
+    if (info.status === false) {
+      handleStatusForm(false)
+    }
     nextStep();
     // reset()
   };

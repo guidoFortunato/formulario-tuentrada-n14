@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { animateScroll as scroll } from "react-scroll";
 
-const Accordion = ({data}) => {
+const Accordion = ({ data }) => {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
@@ -29,7 +29,9 @@ const Accordion = ({data}) => {
       <div
         className={`accordion-content ${
           open ? "max-h-screen" : "max-h-0"
-        } transition-max-h ease-in-out duration-500 overflow-hidden w-full ${open && "border-t border-[#8d858959]"}`}
+        } transition-max-h ease-in-out duration-500 overflow-hidden w-full ${
+          open && "border-t border-[#8d858959]"
+        }`}
       >
         <div
           className={`accordion-content ${
@@ -40,7 +42,6 @@ const Accordion = ({data}) => {
             <div className="text-center mt-5 md:mt-0">
               <p>Categorías</p>
               <ul className="text-[12px] font-normal leading-relaxed text-gray-400">
-
                 <li>
                   <a href="#" target="_new">
                     Conciertos

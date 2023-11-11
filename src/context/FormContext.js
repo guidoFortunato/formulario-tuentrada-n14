@@ -5,12 +5,15 @@ export const FormContext = createContext();
 
 const FormProvider = ({ children }) => {
   const [currentStep, setCurrentStep] = useState(0);
+  const [dataContacto, setDataContacto] = useState(null);
+  const [statusForm, setStatusForm] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
     reset,
+    setValue,
   } = useForm();
 
   const stepsEstaticos = [
@@ -33,7 +36,8 @@ const FormProvider = ({ children }) => {
           subtype: "text",
           options: null,
           placeholder: "Ingrese su email",
-          pattern: /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/,
+          pattern:
+            /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/,
           helperText: null,
           min: null,
           max: null,
@@ -118,6 +122,18 @@ const FormProvider = ({ children }) => {
     },
   ];
 
+  const handleContacto = (contacto) => {
+    setDataContacto(contacto);
+  };
+
+  // const joinContacto = (nuevoContacto)=>{
+  //   setDataContacto( prev => {{...prev, ...nuevoContacto}} );
+  // }
+
+  const handleStatusForm = (status) => {
+    setStatusForm(status);
+  };
+
   const nextStep = () => {
     setCurrentStep((prev) => prev + 1);
   };
@@ -128,15 +144,22 @@ const FormProvider = ({ children }) => {
   return (
     <FormContext.Provider
       value={{
-        register,
-        handleSubmit,
-        errors,
-        watch,
-        reset,
         currentStep,
+        dataContacto,
+        errors,
+        handleContacto,
+        handleStatusForm,
+        handleSubmit,
         nextStep,
         prevStep,
+        register,
+        reset,
+        setValue,
+        statusForm,
         stepsEstaticos,
+        watch,
+        // joinContacto,
+        setDataContacto,
       }}
     >
       {children}
