@@ -4,17 +4,16 @@ import { useForm } from "react-hook-form";
 export const FormContext = createContext();
 
 const FormProvider = ({ children }) => {
-  const [currentStep, setCurrentStep] = useState(3);
+  const [currentStep, setCurrentStep] = useState(0);
   const [dataContacto, setDataContacto] = useState(null);
-  const [statusForm, setStatusForm] = useState(false);
+
   const {
-    register,
-    handleSubmit,
     formState: { errors },
-    watch,
+    handleSubmit,
+    register,
     reset,
     setValue,
-    Controller 
+    watch,
   } = useForm();
 
   const stepsEstaticos = [
@@ -127,14 +126,6 @@ const FormProvider = ({ children }) => {
     setDataContacto(contacto);
   };
 
-  // const joinContacto = (nuevoContacto)=>{
-  //   setDataContacto( prev => {{...prev, ...nuevoContacto}} );
-  // }
-
-  const handleStatusForm = (status) => {
-    setStatusForm(status);
-  };
-
   const nextStep = () => {
     setCurrentStep((prev) => prev + 1);
   };
@@ -149,19 +140,15 @@ const FormProvider = ({ children }) => {
         dataContacto,
         errors,
         handleContacto,
-        handleStatusForm,
         handleSubmit,
         nextStep,
         prevStep,
         register,
         reset,
         setValue,
-        statusForm,
+        setDataContacto,
         stepsEstaticos,
         watch,
-        Controller,
-        // joinContacto,
-        setDataContacto,
       }}
     >
       {children}
