@@ -9,6 +9,12 @@ const Accordion = ({ data }) => {
 
   const { pages } = data;
 
+  const objectsFooter = pages.filter((page) => page.where === "footer");
+
+  const typeNames = [...new Set(objectsFooter.map((item) => item.type.name))];
+
+  // console.log({ typeNames });
+
   const handleClick = () => {
     setOpen((prevState) => !prevState);
 
@@ -42,24 +48,24 @@ const Accordion = ({ data }) => {
           } transition-max-h ease-in-out duration-500 overflow-hidden w-full border-t border-[#8d858959]`}
         >
           <div className="py-5 border-[#8d858959] flex justify-evenly flex-col md:flex-row text-gray-200 mb-2 text-lg font-semibold">
-            {pages.map((item) => {
-              if (item.where === "footer") {
-                return (
-                  <div className="text-center mt-5 md:mt-0" key={item.id}>
-                    <p>{item.type.name}</p>
-                    <ul className="text-[12px] font-normal leading-relaxed text-gray-400">
-                      <li>
-                        <Link href={item.path} className="hover:underline ">
-                          {item.title}
-                        </Link>
-                        <span className="mx-1">.</span>
-                      </li>
-                    </ul>
-                  </div>
-                );
-              }
-            })}
-            
+            {typeNames.map((item) => (
+              <div className="text-center mt-5 md:mt-0" key={item}>
+                <p>{item}</p>
+                <ul className="text-[12px] font-normal leading-relaxed text-gray-400">
+                  {pages.map((page) => {
+                    if (item === page.type.name) {
+                      return (
+                        <li key={page.id}>
+                          <Link href={page.path} className="hover:underline ">
+                            {page.title}
+                          </Link>
+                        </li>
+                      );
+                    }
+                  })}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </div>

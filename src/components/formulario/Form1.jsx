@@ -1,25 +1,28 @@
 "use client";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { FormContext } from "@/context/FormContext";
 import { BotonSiguiente, BotonVolver } from ".";
 import { getDataPrueba } from "@/helpers/getInfoTest";
 
-export const Form1 = ({dataForm, lengthSteps }) => {
+export const Form1 = ({lengthSteps }) => {
 
   // console.log({dataForm})  
 
-  const { register, handleSubmit, errors, watch, nextStep, handleContacto, handleStatusForm } = useContext(FormContext); 
+  const { register, handleSubmit, errors, watch, nextStep, handleContacto, reset } = useContext(FormContext); 
   
-  
+  useEffect(() => {
+    handleContacto(null)
+    reset()
+  }, []);
+
   const onSubmit = async (data, event) => {
     event.preventDefault();
     console.log("se envia form 1");
     const info = await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/contact/${data.email}`);
-    console.log({ info });
+    // console.log({ info });
     console.log({ data });
     if (info.status) {
-      handleStatusForm(true)
       handleContacto({
         id: info.data.contact.id,
         document: info.data.contact.document,
@@ -28,11 +31,9 @@ export const Form1 = ({dataForm, lengthSteps }) => {
         phone_number1: info.data.contact.phone_number1,
       })
     }
-    if (info.status === false) {
-      handleStatusForm(false)
-    }
+   
     nextStep();
-    // reset()
+    
   };
 
   return (
@@ -48,7 +49,7 @@ export const Form1 = ({dataForm, lengthSteps }) => {
           <input
             name="email"
             id="email"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus-visible:border-blue-dark focus:border-blue-dark block w-full p-2.5"
             placeholder="Ingrese su email"
             {...register("email", {
               required: {

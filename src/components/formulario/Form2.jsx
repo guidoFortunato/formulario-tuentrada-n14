@@ -3,29 +3,26 @@ import { useContext, useEffect } from "react";
 import { FormContext } from "@/context/FormContext";
 import { BotonSiguiente, BotonVolver } from ".";
 
-export const Form2 = ({ dataForm, lengthSteps }) => {
-  const { register, handleSubmit, errors, nextStep, dataContacto, setValue, statusForm, handleStatusForm, handleContacto, setDataContacto } = useContext(FormContext);
-  console.log({dataContactoEnForm2: dataContacto, statusForm})
+export const Form2 = ({ lengthSteps }) => {
+  const {
+    register,
+    handleSubmit,
+    errors,
+    nextStep,
+    dataContacto,
+    setValue,
+    handleContacto,
+  } = useContext(FormContext);
+  console.log({ dataContactoEnForm2: dataContacto });
 
   useEffect(() => {
-    if ( dataContacto !== null && statusForm ) {
-      setValue("name", dataContacto.first_name)
-      setValue("lastname", dataContacto.last_name)
-      setValue("phone", dataContacto.phone_number1)
-      setValue("dni", dataContacto.document)
+    if (dataContacto !== null) {
+      setValue("name", dataContacto.first_name);
+      setValue("lastname", dataContacto.last_name);
+      setValue("phone", dataContacto.phone_number1);
+      setValue("dni", dataContacto.document);
     }
-    if (dataContacto !== null && !statusForm) {
-      setValue("name", "")
-      setValue("lastname", "")
-      setValue("phone", "")
-      setValue("dni", "")
-    }
-    
   }, [dataContacto]);
-
-
-
-
 
   const onSubmit = (data, event) => {
     event.preventDefault();
@@ -35,12 +32,11 @@ export const Form2 = ({ dataForm, lengthSteps }) => {
       phone_number1: data.phone,
       document: data.dni,
       email: data.email,
-      email_confirm: data.emailConfirm
-    })
-    console.log({dataContactoSubmitForm2: dataContacto})
+      email_confirm: data.emailConfirm,
+    });
+    // console.log({dataContactoSubmitForm2: dataContacto})
     console.log("se envia form 2");
     console.log({ data });
-    handleStatusForm(true)
     nextStep();
   };
 
@@ -58,7 +54,7 @@ export const Form2 = ({ dataForm, lengthSteps }) => {
             type="text"
             name="name"
             id="name"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark block w-full p-2.5 "
             placeholder="Ingrese su nombre"
             {...register("name", {
               required: {
@@ -141,7 +137,6 @@ export const Form2 = ({ dataForm, lengthSteps }) => {
             </span>
           )}
         </div>
-       
       </div>
       <div className="justify-center flex pb-10">
         <BotonVolver />

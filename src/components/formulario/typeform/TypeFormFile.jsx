@@ -17,7 +17,7 @@ export const TypeFormFile = ({ item }) => {
         type={item.type}
         name={name}
         id={name}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark block w-full p-2.5"
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark block w-full"
         placeholder={item.placeholder}
         {...register(name, {
           required: {
