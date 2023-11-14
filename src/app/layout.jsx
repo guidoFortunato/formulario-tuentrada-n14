@@ -3,6 +3,7 @@ import NavBar from "@/components/header/Navbar";
 import Footer from "@/components/footer/Footer";
 import { getDataPrueba } from "@/helpers/getInfoTest";
 import "./globals.css";
+import InputBusqueda from "@/components/header/InputBusqueda";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,8 +13,10 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const info = await getDataPrueba(`https://testapi.tuentrada.com/api/v1/site/ayuda.tuentrada.com`);
-  const { data } = info.data.products 
+  const info = await getDataPrueba(
+    `https://testapi.tuentrada.com/api/v1/site/ayuda.tuentrada.com`
+  );
+  const { data } = info.data.products;
 
   return (
     <html lang="es">
@@ -23,6 +26,7 @@ export default async function RootLayout({ children }) {
       >
         <header>
           <NavBar data={data} />
+          <InputBusqueda data={data} />
         </header>
         {children}
         <Footer data={data} />

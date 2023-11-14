@@ -37,7 +37,7 @@ export async function getDataPrueba(url) {
       credentials: "include",
       method: "GET",
       headers: {
-        Authorization: `Bearer 4259|1brkihO8rWWjGt1gDiP1BgECy8bvM1BPdiAAlIb6`,
+        Authorization: `Bearer 4263|HbQ30PAekgAaei6PyMVRyRIh8sHPeseOoppjUBfq`,
         accept: "application/json",
       },
     });

@@ -146,7 +146,6 @@ const FormProvider = ({ children }) => {
         register,
         reset,
         setValue,
-        setDataContacto,
         stepsEstaticos,
         watch,
       }}
