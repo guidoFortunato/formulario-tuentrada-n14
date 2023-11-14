@@ -11,26 +11,15 @@ import {
 import { alertaSuccess } from "@/helpers/Alertas";
 import { useRouter } from "next/navigation";
 
-
 export const FormsApi = ({ dataForm, lengthSteps }) => {
-  const {
-    dataContacto,
-    handleSubmit,
-    statusForm,
-    nextStep,
-    stepsEstaticos,
-    currentStep,
-    reset,
-    handleContacto,
-    setDataContacto,
-  } = useContext(FormContext);
+  const { handleSubmit, nextStep, stepsEstaticos, currentStep, reset } =
+    useContext(FormContext);
 
   const { steps } = dataForm;
   const newSteps = [...stepsEstaticos, ...steps];
-  const router = useRouter()
+  const router = useRouter();
   // console.log({ currentStep, lengthSteps: newSteps.length });
-  
-  
+
   const renderForms =
     newSteps.length > 2 &&
     newSteps.slice(2).map((item, index) => {
@@ -58,19 +47,14 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
     event.preventDefault();
     // console.log({ info });
     console.log("se envia form api 1");
-    setDataContacto( {...dataContacto, ...data} )
-    console.log({dataContacto})
     console.log({ data });
     if (!(currentStep + 1 === lengthSteps)) {
       nextStep();
     }
-    if ((currentStep + 1 === lengthSteps)) {
-      alertaSuccess()
-      reset()
-      setTimeout(() => {
-        router.push('/');
-        
-      }, 3000);
+    if (currentStep + 1 === lengthSteps) {
+      alertaSuccess();
+      reset();
+      router.push("/");
     }
   };
 

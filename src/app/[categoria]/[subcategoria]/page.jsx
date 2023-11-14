@@ -7,7 +7,6 @@ const ItemSubCategorie = async({ params }) => {
   // console.log(info.data)
   return (
     <>
-      <InputBusqueda />
       <Articulo params={params} dataArticle={info.data.article} />
     </>
   );

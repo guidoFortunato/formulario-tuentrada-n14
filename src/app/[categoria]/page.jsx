@@ -1,5 +1,4 @@
 import SubCategoria from "@/components/main/SubCategoria";
-import InputBusqueda from "@/components/header/InputBusqueda";
 import { getDataPrueba } from "@/helpers/getInfoTest";
 
 const Subcategoria = async ({ params }) => {
@@ -9,7 +8,6 @@ const Subcategoria = async ({ params }) => {
   // console.log(category.subCategories[1]?.articles)
   return (
     <>
-      <InputBusqueda />
       <SubCategoria category={category} params={params}/>
     </>
   );

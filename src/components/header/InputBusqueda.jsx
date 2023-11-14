@@ -35,10 +35,13 @@ const AutocompleteItem = ({ data }) => {
 };
 
 const InputBusqueda = (props) => {
+
   const [autocompleteState, setAutocompleteState] = useState({
     collections: [],
     isOpen: false,
   });
+
+  const { data } = props
 
   const formRef = useRef(null);
   const inputRef = useRef(null);
@@ -84,7 +87,7 @@ const InputBusqueda = (props) => {
       <div className="flex justify-center flex-col items-center my-10">
         <section className="flex justify-center items-center flex-col">
           <h1 className="text-[1.5rem] md:text-[2rem] text-blue-dark font-semibold mb-3">
-            ¿Necesitás ayuda?
+            {data.name}
           </h1>
         </section>
 

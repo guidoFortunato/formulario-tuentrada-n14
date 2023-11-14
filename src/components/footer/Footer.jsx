@@ -40,7 +40,7 @@ const Footer = ({ data }) => {
             })}
           </ul>
         </div>
-        <SocialMedia />
+        <SocialMedia data={data} />
         <Accordion data={data} />
       </div>
     </footer>

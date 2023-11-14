@@ -1,5 +1,4 @@
 import { Formularios } from "@/components/formulario/Formularios";
-import InputBusqueda from "@/components/header/InputBusqueda";
 import FormProvider from "@/context/FormContext";
 // import getData from "@/helpers/getData";
 import { getDataPrueba } from "@/helpers/getInfoTest";
@@ -17,7 +16,6 @@ async function FormPage({ params }) {
 
   return (
     <>
-      <InputBusqueda />
       <FormProvider>
         <Formularios dataForm={dataForm} />
       </FormProvider>
