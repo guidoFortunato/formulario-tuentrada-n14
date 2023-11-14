@@ -9,7 +9,7 @@ export const RespuestaLike = ({ params, dataArticleForm }) => {
   const [opinion, setOpinion] = useState(false);
 
   const handleLike = () => {
-    setLike(false);
+    setLike(true);
   };
   const handleDisLike = () => {
     setLike(false);
@@ -18,7 +18,8 @@ export const RespuestaLike = ({ params, dataArticleForm }) => {
   const handleOpinion = () => {
     setOpinion(true);
   };
-
+   
+  console.log({dataArticleForm, like})
   return (
     <>
       <div>
@@ -30,6 +31,7 @@ export const RespuestaLike = ({ params, dataArticleForm }) => {
           like={like}
           handleOpinion={handleOpinion}
           opinion={opinion}
+          params={params}
         />
 
         <ButtonLike
@@ -40,6 +42,7 @@ export const RespuestaLike = ({ params, dataArticleForm }) => {
           like={like}
           handleOpinion={handleOpinion}
           opinion={opinion}
+          params={params}
         />
       </div>
       {dataArticleForm === null && (

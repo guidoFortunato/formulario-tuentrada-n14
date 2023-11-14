@@ -1,19 +1,22 @@
-export const ButtonLike = ({
-  name,
-  handleLike,
-  handleDisLike,
-  handleOpinion,
-  result,
-  opinion,
-  like,
-}) => {
-  const handleClick = () => {
+import { getDataPrueba } from "@/helpers/getInfoTest";
+
+export const ButtonLike = ({ name, handleLike, handleDisLike, handleOpinion, result, opinion, params, like }) => {
+  
+  // console.log({params})
+  
+  const handleClick = async() => {
     handleOpinion()
     if (result) {
+      console.log({result})
       handleLike();
+      await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/articulo/${params.subcategoria}/like/1`);
+      
     }
-    if (result === false) {
+    if (!result) {
+      console.log({result})
       handleDisLike();
+      await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/articulo/${params.subcategoria}/like/0`);
+      
     }
   };
   return (

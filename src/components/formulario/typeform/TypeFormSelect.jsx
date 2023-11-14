@@ -17,6 +17,8 @@ export const TypeFormSelect = ({ item }) => {
     field.onChange(option.value);
   };
 
+  const styles = {};
+
   return (
     <div>
       <label
@@ -27,14 +29,50 @@ export const TypeFormSelect = ({ item }) => {
       </label>
 
       <Select
-        defaultValue={"Seleccione una opción..."}
         isSearchable={false}
+        placeholder="Seleccione una opción..."
         value={optionsSelect.find((item) => item.value === field.value)}
         options={optionsSelect}
         onChange={handleSelectChange}
+        styles={{
+          control: (styles, state) => {
+            // console.log({styles, state});
+          
+
+            return {
+              ...styles,
+              borderRadius: "0.5rem",
+              minHeight: "42px",
+              marginBottom: "10px",
+
+              "&:hover": {
+                borderColor: state.isFocused ? "#1955A5" : "#D1D5DB",
+                borderWidth: state.isFocused ? "1px" : "1px",
+              },
+              borderColor: state.menuIsOpen ? "#1955A5" : "#D1D5DB",
+             
+            };
+          },
+          option: (styles, state) => {
+            // console.log({styles, state});
+            return {
+              ...styles,
+              cursor: "pointer",
+              background: state.isSelected ? "#1955A5" : "transparent",
+              color: state.isSelected ? "#fff" : "#000",
+              "&:hover": {
+                background: state.isSelected ? "#1955A5" : "#B2D4FF",
+                color: state.isSelected ? "#fff" : "#000",
+              },
+            };
+           
+          },
+        
+          // placeholder: (styles) => console.log(styles)
+        }}
       />
 
-      <div
+      {/* <div
         style={{
           color: "hsl(0, 0%, 40%)",
           display: "inline-block",
@@ -42,8 +80,8 @@ export const TypeFormSelect = ({ item }) => {
           fontStyle: "italic",
           marginTop: "1em",
         }}
-      ></div>
-      
+      ></div> */}
+
       {watch(name) ? (
         watch(name).slice(0, 2).toLowerCase() === "ot" ? (
           <>
@@ -58,7 +96,6 @@ export const TypeFormSelect = ({ item }) => {
                   value: item.required === 1 ? true : false,
                   message: "Este campo es obligatorio",
                 },
-                
               })}
             />
             {errors["otra"] && (

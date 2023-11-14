@@ -1,11 +1,10 @@
 import React from "react";
 import Image from "next/image";
+import dompurify from "isomorphic-dompurify";
 
 import TituloSubcategorias from "./TituloSubcategorias";
-import dompurify from "isomorphic-dompurify";
 import { RespuestaLike } from "./like/RespuestaLike";
 import { ButtonFormulario } from "./like/ButtonFormulario";
-import { RespuestaButton } from "./like/RespuestaButton";
 
 const Articulo = ({ params = "", dataArticle = {} }) => {
   const sanitizer = dompurify.sanitize;
