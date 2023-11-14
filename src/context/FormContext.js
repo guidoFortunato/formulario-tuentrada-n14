@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 export const FormContext = createContext();
 
 const FormProvider = ({ children }) => {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(2);
   const [dataContacto, setDataContacto] = useState(null);
 
   const {
@@ -14,6 +14,7 @@ const FormProvider = ({ children }) => {
     reset,
     setValue,
     watch,
+    control
   } = useForm();
 
   const stepsEstaticos = [
@@ -136,6 +137,7 @@ const FormProvider = ({ children }) => {
   return (
     <FormContext.Provider
       value={{
+        control,
         currentStep,
         dataContacto,
         errors,

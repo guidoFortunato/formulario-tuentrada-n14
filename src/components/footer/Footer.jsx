@@ -5,6 +5,7 @@ import Link from "next/link";
 
 const Footer = ({ data }) => {
   const { pages } = data;
+  console.log({data})
   return (
     <footer className="bg-gradient-image shadow relative bottom-0 w-full pb-[2px]">
       <div className="w-full max-w-screen-xl mx-auto pt-4 md:pt-8">
@@ -14,7 +15,7 @@ const Footer = ({ data }) => {
             className="flex items-center mb-4 sm:mb-0"
           >
             <Image
-              src="https://eventos.tuentrada.com/light_custom/lightTheme/logo_tue_secutix.png"
+              src={data.logoFooter.src}              
               alt="TuEntrada"
               width={138}
               height={38}

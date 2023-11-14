@@ -1,10 +1,21 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FormContext } from "@/context/FormContext";
+import Select from "react-select";
+import { useController } from "react-hook-form";
 
 export const TypeFormSelect = ({ item }) => {
-  const { register, handleSubmit, errors, watch, reset, nextStep } =
-    useContext(FormContext);
+  const { register, handleSubmit, errors, watch, reset, nextStep, control } = useContext(FormContext);
   const name = (item.name).toLowerCase().split(' ').join('_')
+  const optionsSelect = item.options.map( item => ({value: item, label: item}) )
+
+  const { field } = useController({ name: name, control })
+  
+  const handleSelectChange = ( option ) => {
+    field.onChange(option.value)
+  }
+
+
+
   return (
     <div>
       <label
@@ -13,15 +24,35 @@ export const TypeFormSelect = ({ item }) => {
       >
         {item.name}
       </label>
+
+      <Select
+        defaultValue={"Seleccione una opción..."}
+        isSearchable={false}
+        value={optionsSelect.find( item=> item.value === field.value )}
+        options={optionsSelect}
+        onChange={handleSelectChange}
+      />
+
+      <div
+        style={{
+          color: 'hsl(0, 0%, 40%)',
+          display: 'inline-block',
+          fontSize: 12,
+          fontStyle: 'italic',
+          marginTop: '1em',
+        }}
+      >
       
-      <select {...register(name)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark w-full block p-2.5 mt-2">
+      </div>
+      
+      {/* <select {...register(name)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark w-full block p-2.5 mt-2">
        
         {item.options.map((option) => (
           <option value={option} key={option} >
             {option}
           </option>
         ))}
-      </select>
+      </select> */}
       { watch(name) ? watch(name).slice(0,2).toLowerCase() === "ot" ? (
         <>
           <input
