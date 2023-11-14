@@ -39,7 +39,6 @@ const InputBusqueda = (props) => {
     collections: [],
     isOpen: false,
   });
-  
 
   const formRef = useRef(null);
   const inputRef = useRef(null);

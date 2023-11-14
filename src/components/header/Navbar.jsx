@@ -1,10 +1,28 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { getDataPrueba } from "@/helpers/getInfoTest";
 import { Navbar } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Loader } from "../loading";
 
-export default function NavBar({ data }) {
+export default function NavBar() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const getData = async()=>{
+      const info = await getDataPrueba(
+        `https://testapi.tuentrada.com/api/v1/site/ayuda.tuentrada.com`
+      );
+      const { data } = info.data.products;
+      setData(data)
+    }
+    getData()
+  }, []);
+
+  if (data === null) return <Loader />
+
   // console.log({ data });
   return (
     <Navbar
