@@ -12,11 +12,11 @@ const SocialMedia = ({ data }) => {
           title={`Seguinos en ${item.type}`}
         >
           <svg xmlns={item.xmlns} fill={item.fill} viewBox={item.viewBox} width={item.width} height={item.height} >
-            <path d={item.path} />
+          <g transform="scale(8.53333,8.53333)"><path d={item.path} /></g> 
           </svg>
           
         </a>
-      ))}
+      ))} 
     </div>
   );
 };
