@@ -1,12 +1,8 @@
-"use client";
 
-import { useState } from "react";
-import { getDataPrueba } from "@/helpers/getInfoTest";
+import { InputSelect } from "./InputSelect";
 
-import Link from "next/link";
-import Select from "react-select";
-
-const InputBusqueda2 = () => {
+const InputBusqueda2 = async () => {
+  
   return (
     <>
       <div className="flex justify-center flex-col items-center my-10">
@@ -16,11 +12,9 @@ const InputBusqueda2 = () => {
           </h1>
         </section>
 
-        <form className="w-[95%] md:w-2/5">
-          <div className="relative">
-            <Select />
-          </div>
-        </form>
+        <div className="w-[95%] md:w-2/5">
+          <InputSelect />
+        </div>
       </div>
     </>
   );

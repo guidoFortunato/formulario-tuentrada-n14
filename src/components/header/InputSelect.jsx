@@ -1,20 +1,74 @@
+"use client";
+import { getDataPrueba } from "@/helpers/getInfoTest";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import AsyncSelect from "react-select/async";
 
-export const InputSelect = ({ articles }) => {
+const options = [
+  {
+    value: "VISA",
+    label: " Tarjeta VISA"
+  }
+]
+
+export const InputSelect = () => {
+  const [data, setData] = useState(null);
+  const [query, setQuery] = useState(null);
+
+  const loadOptions = async(value, callback) =>{
+    console.log({value})
+    if (value.length >= 3) {
+      // setQuery(value)
+      const res = await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/search-article/${value.toLowerCase()}`);
+      const options = res.data.articles.map( item => ({value: item.title, label: item.title, slug: item.slug}) )
+      // setData(res.data.articles)
+      callback(options)
+      
+    }
+  }
+  
   return (
-    <>
-      {articles.length > 0 && (
-        <select
-          id="opciones"
-          className="bg-gray-50  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-        >
-          {articles.map((item) => (
-            <option value={item.title} key={item.id}>
-              <Link href={item.slug}>{item.title}</Link>
-            </option>
-          ))}
-        </select>
-      )}
-    </>
+    <AsyncSelect
+      isSearchable={true}
+      placeholder="Escriba una opción..."
+      onChange={(value)=>console.log(value)}
+      loadOptions={loadOptions}
+      // value={optionsSelect.find((item) => item.value === field.value)}
+      // options={optionsSelect}
+      // onChange={handleSelectChange}
+      styles={{
+        control: (styles, state) => {
+          // console.log({styles, state});
+
+          return {
+            ...styles,
+            borderRadius: "0.5rem",
+            minHeight: "42px",
+            marginBottom: "10px",
+
+            "&:hover": {
+              borderColor: state.isFocused ? "#1955A5" : "#D1D5DB",
+              borderWidth: state.isFocused ? "1px" : "1px",
+            },
+            borderColor: state.menuIsOpen ? "#1955A5" : "#D1D5DB",
+          };
+        },
+        option: (styles, state) => {
+          // console.log({styles, state});
+          return {
+            ...styles,
+            cursor: "pointer",
+            background: state.isSelected ? "#1955A5" : "transparent",
+            color: state.isSelected ? "#fff" : "#000",
+            "&:hover": {
+              background: state.isSelected ? "#1955A5" : "#B2D4FF",
+              color: state.isSelected ? "#fff" : "#000",
+            },
+          };
+        },
+
+        // placeholder: (styles) => console.log(styles)
+      }}
+    />
   );
 };

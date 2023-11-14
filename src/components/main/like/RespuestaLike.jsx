@@ -19,7 +19,7 @@ export const RespuestaLike = ({ params, dataArticleForm }) => {
     setOpinion(true);
   };
    
-  console.log({dataArticleForm, like})
+  // console.log({dataArticleForm, like})
   return (
     <>
       <div>

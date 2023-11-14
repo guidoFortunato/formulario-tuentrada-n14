@@ -72,15 +72,7 @@ export const TypeFormSelect = ({ item }) => {
         }}
       />
 
-      {/* <div
-        style={{
-          color: "hsl(0, 0%, 40%)",
-          display: "inline-block",
-          fontSize: 12,
-          fontStyle: "italic",
-          marginTop: "1em",
-        }}
-      ></div> */}
+      
 
       {watch(name) ? (
         watch(name).slice(0, 2).toLowerCase() === "ot" ? (
