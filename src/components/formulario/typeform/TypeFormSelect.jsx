@@ -6,18 +6,16 @@ import { useController } from "react-hook-form";
 export const TypeFormSelect = ({ item }) => {
   const { register, errors, watch, control } = useContext(FormContext);
   const name = item.name.toLowerCase().split(" ").join("_");
-  const optionsSelect = item.options.map((item) => ({
-    value: item,
-    label: item,
-  }));
+  // const optionsSelect = item.options.map((item) => ({
+  //   value: item,
+  //   label: item,
+  // }));
 
-  const { field } = useController({ name: name, control });
+  // const { field } = useController({ name: name, control });
 
-  const handleSelectChange = (option) => {
-    field.onChange(option.value);
-  };
-
-  const styles = {};
+  // const handleSelectChange = (option) => {
+  //   field.onChange(option.value);
+  // };
 
   return (
     <div>
@@ -27,8 +25,16 @@ export const TypeFormSelect = ({ item }) => {
       >
         {item.name}
       </label>
+      <select {...register(name)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark w-full block p-2.5 mt-2">
+       
+        {item.options.map((option) => (
+          <option value={option} key={option} >
+            {option}
+          </option>
+        ))}
+      </select>
 
-      <Select
+      {/* <Select
         isSearchable={false}
         placeholder="Seleccione una opción..."
         value={optionsSelect.find((item) => item.value === field.value)}
@@ -36,9 +42,6 @@ export const TypeFormSelect = ({ item }) => {
         onChange={handleSelectChange}
         styles={{
           control: (styles, state) => {
-            // console.log({styles, state});
-          
-
             return {
               ...styles,
               borderRadius: "0.5rem",
@@ -50,11 +53,9 @@ export const TypeFormSelect = ({ item }) => {
                 borderWidth: state.isFocused ? "1px" : "1px",
               },
               borderColor: state.menuIsOpen ? "#1955A5" : "#D1D5DB",
-             
             };
           },
           option: (styles, state) => {
-            // console.log({styles, state});
             return {
               ...styles,
               cursor: "pointer",
@@ -65,14 +66,9 @@ export const TypeFormSelect = ({ item }) => {
                 color: state.isSelected ? "#fff" : "#000",
               },
             };
-           
           },
-        
-          // placeholder: (styles) => console.log(styles)
         }}
-      />
-
-      
+      /> */}
 
       {watch(name) ? (
         watch(name).slice(0, 2).toLowerCase() === "ot" ? (

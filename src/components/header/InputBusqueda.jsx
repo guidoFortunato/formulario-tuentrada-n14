@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { getDataPrueba } from "@/helpers/getInfoTest";
 import { createAutocomplete } from "@algolia/autocomplete-core";
 import Link from "next/link";
@@ -39,6 +39,9 @@ const InputBusqueda = (props) => {
     collections: [],
     isOpen: false,
   });
+  // const [keyword, setKeyword] = useState([]);
+
+  // console.log({ keyword });
 
   const formRef = useRef(null);
   const inputRef = useRef(null);
@@ -48,21 +51,28 @@ const InputBusqueda = (props) => {
     () =>
       createAutocomplete({
         placeholder: "Escribí un texto...",
-        onStateChange: ({ state }) => setAutocompleteState(state),
+        onStateChange: ({ state }) => {
+          setAutocompleteState(state);
+        },
         getSources: () => [
           {
             sourceId: "categories-api",
             getItems: async ({ query }) => {
-              if (!!query) {
+              if (!!query && query.length >= 3) {
                 try {
+                  // console.log("entra a llamar a la api");
                   const res = await getDataPrueba(
                     `https://testapi.tuentrada.com/api/v1/atencion-cliente/search-article/${query}`
                   );
-                  // console.log(res)
+                  // console.log(res);
+                  // setKeyword(res.data.articles);
                   return res.data.articles;
                 } catch (err) {
                   console.log(err);
                 }
+              } else {
+                // console.log("no llama a la api");
+                return []; // <-- Si la longitud es menor a 3, devuelve un array vacío
               }
             },
           },
@@ -79,12 +89,27 @@ const InputBusqueda = (props) => {
     inputElement: inputRef.current,
   });
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (panelRef.current && !panelRef.current.contains(event.target)) {
+        // Click outside the panel, close the autocomplete
+        setAutocompleteState((state) => ({ ...state, isOpen: false }));
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <>
       <div className="flex justify-center flex-col items-center my-10">
         <section className="flex justify-center items-center flex-col">
           <h1 className="text-[1.5rem] md:text-[2rem] text-blue-dark font-semibold mb-3">
-            ¿Necesitás ayuda?
+            {props.data.name}
           </h1>
         </section>
 
@@ -95,12 +120,10 @@ const InputBusqueda = (props) => {
               className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-dark focus:border-blue-dark"
               {...inputProps}
             />
-
-            
           </div>
           {autocompleteState.isOpen && (
             <div
-              className="absolute bg-gray-100 border-gray-100 z-10 rounded-lg shadow-lg mt-1 overflow-hidden"
+              className="absolute bg-white border-gray-100 z-10 rounded-lg shadow-xl mt-1 overflow-hidden"
               ref={panelRef}
               {...autocomplete.getPanelProps()}
             >

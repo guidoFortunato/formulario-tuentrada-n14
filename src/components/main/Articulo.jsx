@@ -10,7 +10,8 @@ import Link from "next/link";
 const Articulo = ({ params = "", dataArticle = {}, data }) => {
   const sanitizer = dompurify.sanitize;
   const { content } = dataArticle;
-  console.log({ data });
+  console.log(dataArticle.content);
+  console.log(data);
   const dataArticleForm = dataArticle.form;
 
   return (
@@ -35,8 +36,10 @@ const Articulo = ({ params = "", dataArticle = {}, data }) => {
                   }}
                 ></span>
 
-                {item.image && (
+                {/* {dataArticle.images.length > 0 && dataArticle.images.map( image => (
+
                   <Image
+                    key={image.id}
                     src={item.image}
                     alt="TuEntrada"
                     width={600}
@@ -44,7 +47,8 @@ const Articulo = ({ params = "", dataArticle = {}, data }) => {
                     priority
                     className="rounded-lg border border-gray-300 mt-10 "
                   />
-                )}
+                ) )  
+                } */}
               </div>
             ))}
           </div>
