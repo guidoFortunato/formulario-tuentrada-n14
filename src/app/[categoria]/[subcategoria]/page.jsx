@@ -7,7 +7,7 @@ const ItemSubCategorie = async({ params }) => {
   // console.log(info.data)
   return (
     <>
-      <Articulo params={params} dataArticle={info.data.article} />
+      <Articulo params={params} data={info.data} dataArticle={info.data.article} />
     </>
   );
 };

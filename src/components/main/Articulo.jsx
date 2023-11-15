@@ -5,11 +5,12 @@ import dompurify from "isomorphic-dompurify";
 import TituloSubcategorias from "./TituloSubcategorias";
 import { RespuestaLike } from "./like/RespuestaLike";
 import { ButtonFormulario } from "./like/ButtonFormulario";
+import Link from "next/link";
 
-const Articulo = ({ params = "", dataArticle = {} }) => {
+const Articulo = ({ params = "", dataArticle = {}, data }) => {
   const sanitizer = dompurify.sanitize;
   const { content } = dataArticle;
-  console.log({ dataArticle });
+  console.log({ data });
   const dataArticleForm = dataArticle.form;
 
   return (
@@ -90,34 +91,34 @@ const Articulo = ({ params = "", dataArticle = {} }) => {
         )}
 
         <div className="flex justify-evenly mt-24 ">
-          <div>
-            <h4 className="text-blue-dark font-semibold mb-2">
-              Artículos relacionados
-            </h4>
-            <ol className="text-sm">
-              <li>- Lorem ipsum dolor sit amet consectetur adipisicing.</li>
-              <li>- Lorem ipsum dolor sit. Lorem ipsum dolor sit.</li>
-              <li>- Lorem, ipsum dolor.</li>
-              <li>- Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</li>
-            </ol>
-          </div>
-          <div>
-            <h4 className="text-blue-dark font-semibold mb-2">
-              Artículos más vistos
-            </h4>
-            <ol className="text-sm">
-              <li>- Lorem, ipsum. Lorem ipsum dolor sit.</li>
-              <li>
-                - Lorem ipsum dolor sit. Lorem ipsum, dolor sit amet consectetur
-                adipisicing.
-              </li>
-              <li>
-                - Lorem, ipsum dolor Lorem ipsum dolor sit amet consectetur
-                adipisicing elit..
-              </li>
-              <li>- Lorem ipsum dolor sit amet.lorem2 Lorem, ipsum dolor.</li>
-            </ol>
-          </div>
+          {data.mostViews.length > 0 && (
+            <div>
+              <h4 className="text-blue-dark font-semibold mb-2">
+                Artículos más vistos
+              </h4>
+              <ol className="text-sm">
+                {data.mostViews.slice(0, 5).map((item) => (
+                  <li key={item.id}>
+                    <Link href={item.slug}>{item.title}</Link>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
+          {dataArticle.articleChild.length > 0 && (
+            <div>
+              <h4 className="text-blue-dark font-semibold mb-2">
+                Artículos relacionados
+              </h4>
+              <ol className="text-sm">
+                {dataArticle.articleChild.slice(0, 5).map((item) => (
+                  <li key={item.id}>
+                    <Link href={item.slug}>{item.title}</Link>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
         </div>
       </div>
     </>
