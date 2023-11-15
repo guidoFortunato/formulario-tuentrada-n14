@@ -138,7 +138,6 @@ export const Form2 = ({ lengthSteps }) => {
           )}
         </div>
       </div>
-      <p>Son correctos los datos?</p>
       <div className="justify-center flex pb-10">
         <BotonVolver />
         <BotonSiguiente lengthSteps={lengthSteps} />

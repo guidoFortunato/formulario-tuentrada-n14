@@ -93,13 +93,13 @@ const Articulo = ({ params = "", dataArticle = {}, data }) => {
         <div className="flex justify-evenly mt-24 ">
           {data.mostViews.length > 0 && (
             <div>
-              <h4 className="text-blue-dark font-semibold mb-2">
+              <h4 className="text-blue-dark font-semibold mb-2 text-lg">
                 Artículos más vistos
               </h4>
               <ol className="text-sm">
                 {data.mostViews.slice(0, 5).map((item) => (
-                  <li key={item.id}>
-                    <Link href={item.slug}>{item.title}</Link>
+                  <li key={item.id} className="text-blue-dark">
+                   ▸<Link className="underline text-base" href={item.slug}>{item.title}</Link>
                   </li>
                 ))}
               </ol>
@@ -107,13 +107,13 @@ const Articulo = ({ params = "", dataArticle = {}, data }) => {
           )}
           {dataArticle.articleChild.length > 0 && (
             <div>
-              <h4 className="text-blue-dark font-semibold mb-2">
+              <h4 className="text-blue-dark text-lg font-semibold mb-2 ">
                 Artículos relacionados
               </h4>
               <ol className="text-sm">
                 {dataArticle.articleChild.slice(0, 5).map((item) => (
-                  <li key={item.id}>
-                    <Link href={item.slug}>{item.title}</Link>
+                   <li key={item.id} className="text-blue-dark">
+                    ▸<Link className="underline text-base" href={item.slug}>{item.title}</Link>
                   </li>
                 ))}
               </ol>

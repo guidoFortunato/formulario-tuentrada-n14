@@ -10,10 +10,20 @@ export const alertaWarning = (text = "Debe ingresar un texto") => {
   });
 };
 
-export const alertaSuccess = (text = "Información enviada con éxito") => {
+export const alertaSuccess = (
+  text = "Gracias por contactarte",
+  ticket = "Tu número de seguimiento es:",
+  numero = "18564830575-3",
+  info = "Toda la información te llegará por correo electrónico. Puede revisar la carpeta de spam en caso de no recibirlo."
+) => {
   Swal.fire({
     icon: "success",
-    html: `<b>${text}</b>`,
+    allowOutsideClick: false,
+    html: ` <div style="text-align: center;">
+        <b>${text}<br></b><br>
+        <span>${ticket}</span><br>
+        <span style="color: #6bbf59;">${numero}<br></span><br>
+        <small style="font-size: 80%;">${info}</small> </div>`,
     // timer: 3000,
     confirmButtonColor: "#444444", // dataInfoGeneral.backgroundButton
     // iconColor: "#F7AC08",
