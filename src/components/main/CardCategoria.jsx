@@ -12,7 +12,7 @@ const CardCategoria = ({ color, title, slug, description, icon }) => {
 
   return (
     <div
-      className={`w-full p-6 text-white border border-gray-200 rounded-lg shadow text-center ${colorVariantsBg[color]}`}
+      className={`w-full min-h-[250px] flex items-center flex-col justify-center p-6 text-white border border-gray-200 rounded-lg shadow text-center ${colorVariantsBg[color]}`}
     >
       <div className="flex justify-center">
         {/* <BsFillPersonCheckFill /> */}
