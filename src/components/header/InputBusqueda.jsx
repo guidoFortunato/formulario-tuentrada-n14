@@ -10,7 +10,7 @@ const AutocompleteItem = ({ data }) => {
 
   return (
     <li>
-      <Link href={`/${slug}`} className="hover:bg-blue-300 flex gap-4 p-4">
+      <Link href={`/${slug}`} className="hover:bg-blue-light hover:text-white flex gap-4 p-4 ">
         <div className="flex justify-evenly items-center">
           <svg
             className="w-3 h-3 mr-4"
@@ -123,7 +123,7 @@ const InputBusqueda = (props) => {
           </div>
           {autocompleteState.isOpen && (
             <div
-              className="absolute bg-white border-gray-100 z-10 rounded-lg shadow-xl mt-1 overflow-hidden"
+              className="absolute w-[95%] md:w-[40%] bg-white z-10 rounded-lg shadow-xl mt-1 overflow-hidden border border-gray-200"
               ref={panelRef}
               {...autocomplete.getPanelProps()}
             >
