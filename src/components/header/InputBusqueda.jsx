@@ -5,12 +5,16 @@ import { getDataPrueba } from "@/helpers/getInfoTest";
 import { createAutocomplete } from "@algolia/autocomplete-core";
 import Link from "next/link";
 
-const AutocompleteItem = ({ data }) => {
+const AutocompleteItem = ({ data, handleClick }) => {
   const { title, slug } = data;
 
   return (
     <li>
-      <Link href={`/${slug}`} className="hover:bg-blue-light hover:text-white flex gap-4 p-4 ">
+      <Link
+        href={`/`}
+        onClick={handleClick}
+        className="hover:bg-blue-light hover:text-white flex gap-4 p-4 "
+      >
         <div className="flex justify-evenly items-center">
           <svg
             className="w-3 h-3 mr-4"
@@ -39,9 +43,10 @@ const InputBusqueda = (props) => {
     collections: [],
     isOpen: false,
   });
-  // const [keyword, setKeyword] = useState([]);
-
-  // console.log({ keyword });
+  const handleClick = () => {
+    setAutocompleteState((state) => ({ ...state, query: "", isOpen: false }))
+    
+  };
 
   const formRef = useRef(null);
   const inputRef = useRef(null);
@@ -52,6 +57,7 @@ const InputBusqueda = (props) => {
       createAutocomplete({
         placeholder: "Escribí un texto...",
         onStateChange: ({ state }) => {
+          
           setAutocompleteState(state);
         },
         getSources: () => [
@@ -93,7 +99,7 @@ const InputBusqueda = (props) => {
     const handleClickOutside = (event) => {
       if (panelRef.current && !panelRef.current.contains(event.target)) {
         // Click outside the panel, close the autocomplete
-        setAutocompleteState((state) => ({ ...state, isOpen: false }));
+        setAutocompleteState((state) => ({ ...state, query: "", isOpen: false }));
       }
     };
 
@@ -135,7 +141,11 @@ const InputBusqueda = (props) => {
                     {items.length > 0 && (
                       <ul {...autocomplete.getListProps()}>
                         {items.map((item) => (
-                          <AutocompleteItem key={item.id} data={item} />
+                          <AutocompleteItem
+                            key={item.id}
+                            data={item}
+                            handleClick={handleClick}
+                          />
                         ))}
                       </ul>
                     )}

@@ -1,4 +1,5 @@
 
+import { FormBusqueda } from "./FormBusqueda";
 import { InputSelect } from "./InputSelect";
 
 const InputBusqueda2 = async () => {
@@ -13,7 +14,8 @@ const InputBusqueda2 = async () => {
         </section>
 
         <div className="w-[95%] md:w-2/5">
-          <InputSelect />
+          <FormBusqueda />
+          {/* <InputSelect /> */}
         </div>
       </div>
     </>

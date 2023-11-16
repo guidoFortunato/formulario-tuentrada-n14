@@ -10,8 +10,8 @@ import Link from "next/link";
 const Articulo = ({ params = "", dataArticle = {}, data }) => {
   const sanitizer = dompurify.sanitize;
   const { content } = dataArticle;
-  console.log(dataArticle.content);
-  console.log(data);
+  // console.log(dataArticle.content);
+  // console.log(data);
   const dataArticleForm = dataArticle.form;
 
   return (

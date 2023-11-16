@@ -3,7 +3,8 @@ import NavBar from "@/components/header/Navbar";
 import Footer from "@/components/footer/Footer";
 import { getDataPrueba } from "@/helpers/getInfoTest";
 import "./globals.css";
-import InputBusqueda from "@/components/header/InputBusqueda";
+import InputBusqueda2 from "@/components/header/InputBusqueda2";
+import FormProvider from "@/context/FormContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,12 +25,14 @@ export default async function RootLayout({ children }) {
         className={`${inter.className} flex flex-col min-h-[100vh] m-0`}
         suppressHydrationWarning={true}
       >
-        <header>
-          <NavBar data={data} />
-          <InputBusqueda data={data} />
-        </header>
-        {children}
-        <Footer data={data} />
+        <FormProvider>
+          <header>
+            <NavBar data={data} />
+            <InputBusqueda2 data={data} />
+          </header>
+          {children}
+          <Footer data={data} />
+        </FormProvider>
       </body>
     </html>
   );
