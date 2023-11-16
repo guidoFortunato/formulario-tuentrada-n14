@@ -11,6 +11,7 @@ export const FormBusqueda = () => {
   const [data, setData] = useState([]);
   const [value, setValue] = useState("");
   const router = useRouter();
+  const panelRef = useRef();
 
   // console.log({ data });
   // console.log({ isOpen });
@@ -48,25 +49,40 @@ export const FormBusqueda = () => {
   //   };
   // }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (panelRef.current && !panelRef.current.contains(event.target)) {
+        // Click outside the panel, close the autocomplete
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const handleClick = (item) => {
     setIsOpen(false);
     setValue(item.title);
-    setSlug(item.slug)
+    setSlug(item.slug);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (!value.trim()) {
-      alertaWarning()
+      alertaWarning();
       return;
     }
     if (slug.length === 0) {
-      alertaWarning('No se encontró el texto')
-      return
+      alertaWarning("No se encontró el texto");
+      return;
     }
-    setValue("")
-    setIsOpen(false)
-    router.push('/tuentrada-wallet/' + slug)
+    setValue("");
+    setIsOpen(false);
+    router.push("/tuentrada-wallet/" + slug);
   };
 
   return (
@@ -103,9 +119,11 @@ export const FormBusqueda = () => {
         </button>
       </div>
       {isOpen && (
-        <div className="absolute w-[95%] md:w-[40%] bg-white z-10 rounded-lg shadow-xl mt-1 overflow-hidden border border-gray-200">
+        <div
+          className="absolute w-[95%] md:w-[40%] bg-white z-10 rounded-lg shadow-xl mt-1 overflow-hidden border border-gray-200"
+          ref={panelRef}
+        >
           {data.map((item) => {
-           
             return (
               <section key={item.id} onClick={() => handleClick(item)}>
                 <ul>
