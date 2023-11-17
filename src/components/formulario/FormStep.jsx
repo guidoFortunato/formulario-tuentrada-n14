@@ -1,6 +1,6 @@
 import { FormContext } from "@/context/FormContext";
 import { useContext } from "react";
-import { Form1, Form2, Form3, FormsApi } from "./";
+import { Form1, Form2, FormsApi } from "./";
 
 export const FormStep = ({dataForm}) => {
   const { currentStep, stepsEstaticos } = useContext(FormContext);

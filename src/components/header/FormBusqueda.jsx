@@ -65,6 +65,7 @@ export const FormBusqueda = () => {
   }, []);
 
   const handleClick = (item) => {
+    console.log({item})
     setIsOpen(false);
     setValue(item.title);
     setSlug(item.slug);
@@ -76,10 +77,12 @@ export const FormBusqueda = () => {
       alertaWarning();
       return;
     }
+    console.log({slug})
     if (slug.length === 0) {
-      alertaWarning("No se encontró el texto");
+      alertaWarning("No se encontró el artículo");
       return;
     }
+    console.log('se envia')
     setValue("");
     setIsOpen(false);
     router.push("/tuentrada-wallet/" + slug);
@@ -89,8 +92,9 @@ export const FormBusqueda = () => {
     <form onSubmit={onSubmit} className="relative">
       <div className="relative">
         <input
-          className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-dark focus:border-blue-dark"
+          className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-light "
           name="search"
+          type="text"
           placeholder="Escribe un texto..."
           value={value}
           onChange={(e) => setValue(e.target.value)}

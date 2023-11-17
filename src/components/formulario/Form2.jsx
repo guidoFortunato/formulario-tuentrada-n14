@@ -95,7 +95,7 @@ export const Form2 = ({ lengthSteps }) => {
             </span>
           )}
         </div>
-        <div>
+        {/* <div>
           <label
             htmlFor="phone"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -110,7 +110,7 @@ export const Form2 = ({ lengthSteps }) => {
             placeholder="Ingrese su teléfono"
             {...register("phone")}
           />
-        </div>
+        </div> */}
         <div>
           <label
             htmlFor="dni"

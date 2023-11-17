@@ -5,6 +5,7 @@ import { getDataPrueba } from "@/helpers/getInfoTest";
 import "./globals.css";
 import InputBusqueda2 from "@/components/header/InputBusqueda2";
 import FormProvider from "@/context/FormContext";
+import InputBusqueda from "@/components/header/InputBusqueda";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,7 @@ export default async function RootLayout({ children }) {
     `https://testapi.tuentrada.com/api/v1/site/ayuda.tuentrada.com`
   );
   const { data } = info.data.products;
-
+    console.log({data})
   return (
     <html lang="es">
       <body
@@ -29,6 +30,7 @@ export default async function RootLayout({ children }) {
           <header>
             <NavBar data={data} />
             <InputBusqueda2 data={data} />
+            {/* <InputBusqueda data={data} /> */}
           </header>
           {children}
           <Footer data={data} />
