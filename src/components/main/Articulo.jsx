@@ -11,7 +11,8 @@ const Articulo = ({ params = "", dataArticle = {}, data }) => {
   const sanitizer = dompurify.sanitize;
   const { content } = dataArticle;
   // console.log(dataArticle.content);
-  // console.log({ data });
+  console.log({ data });
+  console.log({ dataArticle });
   const dataArticleForm = dataArticle.form;
 
   const mergedData = dataArticle.content?.map((contentItem) => {
@@ -55,9 +56,8 @@ const Articulo = ({ params = "", dataArticle = {}, data }) => {
                     __html: sanitizer(item.description),
                   }}
                 ></span>
-{console.log({item})}
-                {item.images !== null && 
-
+                {console.log({ item })}
+                {item.images !== null && (
                   <Image
                     key={item.images.title}
                     src={item.images.src}
@@ -67,8 +67,7 @@ const Articulo = ({ params = "", dataArticle = {}, data }) => {
                     priority
                     className="rounded-lg border border-gray-300 mt-10 "
                   />
-                
-                }
+                )}
               </div>
             ))}
           </div>
@@ -115,7 +114,7 @@ const Articulo = ({ params = "", dataArticle = {}, data }) => {
         )}
 
         <div className="flex justify-evenly mt-24 ">
-          {data.mostViews.length > 0 && (
+          {data.mostViews?.length > 0 && (
             <div>
               <h4 className="text-blue-dark font-semibold mb-2 text-lg">
                 Artículos más vistos
@@ -132,7 +131,7 @@ const Articulo = ({ params = "", dataArticle = {}, data }) => {
               </ol>
             </div>
           )}
-          {dataArticle.articleChild.length > 0 && (
+          {dataArticle.articleChild?.length > 0 && (
             <div>
               <h4 className="text-blue-dark text-lg font-semibold mb-2 ">
                 Artículos relacionados

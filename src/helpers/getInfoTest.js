@@ -33,7 +33,9 @@ export async function getDataPrueba(url) {
   try {
     // const { token, tokenExpires } = await getTokenPrueba();
     const res = await fetch(url, {
-      // next: { revalidate: 1800 },
+      next: { revalidate: 0 },
+
+      cache: 'no-store',
       credentials: "include",
       method: "GET",
       headers: {
@@ -54,6 +56,7 @@ export async function getDataPruebaPost(url, email) {
   try {
     const res = await fetch(url, {
       method: "POST",
+      cache: 'no-store',
       headers: {
         Authorization: `Bearer 4325|rnJjRmdLbpNAnlj3JFSLmdZDHy87MoOPzy8jhslG`,
         "Content-Type": "application/json",
@@ -62,6 +65,7 @@ export async function getDataPruebaPost(url, email) {
         email,
       }),
     });
+
     console.log({res})
     const data = await res.json();
     return data;
