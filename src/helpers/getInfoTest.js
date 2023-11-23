@@ -14,7 +14,7 @@ export async function getTokenPrueba(
         password,
       }),
     });
-    // console.log({resToken: res})
+    console.log({resToken: res})
     if (!res.ok) {
       throw new Error(
         `Error getToken !res.ok: ${res.status}. ${res.statusText}`
@@ -37,15 +37,35 @@ export async function getDataPrueba(url) {
       credentials: "include",
       method: "GET",
       headers: {
-        Authorization: `Bearer 4322|sKJgsujVompFI9Mi6gC47s3ZpJUoiQL477GtjFyD`,
+        Authorization: `Bearer 4289|QWSCYz3fvFxwKq8ymAgQwpA7VSVDGaGG1qxKN3FD`,
         accept: "application/json",
       },
     });
-    
+
     const data = await res.json();
     // console.log({data})
     return data;
   } catch (error) {
-    console.log('error prueba')
+    console.log("error prueba");
+  }
+}
+
+export async function getDataPruebaPost(url, email) {
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer 4289|QWSCYz3fvFxwKq8ymAgQwpA7VSVDGaGG1qxKN3FD`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+      }),
+    });
+    console.log({res})
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log("error prueba");
   }
 }

@@ -4,13 +4,14 @@ import { FormContext } from "@/context/FormContext";
 export const TypeFormInput = ({ item }) => {
   const { register, handleSubmit, errors, watch, reset, nextStep } = useContext(FormContext);
   const name = (item.name).toLowerCase().split(' ').join('_')
+  console.log({item})
   return (
     <div>
       <label
         htmlFor={name}
         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
       >
-        {item.name}
+        {item.name} { item.required === 1 && <span className="text-red-500">*</span> }
       </label>
       <input
         type={item.subtype}

@@ -15,15 +15,15 @@ const Footer = ({ data }) => {
             className="flex items-center mb-4 sm:mb-0"
           >
             <Image
-              src="https://eventos.tuentrada.com/light_custom/lightTheme/logo_tue_secutix.png"              
-              alt="TuEntrada"
+              src={data.logoFooter.src}              
+              alt={data.logoFooter.src}
               width={138}
               height={38}
               priority
               style={{ width: "auto", height: "auto" }}
             />
           </a>
-          <span className="mb-4 text-gray-700 ">
+          <span className="mb-4 text-slate-400 ">
            Todos los derechos reservados
           </span>
           <ul className="flex flex-wrap items-center justify-center mb-6 text-base font-semibold text-gray-200 sm:mb-0 dark:text-gray-400">

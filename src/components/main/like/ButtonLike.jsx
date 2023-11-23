@@ -13,7 +13,7 @@ export const ButtonLike = ({ name, handleLike, handleDisLike, handleOpinion, res
       
     }
     if (!result) {
-      console.log({result})
+      // console.log({result})
       handleDisLike();
       await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/articulo/${params.subcategoria}/like/0`);
       

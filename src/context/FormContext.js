@@ -3,6 +3,10 @@ import { createContext, useState } from "react";
 import { useForm } from "react-hook-form";
 export const FormContext = createContext();
 
+const initialStateAutocomplete = {
+  isOpen: false,
+}
+
 const FormProvider = ({ children }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [dataContacto, setDataContacto] = useState(null);
@@ -127,6 +131,7 @@ const FormProvider = ({ children }) => {
     setDataContacto(contacto);
   };
 
+  
   const nextStep = () => {
     setCurrentStep((prev) => prev + 1);
   };

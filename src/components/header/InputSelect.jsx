@@ -1,22 +1,15 @@
 "use client";
 import { getDataPrueba } from "@/helpers/getInfoTest";
-import Link from "next/link";
-import { useEffect, useState } from "react";
 import AsyncSelect from "react-select/async";
 
-const options = [
-  {
-    value: "VISA",
-    label: " Tarjeta VISA"
-  }
-]
+
 
 export const InputSelect = () => {
-  const [data, setData] = useState(null);
-  const [query, setQuery] = useState(null);
+  // const [data, setData] = useState(null);
+  // const [query, setQuery] = useState(null);
 
   const loadOptions = async(value, callback) =>{
-    console.log({value})
+    // console.log({value})
     if (value.length >= 3) {
       // setQuery(value)
       const res = await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/search-article/${value.toLowerCase()}`);

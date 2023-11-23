@@ -13,12 +13,12 @@ export default function NavBar({ data }) {
     >
       <Link href="/">
         <Image
-          src="https://eventos.tuentrada.com/light_custom/lightTheme/logo_tue_secutix.png"
-          alt="TuEntrada"
+          src={data.logo.src}
+          alt={data.logo.alt}
           width={197}
           height={89}
           priority
-          // style={{ width: "auto", height: "auto" }}
+          style={{ width: "auto", height: "auto" }}
         />
       </Link>
 

@@ -48,7 +48,7 @@ export const Form2 = ({ lengthSteps }) => {
             htmlFor="name"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Nombre
+            Nombre <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -74,7 +74,7 @@ export const Form2 = ({ lengthSteps }) => {
             htmlFor="lastname"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Apellido
+            Apellido <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -95,7 +95,7 @@ export const Form2 = ({ lengthSteps }) => {
             </span>
           )}
         </div>
-        <div>
+        {/* <div>
           <label
             htmlFor="phone"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -110,13 +110,13 @@ export const Form2 = ({ lengthSteps }) => {
             placeholder="Ingrese su teléfono"
             {...register("phone")}
           />
-        </div>
+        </div> */}
         <div>
           <label
             htmlFor="dni"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            DNI
+            DNI <span className="text-red-500">*</span>
           </label>
           <input
             type="text"

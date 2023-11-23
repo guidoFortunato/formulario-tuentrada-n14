@@ -1,7 +1,8 @@
+"use client";
+
 import AccordionSubCat from "./AccordionSubCat";
 
 const SubCategoria = ({ category, params }) => {
-  // console.log({params})
   const { subCategories } = category;
 
   return (

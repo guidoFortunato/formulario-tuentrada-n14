@@ -44,7 +44,7 @@ export const Form1 = ({lengthSteps }) => {
             htmlFor="email"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Email
+            Email <span className="text-red-500">*</span>
           </label>
           <input
             name="email"
@@ -74,7 +74,7 @@ export const Form1 = ({lengthSteps }) => {
             htmlFor="emailConfirm"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Confirmación de Email
+            Confirmación de Email <span className="text-red-500">*</span>
           </label>
           <input
             name="emailConfirm"
