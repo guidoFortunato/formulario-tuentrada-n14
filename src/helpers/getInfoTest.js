@@ -37,7 +37,7 @@ export async function getDataPrueba(url) {
       credentials: "include",
       method: "GET",
       headers: {
-        Authorization: `Bearer 4289|QWSCYz3fvFxwKq8ymAgQwpA7VSVDGaGG1qxKN3FD`,
+        Authorization: `Bearer 4325|rnJjRmdLbpNAnlj3JFSLmdZDHy87MoOPzy8jhslG`,
         accept: "application/json",
       },
     });
@@ -55,7 +55,7 @@ export async function getDataPruebaPost(url, email) {
     const res = await fetch(url, {
       method: "POST",
       headers: {
-        Authorization: `Bearer 4289|QWSCYz3fvFxwKq8ymAgQwpA7VSVDGaGG1qxKN3FD`,
+        Authorization: `Bearer 4325|rnJjRmdLbpNAnlj3JFSLmdZDHy87MoOPzy8jhslG`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
