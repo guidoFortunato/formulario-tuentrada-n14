@@ -1,7 +1,4 @@
-export async function getTokenPrueba(
-  email = "gfortunato@tuentrada.com",
-  password = "Correa.3030"
-) {
+export async function getTokenPrueba( email = "gfortunato@tuentrada.com",password = "Correa.3030" ) {
   try {
     const res = await fetch("https://testapi.tuentrada.com/api/login", {
       next: { revalidate: 1800 },
@@ -34,12 +31,11 @@ export async function getTokenPrueba(
 
 export async function getDataPrueba(url) {
   try {
-    const { token, tokenExpires } = await getTokenPrueba();
+    const { token } = await getTokenPrueba();
 
     const res = await fetch(url, {
-      // next: { revalidate: 0 },
-
-      cache: 'no-store',
+      next: { revalidate: 3600 },
+      // cache: 'no-store',
       credentials: "include",
       method: "GET",
       headers: {
@@ -47,7 +43,7 @@ export async function getDataPrueba(url) {
         accept: "application/json",
       },
     });
-
+    console.log({getDataPrueba: res})
     const data = await res.json();
     // console.log({data})
     return data;
