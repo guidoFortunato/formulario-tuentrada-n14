@@ -21,7 +21,7 @@ export const Form1 = ({lengthSteps }) => {
     console.log("se envia form 1");
     const info = await getDataPruebaPost("https://testapi.tuentrada.com/api/v1/atencion-cliente/contact/", data.email);
     console.log({ info });
-    console.log({ data });
+    // console.log({ data });
     if (info?.status) {
       handleContacto({
         id: info.data.contact.id,

@@ -13,6 +13,9 @@ export default async function Home() {
   const thirdCategory = categories.slice(2, 3);
   const restCategories = categories.slice(3);
 
+ 
+  
+
   return (
     <main>
       <div className="container mx-auto bg-main-image bg-no-repeat bg-left-50 pb-10 flex-1">

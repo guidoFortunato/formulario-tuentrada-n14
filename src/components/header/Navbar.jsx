@@ -1,10 +1,22 @@
 "use client";
 
+import { getTokenPrueba } from "@/helpers/getInfoTest";
 import { Navbar } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
+// import { useEffect } from "react";
 
 export default function NavBar({ data }) {
+  
+
+  // useEffect(() => {
+  //   console.log('uef navbar')
+  //   const getData = async()=>{
+  //     const token = await getTokenPrueba();
+  //     console.log({token})
+  //   }
+  //   getData()
+  // }, []);
   // console.log({ data });
   return (
     <Navbar

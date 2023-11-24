@@ -46,12 +46,14 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
   const onSubmit = async (data, event) => {
     event.preventDefault();
     // console.log({ info });
-    console.log("se envia form api 1");
-    console.log({ data });
+    // const newData = { ...data, fecha_de_compra: new Date(data.fecha_de_compra).toLocaleDateString() }
+    // console.log({newData})
+    console.log({data})
     if (!(currentStep + 1 === lengthSteps)) {
       nextStep();
     }
     if (currentStep + 1 === lengthSteps) {
+      console.log("se envia form final");
       alertaSuccess();
       reset();
       router.push("/");
