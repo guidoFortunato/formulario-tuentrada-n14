@@ -41,7 +41,8 @@ const Articulo = ({ params = "", dataArticle = {}, data }) => {
         <h2 className="text-2xl text-blue-dark font-semibold mb-10">
           {dataArticle?.title}
         </h2>
-        <section className="w-full grid grid-cols-1  lg:grid-cols-6 gap-5 lg:gap-3 mx-auto mt-4 mb-10">
+        {/* si se agrega la columna lateral agregar al section lg:grid-cols-6 */}
+        <section className="w-full grid grid-cols-1   gap-5 lg:gap-3 mx-auto mt-4 mb-10">
           <div className="col-span-4 order-2 lg:order-1">
             {mergedData?.map((item, index) => (
               <div key={item.title}>
