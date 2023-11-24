@@ -33,7 +33,7 @@ export async function getDataPrueba(url) {
   try {
     // const { token, tokenExpires } = await getTokenPrueba();
     const res = await fetch(url, {
-      next: { revalidate: 0 },
+      // next: { revalidate: 0 },
 
       cache: 'no-store',
       credentials: "include",
