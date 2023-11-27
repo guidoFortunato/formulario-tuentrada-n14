@@ -15,7 +15,7 @@ export const generateMetadata = ({params})=>{
     primerParte = "TuEntrada"
     title = primerParte + resto.slice(9)
   }
-  console.log({title})
+  // console.log({title})
   return {
     title: title
   }

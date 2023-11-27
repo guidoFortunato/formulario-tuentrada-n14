@@ -8,7 +8,7 @@ const initialStateAutocomplete = {
 }
 
 const FormProvider = ({ children }) => {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(2);
   const [dataContacto, setDataContacto] = useState(null);
 
   const {

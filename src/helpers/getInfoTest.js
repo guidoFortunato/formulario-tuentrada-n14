@@ -1,7 +1,4 @@
-export async function getTokenPrueba(
-  email = "gfortunato@tuentrada.com",
-  password = "Correa.3030"
-) {
+export async function getTokenPrueba( email = "gfortunato@tuentrada.com",password = "Correa.3030" ) {
   try {
     const res = await fetch("https://testapi.tuentrada.com/api/login", {
       next: { revalidate: 1800 },
@@ -14,7 +11,7 @@ export async function getTokenPrueba(
         password,
       }),
     });
-    console.log({resToken: res})
+    // console.log({resToken: res})
     if (!res.ok) {
       throw new Error(
         `Error getToken !res.ok: ${res.status}. ${res.statusText}`
@@ -29,24 +26,97 @@ export async function getTokenPrueba(
     throw new Error(`Error catch getToken: ${error}`);
   }
 }
+
+
+
 export async function getDataPrueba(url) {
   try {
-    // const { token, tokenExpires } = await getTokenPrueba();
-    const res = await fetch(url, {
-      // next: { revalidate: 0 },
+    const { token } = await getTokenPrueba();
 
-      cache: 'no-store',
+    const res = await fetch(url, {
+      next: { revalidate: 3600 },
+      // cache: 'no-store',
       credentials: "include",
       method: "GET",
       headers: {
-        Authorization: `Bearer 4333|P72L4OJGUZ5hhRMSyxTuuhYETzkmzQL2vCBZioEo`,
+        Authorization: `Bearer ${token}`,
         accept: "application/json",
       },
     });
-
+    console.log({getDataPrueba: res})
     const data = await res.json();
     // console.log({data})
     return data;
+  } catch (error) {
+    console.log("error prueba");
+  }
+}
+
+export async function getDataPruebaStorage(url) {
+  const tokenStorage = localStorage.getItem("token");
+  const tokenExpiresStorage = localStorage.getItem("tokenExpires");
+
+  try {
+    if (tokenStorage && tokenExpiresStorage) {
+      if (tokenExpiresStorage > Date.now()) {
+        const res = await fetch(url, {
+          // next: { revalidate: 0 },
+
+          cache: "no-store",
+          credentials: "include",
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${tokenStorage}`,
+            accept: "application/json",
+          },
+        });
+
+        const data = await res.json();
+        // console.log({data})
+        return data;
+      } else {
+        const { token, tokenExpires } = await getTokenPrueba();
+        localStorage.setItem("token", token);
+        localStorage.setItem("tokenExpires", tokenExpires);
+        const res = await fetch(url, {
+          // next: { revalidate: 0 },
+
+          cache: "no-store",
+          credentials: "include",
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            accept: "application/json",
+          },
+        });
+
+        const data = await res.json();
+        // console.log({data})
+        return data;
+      }
+    }
+    if (tokenStorage === null && tokenExpiresStorage === null) {
+      const { token, tokenExpires } = await getTokenPrueba();
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("tokenExpires", tokenExpires);
+
+      const res = await fetch(url, {
+        // next: { revalidate: 0 },
+
+        cache: "no-store",
+        credentials: "include",
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          accept: "application/json",
+        },
+      });
+
+      const data = await res.json();
+      // console.log({data})
+      return data;
+    }
   } catch (error) {
     console.log("error prueba");
   }
@@ -58,7 +128,7 @@ export async function getDataPruebaPost(url, email) {
       method: "POST",
       cache: 'no-store',
       headers: {
-        Authorization: `Bearer 4325|rnJjRmdLbpNAnlj3JFSLmdZDHy87MoOPzy8jhslG`,
+        Authorization: `Bearer 4333|P72L4OJGUZ5hhRMSyxTuuhYETzkmzQL2vCBZioEo`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -66,7 +136,7 @@ export async function getDataPruebaPost(url, email) {
       }),
     });
 
-    console.log({res})
+    console.log({getDataPruebaPost: res})
     const data = await res.json();
     return data;
   } catch (error) {

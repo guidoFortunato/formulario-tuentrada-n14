@@ -3,7 +3,7 @@ import { FormBusqueda } from "./FormBusqueda";
 import { InputSelect } from "./InputSelect";
 
 const InputBusqueda2 = async ({data}) => {
-  console.log({data})
+  // console.log({data})
   return (
     <>
       <div className="flex justify-center flex-col items-center my-10">

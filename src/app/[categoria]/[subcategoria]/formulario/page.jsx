@@ -4,7 +4,7 @@ import FormProvider from "@/context/FormContext";
 import { getDataPrueba } from "@/helpers/getInfoTest";
 
 export const generateMetadata = ({params})=>{
-  console.log({paramsMetadata: params})
+  // console.log({paramsMetadata: params})
   let primerLetra;
   let resto;
   let title;
@@ -18,7 +18,7 @@ export const generateMetadata = ({params})=>{
     primerParte = "TuEntrada"
     title = primerParte + resto.slice(9)
   }
-  console.log({title})
+  // console.log({title})
   return {
     title: title
   }
