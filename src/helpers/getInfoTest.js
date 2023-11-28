@@ -1,7 +1,7 @@
-export async function getTokenPrueba( email = "gfortunato@tuentrada.com",password = "Correa.3030" ) {
+export async function getTokenPrueba( email = "gfortunato@tuentrada.com", password = "Correa.3030" ) {
   try {
     const res = await fetch("https://testapi.tuentrada.com/api/login", {
-      next: { revalidate: 1800 },
+      next: { revalidate: 86400 },
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,6 +21,7 @@ export async function getTokenPrueba( email = "gfortunato@tuentrada.com",passwor
     const data = await res.json();
     const { token } = data;
     const tokenExpires = new Date(data.expired_at).getTime();
+    // console.log({token})
     return { token, tokenExpires };
   } catch (error) {
     throw new Error(`Error catch getToken: ${error}`);
@@ -34,8 +35,8 @@ export async function getDataPrueba(url) {
     const { token } = await getTokenPrueba();
 
     const res = await fetch(url, {
-      next: { revalidate: 3600 },
-      // cache: 'no-store',
+      // next: { revalidate: 3600 },
+      cache: 'no-store',
       credentials: "include",
       method: "GET",
       headers: {
@@ -43,14 +44,37 @@ export async function getDataPrueba(url) {
         accept: "application/json",
       },
     });
-    console.log({getDataPrueba: res})
+    // console.log({getDataPrueba: res})
     const data = await res.json();
-    // console.log({data})
+    // console.log({getDataPrueba: data})
     return data;
   } catch (error) {
     console.log("error prueba");
   }
 }
+export async function getDataCache(url) {
+  try {
+    const { token } = await getTokenPrueba();
+
+    const res = await fetch(url, {
+      next: { revalidate: 10800 },
+      // cache: 'force-cache',
+      credentials: "include",
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        accept: "application/json",
+      },
+    });
+    // console.log({getDataPrueba: res})
+    const data = await res.json();
+    // console.log({dataCache: data})
+    return data;
+  } catch (error) {
+    console.log("error prueba");
+  }
+}
+
 
 export async function getDataPruebaStorage(url) {
   const tokenStorage = localStorage.getItem("token");

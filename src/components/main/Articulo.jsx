@@ -11,8 +11,8 @@ const Articulo = ({ params = "", dataArticle = {}, data }) => {
   const sanitizer = dompurify.sanitize;
   const { content } = dataArticle;
   // console.log(dataArticle.content);
-  console.log({ data });
-  console.log({ dataArticle });
+  // console.log({ data });
+  // console.log({ dataArticle });
   const dataArticleForm = dataArticle.form;
 
   const mergedData = dataArticle.content?.map((contentItem) => {
@@ -57,7 +57,7 @@ const Articulo = ({ params = "", dataArticle = {}, data }) => {
                     __html: sanitizer(item.description),
                   }}
                 ></span>
-                {console.log({ item })}
+                {/* {console.log({ item })} */}
                 {item.images !== null && (
                   <Image
                     key={item.images.title}
