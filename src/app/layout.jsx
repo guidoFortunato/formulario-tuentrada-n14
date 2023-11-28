@@ -1,13 +1,14 @@
 import { Inter } from "next/font/google";
 import NavBar from "@/components/header/Navbar";
 import Footer from "@/components/footer/Footer";
-import { getDataPrueba } from "@/helpers/getInfoTest";
-import "./globals.css";
+import { getDataCache, getDataPrueba } from "@/helpers/getInfoTest";
 import InputBusqueda2 from "@/components/header/InputBusqueda2";
 import FormProvider from "@/context/FormContext";
 import InputBusqueda from "@/components/header/InputBusqueda";
 
 const inter = Inter({ subsets: ["latin"] });
+
+import "./globals.css";
 
 export const metadata = {
   title: "Ayuda TuEntrada - Home",
@@ -15,11 +16,12 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const info = await getDataPrueba(
-    `https://testapi.tuentrada.com/api/v1/site/ayuda.tuentrada.com`
-  );
-  const { data } = info.data.products;
-    // console.log({data})
+
+  const infoCache = await getDataCache(`https://testapi.tuentrada.com/api/v1/site/ayuda.tuentrada.com`);
+
+
+  const dataCache = infoCache.data.products.data;
+  // console.log({data})
   return (
     <html lang="es">
       <body
@@ -28,12 +30,12 @@ export default async function RootLayout({ children }) {
       >
         <FormProvider>
           <header>
-            <NavBar data={data} />
-            <InputBusqueda2 data={data} />
+            <NavBar data={dataCache} />
+            <InputBusqueda2 data={dataCache} />
             {/* <InputBusqueda data={data} /> */}
           </header>
           {children}
-          <Footer data={data} />
+          <Footer data={dataCache} />
         </FormProvider>
       </body>
     </html>
