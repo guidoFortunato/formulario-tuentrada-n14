@@ -2,17 +2,13 @@ import React from "react";
 import Image from "next/image";
 import dompurify from "isomorphic-dompurify";
 
-import TituloSubcategorias from "./TituloSubcategorias";
 import { RespuestaLike } from "./like/RespuestaLike";
 import { ButtonFormulario } from "./like/ButtonFormulario";
 import Link from "next/link";
 
 const Articulo = ({ params = "", dataArticle = {}, data }) => {
   const sanitizer = dompurify.sanitize;
-  const { content } = dataArticle;
-  // console.log(dataArticle.content);
-  // console.log({ data });
-  // console.log({ dataArticle });
+
   const dataArticleForm = dataArticle.form;
 
   const mergedData = dataArticle.content?.map((contentItem) => {
@@ -57,7 +53,7 @@ const Articulo = ({ params = "", dataArticle = {}, data }) => {
                     __html: sanitizer(item.description),
                   }}
                 ></span>
-                {/* {console.log({ item })} */}
+
                 {item.images !== null && (
                   <Image
                     key={item.images.title}
@@ -72,20 +68,9 @@ const Articulo = ({ params = "", dataArticle = {}, data }) => {
               </div>
             ))}
           </div>
-          {/* <div className="lg:col-span-2  col-span-4 order-1 lg:order-2">
-            <div className="w-auto sticky top-10 text-sm font-medium text-gray-900 bg-white border border-gray-200 ">
-              {content.map((item, index) => (
-                <TituloSubcategorias
-                  item={item}
-                  index={index}
-                  key={item.title}
-                />
-              ))}
-            </div>
-          </div> */}
         </section>
         <hr />
-        {dataArticle.enableHelpful === 1 && (
+        {dataArticle?.enableHelpful === 1 && (
           <>
             <div className="flex justify-center items-center flex-col mb-5">
               <h4 className="font-semibold text-center text-blue-dark mt-10 mb-2">
@@ -101,7 +86,7 @@ const Articulo = ({ params = "", dataArticle = {}, data }) => {
           </>
         )}
 
-        {dataArticle.enableHelpful === 0 && dataArticleForm !== null && (
+        {dataArticle?.enableHelpful === 0 && dataArticleForm !== null && (
           <>
             <div className="flex justify-center items-center flex-col mb-5">
               <h4 className="font-semibold text-center text-blue-dark mt-10 mb-2">
@@ -115,7 +100,7 @@ const Articulo = ({ params = "", dataArticle = {}, data }) => {
         )}
 
         <div className="flex justify-evenly mt-24 ">
-          {data.mostViews?.length > 0 && (
+          {data?.mostViews?.length > 0 && (
             <div>
               <h4 className="text-blue-dark font-semibold mb-2 text-lg">
                 Artículos más vistos
@@ -132,13 +117,13 @@ const Articulo = ({ params = "", dataArticle = {}, data }) => {
               </ol>
             </div>
           )}
-          {dataArticle.articleChild?.length > 0 && (
+          {dataArticle?.articleChild?.length > 0 && (
             <div>
               <h4 className="text-blue-dark text-lg font-semibold mb-2 ">
                 Artículos relacionados
               </h4>
               <ol className="text-sm">
-                {dataArticle.articleChild.slice(0, 5).map((item) => (
+                {dataArticle?.articleChild?.slice(0, 5).map((item) => (
                   <li key={item.id} className="text-blue-dark">
                     ▸
                     <Link className="underline text-base" href={item.slug}>

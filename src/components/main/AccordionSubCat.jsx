@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
-const AccordionSubCat = ({ name, slug, articles, params }) => {
+const AccordionSubCat = ({ name = "", articles = [], params }) => {
   const [open, setOpen] = useState(false);
 
   // console.log({ articles });
@@ -54,7 +54,7 @@ const AccordionSubCat = ({ name, slug, articles, params }) => {
         aria-labelledby="accordion-flush-heading-1"
       >
         <div className="py-5 border-b border-gray-200">
-          {articles.length > 0 &&
+          {articles?.length > 0 &&
             articles.map((item) => (
               <p className="text-gray-500" key={item.id}>
                 <Link
