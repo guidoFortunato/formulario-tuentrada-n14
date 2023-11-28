@@ -33,10 +33,10 @@ export const FormBusqueda = () => {
           console.log({ res });
           if (res.data.articles.length > 0) {
             setIsOpen(true);
-            setError(false)
+            setError(false);
           } else {
             setIsOpen(false);
-            setError(true)
+            setError(true);
           }
           setData(res.data.articles);
         }
@@ -51,8 +51,6 @@ export const FormBusqueda = () => {
     clearTimeout(searchTimer.current);
     searchTimer.current = setTimeout(search, 1000); // Tiempo de espera en milisegundos
   }, [value]);
-
-
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -69,10 +67,10 @@ export const FormBusqueda = () => {
     };
   }, []);
 
-  const handleChange = ( e ) => {
-    setValue(e.target.value)
-    setError(false)
-  }
+  const handleChange = (e) => {
+    setValue(e.target.value);
+    setError(false);
+  };
 
   const handleClick = (item) => {
     // console.log({ item });
@@ -83,14 +81,13 @@ export const FormBusqueda = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log('enter')
+    console.log("enter");
     if (!value.trim()) {
       alertaWarning();
       return;
     }
     // setValue("");
     setIsOpen(false);
-    
   };
 
   return (
@@ -100,15 +97,13 @@ export const FormBusqueda = () => {
           className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-light "
           name="search"
           type="text"
-          placeholder="Escribe un texto..."
+          placeholder="¿Qué estás buscando?..."
           value={value}
           onChange={handleChange}
           autoComplete="off"
           disabled={loading}
         />
         {loading && <Loader />}
-        
-
 
         {/* <button
           type="submit"
@@ -132,20 +127,47 @@ export const FormBusqueda = () => {
           <span className="sr-only">Search</span>
         </button> */}
       </div>
-      {error && <span className="text-red-500">no hay coincidencias para la palabra buscada</span>}
+      {error && (
+        <span className="text-red-500 text-xs flex items-center pt-1">
+          <svg
+            className="mr-1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 48 48"
+            width="16px"
+            height="16px"
+          >
+            <path
+              fill="#f44336"
+              d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"
+            />
+            <path
+              fill="#fff"
+              d="M29.656,15.516l2.828,2.828l-14.14,14.14l-2.828-2.828L29.656,15.516z"
+            />
+            <path
+              fill="#fff"
+              d="M32.484,29.656l-2.828,2.828l-14.14-14.14l2.828-2.828L32.484,29.656z"
+            />
+          </svg>{" "}
+          No se encontraron coincidencias
+        </span>
+      )}
       {isOpen && (
         <div
-          className="absolute w-[95%] md:w-[40%] bg-white z-10 rounded-lg shadow-xl mt-1 overflow-hidden border border-gray-200"
+          className="absolute w-[-webkit-fill-available] bg-white z-10 rounded-lg shadow-xl mt-1 overflow-hidden border border-gray-200"
           ref={panelRef}
         >
           {data.map((item) => {
             // console.log({ item });
             return (
-              <section key={item.id} >
+              <section key={item.id}>
                 <ul>
                   <li>
-                    <Link href={"/tuentrada-wallet/preguntas-frecuentes"} onClick={handleClick}>
-                      <div className="flex justify-evenly items-center cursor-pointer hover:bg-blue-light hover:text-white gap-4 p-4 ">
+                    <Link
+                      href={"/tuentrada-wallet/preguntas-frecuentes"}
+                      onClick={handleClick}
+                    >
+                      <div className=" flex items-center cursor-pointer hover:bg-blue-light hover:text-white gap-4 p-4 ">
                         <svg
                           className="w-3 h-3 mr-4"
                           aria-hidden="true"
