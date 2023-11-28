@@ -18,7 +18,7 @@ export const FormBusqueda = () => {
   const searchTimer = useRef(null);
   const [error, setError] = useState(false);
 
-  console.log({ data });
+  // console.log({ data });
   // console.log({ isOpen });
 
   useEffect(() => {
@@ -52,19 +52,7 @@ export const FormBusqueda = () => {
     searchTimer.current = setTimeout(search, 1000); // Tiempo de espera en milisegundos
   }, [value]);
 
-  // useEffect(() => {
-  //   const handleOutsideClick = (event) => {
-  //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-  //       setIsOpen(false);
-  //     }
-  //   };
 
-  //   document.addEventListener("mousedown", handleOutsideClick);
-
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleOutsideClick);
-  //   };
-  // }, []);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -96,19 +84,13 @@ export const FormBusqueda = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log('enter')
-    // if (!value.trim()) {
-    //   alertaWarning();
-    //   return;
-    // }
-    // console.log({ slug });
-    // if (slug.length === 0) {
-    //   alertaWarning("No se encontró el artículo");
-    //   return;
-    // }
-    // console.log("se envia");
-    setValue("");
+    if (!value.trim()) {
+      alertaWarning();
+      return;
+    }
+    // setValue("");
     setIsOpen(false);
-    // router.push("/tuentrada-wallet/" + slug);
+    
   };
 
   return (
