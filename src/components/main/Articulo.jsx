@@ -1,15 +1,19 @@
 import React from "react";
 import Image from "next/image";
-import dompurify from "isomorphic-dompurify";
+
 
 import { RespuestaLike } from "./like/RespuestaLike";
 import { ButtonFormulario } from "./like/ButtonFormulario";
 import Link from "next/link";
+import { ArticleRows } from "./ArticleRows";
 
 const Articulo = ({ params = "", dataArticle = {}, data }) => {
-  const sanitizer = dompurify.sanitize;
+ 
 
   const dataArticleForm = dataArticle.form;
+  const { rows } = dataArticle;
+  // console.log({ rows });
+  // console.log({ item: rows[1].columns[0].items.length });
 
   const mergedData = dataArticle.content?.map((contentItem) => {
     const matchingImage = data.images?.find(
@@ -38,7 +42,7 @@ const Articulo = ({ params = "", dataArticle = {}, data }) => {
           {dataArticle?.title}
         </h2>
         {/* si se agrega la columna lateral agregar al section lg:grid-cols-6 */}
-        <section className="w-full grid grid-cols-1   gap-5 lg:gap-3 mx-auto mt-4 mb-10">
+        {/* <section className="w-full grid grid-cols-1   gap-5 lg:gap-3 mx-auto mt-4 mb-10">
           <div className="col-span-4 order-2 lg:order-1">
             {mergedData?.map((item, index) => (
               <div key={item.title}>
@@ -68,7 +72,11 @@ const Articulo = ({ params = "", dataArticle = {}, data }) => {
               </div>
             ))}
           </div>
-        </section>
+        </section> */}
+        {
+          rows && rows.map( item => <ArticleRows key={item.name} item={item} /> )
+        }
+        
         <hr />
         {dataArticle?.enableHelpful === 1 && (
           <>
