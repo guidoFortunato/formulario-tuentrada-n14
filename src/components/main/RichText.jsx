@@ -8,7 +8,7 @@ export const RichText = ({ itemColumn }) => {
 
   return (
     <div>
-      <h3>{title}</h3>
+      <h3 className="text-blue-dark font-semibold mb-2">{title}</h3>
       <div
         dangerouslySetInnerHTML={{
           __html: sanitizer(description),

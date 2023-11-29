@@ -21,7 +21,7 @@ export default function NavBar({ data }) {
   return (
     <Navbar
       container="true"
-      className="bg-gradient-to-b from-maroon-dark to-blue-dark md:from-blue-dark md:to-maroon-dark"
+      className="bg-gradient-to-b from-maroon-dark to-blue-dark md:from-blue-dark md:to-maroon-dark px-[0.8rem] lg:px-[7.5rem] py-3 "
     >
       <Link href="/">
         <Image
