@@ -1,3 +1,4 @@
+import { ArticleAccordion } from "./ArticleAccordion"
 import { ArticleImages } from "./ArticleImages"
 import { RichText } from "./RichText"
 
@@ -17,6 +18,9 @@ export const ArticleRows = ({item}) => {
             }
             if (itemColumn.type === 'imagenes') {
               return <ArticleImages key={column.order_column} itemColumn={itemColumn} />
+            }
+            if (itemColumn.type === 'acordion') {
+              return <ArticleAccordion key={column.order_column} itemColumn={itemColumn} />
             }
 
           } )
