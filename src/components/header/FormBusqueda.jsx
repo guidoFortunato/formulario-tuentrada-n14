@@ -1,18 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { getDataPrueba } from "@/helpers/getInfoTest";
 import { alertaWarning } from "@/helpers/Alertas";
 import { Loader } from "../loading";
 
 export const FormBusqueda = () => {
-  const [slug, setSlug] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState([]);
   const [value, setValue] = useState("");
-  const router = useRouter();
   const panelRef = useRef();
   const [loading, setLoading] = useState(false);
   const searchTimer = useRef(null);
@@ -94,7 +91,7 @@ export const FormBusqueda = () => {
     <form onSubmit={onSubmit} className="relative">
       <div className="relative">
         <input
-          className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-light "
+          className={`block w-full p-4 text-sm ${ loading ? "text-gray-300" : "text-gray-900" } border ${ loading ? "border-gray-100" : "border-gray-300" } rounded-lg bg-white focus:ring-blue-light`}
           name="search"
           type="text"
           placeholder="¿Qué estás buscando?..."

@@ -1,9 +1,6 @@
-
 import { FormBusqueda } from "./FormBusqueda";
-import { InputSelect } from "./InputSelect";
 
-const InputBusqueda2 = async ({data}) => {
-  // console.log({data})
+const InputBusqueda2 = async ({ data }) => {
   return (
     <>
       <div className="flex justify-center flex-col items-center my-10">
@@ -12,10 +9,8 @@ const InputBusqueda2 = async ({data}) => {
             {data.name}
           </h1>
         </section>
-
         <div className="w-[95%] md:w-2/5">
           <FormBusqueda />
-          {/* <InputSelect /> */}
         </div>
       </div>
     </>

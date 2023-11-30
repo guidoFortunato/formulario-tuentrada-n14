@@ -1,14 +1,13 @@
-import { Inter } from "next/font/google";
 import NavBar from "@/components/header/Navbar";
 import Footer from "@/components/footer/Footer";
-import { getDataCache, getDataPrueba } from "@/helpers/getInfoTest";
+import { getDataCache } from "@/helpers/getInfoTest";
 import InputBusqueda2 from "@/components/header/InputBusqueda2";
 import FormProvider from "@/context/FormContext";
-import InputBusqueda from "@/components/header/InputBusqueda";
+import { Inter } from "next/font/google";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-import "./globals.css";
 
 export const metadata = {
   title: "Ayuda TuEntrada - Home",
