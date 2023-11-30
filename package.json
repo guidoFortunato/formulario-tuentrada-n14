@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@algolia/autocomplete-core": "1.12.1",
+    "bufferutil": "^4.0.8",
     "flowbite": "^1.8.1",
     "flowbite-react": "^0.6.4",
     "isomorphic-dompurify": "^1.10.0",
@@ -19,8 +19,8 @@
     "react-hook-form": "^7.47.0",
     "react-icons": "^4.11.0",
     "react-scroll": "^1.9.0",
-    "react-select": "^5.8.0",
-    "sweetalert2": "^11.9.0"
+    "sweetalert2": "^11.9.0",
+    "utf-8-validate": "^6.0.3"
   },
   "devDependencies": {
     "autoprefixer": "^10",

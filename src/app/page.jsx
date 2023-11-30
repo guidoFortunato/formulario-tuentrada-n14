@@ -7,6 +7,7 @@ export default async function Home() {
   );
   // console.log({ info: info.data.categories });
   const { categories } = info.data;
+  // console.log(categories)
   // console.log({ largo: categories.length });
 
   const firstCategories = categories.slice(0, 2);

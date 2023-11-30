@@ -161,7 +161,7 @@ export const FormBusqueda = () => {
                 <ul>
                   <li>
                     <Link
-                      href={"/tuentrada-wallet/preguntas-frecuentes"}
+                      href={ item.slug}
                       onClick={handleClick}
                     >
                       <div className=" flex items-center cursor-pointer hover:bg-blue-light hover:text-white gap-4 p-4 ">
@@ -180,7 +180,7 @@ export const FormBusqueda = () => {
                             d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
                           />
                         </svg>
-                        <h3 className="text-sm font-semibold">{item.title}</h3>
+                        <h3 className="text-sm font-semibold">{item.title} - {item.category}</h3>
                       </div>
                     </Link>
                   </li>

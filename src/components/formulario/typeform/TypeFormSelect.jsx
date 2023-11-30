@@ -1,10 +1,8 @@
 import { useContext } from "react";
 import { FormContext } from "@/context/FormContext";
-import Select from "react-select";
-import { useController } from "react-hook-form";
 
 export const TypeFormSelect = ({ item }) => {
-  const { register, errors, watch, control } = useContext(FormContext);
+  const { register, errors, watch } = useContext(FormContext);
   const name = item.name.toLowerCase().split(" ").join("_");
   // const optionsSelect = item.options.map((item) => ({
   //   value: item,

@@ -17,6 +17,8 @@ export const metadata = {
 export default async function RootLayout({ children }) {
 
   const infoCache = await getDataCache(`https://testapi.tuentrada.com/api/v1/site/ayuda.tuentrada.com`);
+  
+ 
 
 
   const dataCache = infoCache.data.products.data;

@@ -1,4 +1,4 @@
-import InputBusqueda from "@/components/header/InputBusqueda";
+
 import Articulo from "@/components/main/Articulo";
 import { getDataPrueba } from "@/helpers/getInfoTest";
 
