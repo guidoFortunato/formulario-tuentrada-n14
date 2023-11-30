@@ -24,7 +24,7 @@ export const ArticleRows = ({item}) => {
               return <ArticleAccordion key={column.order_column} itemColumn={itemColumn} />
             }
             if (itemColumn.type === 'botones') {
-              return <ArticleButtons key={column.order_column} itemColumn={itemColumn} />
+              return <ArticleButtons   key={column.order_column} itemColumn={itemColumn} />
             }
 
           } )
