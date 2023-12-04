@@ -19,7 +19,7 @@ export const Form1 = ({lengthSteps }) => {
   const onSubmit = async (data, event) => {
     event.preventDefault();
     console.log("se envia form 1");
-    const info = await getDataPruebaPost("https://testapi.tuentrada.com/api/v1/atencion-cliente/contact/", data.email);
+    const info = await getDataPruebaPost("https://testapi.tuentrada.com/api/v1/atencion-cliente/search/contact", data.email);
     console.log({ info });
     // console.log({ data });
     if (info?.status) {

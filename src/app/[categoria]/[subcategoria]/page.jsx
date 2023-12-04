@@ -24,11 +24,11 @@ export const generateMetadata = ({params})=>{
 }
 
 const ItemSubCategorie = async({ params }) => {
-  const info = await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/articulo/${params.subcategoria}`);
+  const info = await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/article/${params.subcategoria}`);
   // console.log(info.data)
   return (
     <>
-      <Articulo params={params} data={info.data} dataArticle={info.data.article} />
+      <Articulo params={params} data={info.data} dataArticle={info.data?.article} />
     </>
   );
 };

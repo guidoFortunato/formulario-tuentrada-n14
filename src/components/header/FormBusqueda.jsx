@@ -25,7 +25,7 @@ export const FormBusqueda = () => {
         setLoading(true); // Activar indicador de carga
         if (value.length >= 3) {
           const res = await getDataPrueba(
-            `https://testapi.tuentrada.com/api/v1/atencion-cliente/search-article/${value}`
+            `https://testapi.tuentrada.com/api/v1/atencion-cliente/search/article/${value}`
           );
           console.log({ res });
           if (res.data.articles.length > 0) {

@@ -43,6 +43,8 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
       nextStep();
     }
     if (currentStep + 1 === lengthSteps) {
+      const info = await getDataPrueba( `https://testapi.tuentrada.com/api/v1/atencion-cliente/formulario` );
+      
       console.log("se envia form final");
       console.log({data})
       alertaSuccess();

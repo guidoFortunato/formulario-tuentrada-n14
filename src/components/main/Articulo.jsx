@@ -1,12 +1,11 @@
-import React from "react";
-import Image from "next/image";
 
 import { RespuestaLike } from "./like/RespuestaLike";
 import { ButtonFormulario } from "./like/ButtonFormulario";
 import Link from "next/link";
 import { ArticleRows } from "./ArticleRows";
 
-const Articulo = ({ params = "", dataArticle = {}, data }) => {
+const Articulo = ({ params = "", dataArticle = {}, data = {} }) => {
+  console.log({data})
   const dataArticleForm = dataArticle.form;
   const { rows } = dataArticle;
   // console.log({ rows });

@@ -21,7 +21,7 @@ export default async function RootLayout({ children }) {
  
 
 
-  const dataCache = infoCache.data.products.data;
+  const dataCache = infoCache.data?.products?.data;
   // console.log({data})
   return (
     <html lang="es">

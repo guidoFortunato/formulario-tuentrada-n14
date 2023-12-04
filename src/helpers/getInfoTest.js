@@ -146,17 +146,18 @@ export async function getDataPruebaStorage(url) {
   }
 }
 
-export async function getDataPruebaPost(url, email) {
+export async function getDataPruebaPost(url, dataInfo) {
+  const { token } = await getTokenPrueba();
   try {
     const res = await fetch(url, {
       method: "POST",
       cache: 'no-store',
       headers: {
-        Authorization: `Bearer 4333|P72L4OJGUZ5hhRMSyxTuuhYETzkmzQL2vCBZioEo`,
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email,
+        dataInfo,
       }),
     });
 

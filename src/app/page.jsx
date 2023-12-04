@@ -2,17 +2,15 @@ import CardCategoria from "@/components/main/CardCategoria";
 import { getDataPrueba } from "@/helpers/getInfoTest";
 
 export default async function Home() {
-  const info = await getDataPrueba(
-    "https://testapi.tuentrada.com/api/v1/atencion-cliente/categories"
-  );
+  const info = await getDataPrueba( "https://testapi.tuentrada.com/api/v1/atencion-cliente/categories" );
   // console.log({ info: info.data.categories });
   const { categories } = info.data;
-  // console.log(categories)
+  // console.log({categories: categories.data})
   // console.log({ largo: categories.length });
 
-  const firstCategories = categories.slice(0, 2);
-  const thirdCategory = categories.slice(2, 3);
-  const restCategories = categories.slice(3);
+  const firstCategories = categories.data.slice(0, 2);
+  const thirdCategory = categories.data.slice(2, 3);
+  const restCategories = categories.data.slice(3);
 
  
   

@@ -27,7 +27,7 @@ export const generateMetadata = ({ params }) => {
 
 async function FormPage({ params }) {
 
-  const info = await getDataPrueba( `https://testapi.tuentrada.com/api/v1/atencion-cliente/articulo/${params.subcategoria}/formulario` );
+  const info = await getDataPrueba( `https://testapi.tuentrada.com/api/v1/atencion-cliente/article/${params.subcategoria}/form` );
   const dataForm = info.data;
 
   return (
