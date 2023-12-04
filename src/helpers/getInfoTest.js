@@ -146,7 +146,7 @@ export async function getDataPruebaStorage(url) {
   }
 }
 
-export async function getDataPruebaPost(url, dataInfo) {
+export async function sendDataPost(url, email) {
   const { token } = await getTokenPrueba();
   try {
     const res = await fetch(url, {
@@ -157,11 +157,11 @@ export async function getDataPruebaPost(url, dataInfo) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        dataInfo,
+        email,
       }),
     });
 
-    console.log({getDataPruebaPost: res})
+    console.log({sendDataPost: res})
     const data = await res.json();
     return data;
   } catch (error) {

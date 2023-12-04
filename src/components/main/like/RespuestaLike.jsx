@@ -45,7 +45,7 @@ export const RespuestaLike = ({ params, dataArticleForm }) => {
           params={params}
         />
       </div>
-      {dataArticleForm === null && (
+      {!dataArticleForm && (
         <div
           className={`${
             opinion === false ? "hidden" : ""
@@ -57,7 +57,7 @@ export const RespuestaLike = ({ params, dataArticleForm }) => {
         </div>
       )}
 
-      {dataArticleForm !== null && like === true && (
+      {dataArticleForm && like === true && (
         <div
           className={`${
             opinion === false ? "hidden" : ""
@@ -69,7 +69,7 @@ export const RespuestaLike = ({ params, dataArticleForm }) => {
         </div>
       )}
 
-      { dataArticleForm !== null && like === false &&
+      { dataArticleForm && like === false &&
         <div
           className={`${
             opinion === false

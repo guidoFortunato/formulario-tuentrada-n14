@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { FormContext } from "@/context/FormContext";
 import { BotonSiguiente, BotonVolver } from ".";
 
-export const Form2 = ({ lengthSteps }) => {
+export const Form2 = ({ lengthSteps, dataForm }) => {
   const {
     register,
     handleSubmit,

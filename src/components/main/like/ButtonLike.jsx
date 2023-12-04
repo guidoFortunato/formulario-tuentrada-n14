@@ -7,7 +7,7 @@ export const ButtonLike = ({ name, handleLike, handleDisLike, handleOpinion, res
   const handleClick = async() => {
     handleOpinion()
     if (result) {
-      console.log({result})
+      // console.log({result})
       handleLike();
       await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/article/${params.subcategoria}/like/1`);
       
