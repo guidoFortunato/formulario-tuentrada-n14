@@ -5,30 +5,30 @@ import Link from "next/link";
 import { ArticleRows } from "./ArticleRows";
 
 const Articulo = ({ params = "", dataArticle = {}, data = {} }) => {
-  console.log({data})
   const dataArticleForm = dataArticle.form;
+  console.log({dataArticleForm})
   const { rows } = dataArticle;
   // console.log({ rows });
   // console.log({ item: rows[1].columns[0].items.length });
 
-  const mergedData = dataArticle.content?.map((contentItem) => {
-    const matchingImage = data.images?.find(
-      (image) => image.alt === contentItem.slug
-    );
+  // const mergedData = dataArticle.content?.map((contentItem) => {
+  //   const matchingImage = data.images?.find(
+  //     (image) => image.alt === contentItem.slug
+  //   );
 
-    return {
-      slug: contentItem.slug,
-      title: contentItem.title,
-      description: contentItem.description,
-      images: matchingImage
-        ? {
-            srcset: matchingImage.srcset,
-            src: matchingImage.src,
-            alt: matchingImage.alt,
-          }
-        : null,
-    };
-  });
+  //   return {
+  //     slug: contentItem.slug,
+  //     title: contentItem.title,
+  //     description: contentItem.description,
+  //     images: matchingImage
+  //       ? {
+  //           srcset: matchingImage.srcset,
+  //           src: matchingImage.src,
+  //           alt: matchingImage.alt,
+  //         }
+  //       : null,
+  //   };
+  // });
 
   // console.log({mergedData});
   return (
@@ -89,7 +89,7 @@ const Articulo = ({ params = "", dataArticle = {}, data = {} }) => {
           </>
         )}
 
-        {dataArticle?.enableHelpful === 0 && dataArticleForm !== null && (
+        {dataArticle?.enableHelpful === 0 && dataArticleForm && (
           <>
             <div className="flex justify-center items-center flex-col mb-5">
               <h4 className="font-semibold text-center text-blue-dark mt-10 mb-2">

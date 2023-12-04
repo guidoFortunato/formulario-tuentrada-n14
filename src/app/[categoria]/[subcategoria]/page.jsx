@@ -25,7 +25,8 @@ export const generateMetadata = ({params})=>{
 
 const ItemSubCategorie = async({ params }) => {
   const info = await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/article/${params.subcategoria}`);
-  // console.log(info.data)
+  console.log({ItemSubCategorie: info.data})
+  console.log({dataArticle: info.data?.article})
   return (
     <>
       <Articulo params={params} data={info.data} dataArticle={info.data?.article} />

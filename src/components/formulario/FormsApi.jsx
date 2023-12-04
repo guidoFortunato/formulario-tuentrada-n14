@@ -43,7 +43,7 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
       nextStep();
     }
     if (currentStep + 1 === lengthSteps) {
-      const info = await getDataPrueba( `https://testapi.tuentrada.com/api/v1/atencion-cliente/formulario` );
+      // const info = await getDataPrueba( `https://testapi.tuentrada.com/api/v1/atencion-cliente/form` );
       
       console.log("se envia form final");
       console.log({data})

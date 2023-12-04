@@ -18,11 +18,11 @@ export default async function RootLayout({ children }) {
 
   const infoCache = await getDataCache(`https://testapi.tuentrada.com/api/v1/site/ayuda.tuentrada.com`);
   
- 
+ console.log({infoCache: infoCache.data})
 
 
-  const dataCache = infoCache.data?.products?.data;
-  // console.log({data})
+  const dataCache = infoCache.data?.site?.data;
+  console.log({dataCache})
   return (
     <html lang="es">
       <body

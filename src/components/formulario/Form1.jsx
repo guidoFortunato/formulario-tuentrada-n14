@@ -3,11 +3,11 @@ import { useContext, useEffect } from "react";
 
 import { FormContext } from "@/context/FormContext";
 import { BotonSiguiente, BotonVolver } from ".";
-import { getDataPrueba, getDataPruebaPost } from "@/helpers/getInfoTest";
+import { getDataPrueba, sendDataPost } from "@/helpers/getInfoTest";
 
-export const Form1 = ({lengthSteps }) => {
+export const Form1 = ({lengthSteps, dataForm }) => {
 
-  // console.log({dataForm})  
+  console.log({dataForm: dataForm.steps})  
 
   const { register, handleSubmit, errors, watch, nextStep, handleContacto, reset } = useContext(FormContext); 
   
@@ -19,9 +19,9 @@ export const Form1 = ({lengthSteps }) => {
   const onSubmit = async (data, event) => {
     event.preventDefault();
     console.log("se envia form 1");
-    const info = await getDataPruebaPost("https://testapi.tuentrada.com/api/v1/atencion-cliente/search/contact", data.email);
-    console.log({ info });
-    // console.log({ data });
+    const info = await sendDataPost("https://testapi.tuentrada.com/api/v1/atencion-cliente/search/contact", data.email);
+    // console.log({ info });
+    console.log({ data });
     if (info?.status) {
       handleContacto({
         id: info.data.contact.id,

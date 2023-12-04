@@ -12,9 +12,9 @@ export const FormStep = ({dataForm}) => {
 
   switch (currentStep) {
     case 0:
-      return <Form1 lengthSteps={lengthSteps} />;
+      return <Form1 lengthSteps={lengthSteps} dataForm={dataForm} />;
     case 1:
-      return <Form2 lengthSteps={lengthSteps} />;
+      return <Form2 lengthSteps={lengthSteps} dataForm={dataForm} />;
     default:
       return <FormsApi dataForm={dataForm} lengthSteps={lengthSteps} />;
     
