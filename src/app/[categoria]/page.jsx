@@ -25,7 +25,7 @@ const Subcategoria = async ({ params }) => {
   // console.log({params});
   const info = await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/category/${params.categoria}`);
   const category = info.data?.category;
-  console.log({subcategoria: info.data})
+  // console.log({subcategoria: info.data})
   return (
     <>
       <SubCategoria category={category} params={params}/>

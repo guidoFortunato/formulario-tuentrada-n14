@@ -4,7 +4,7 @@ import { ArticleImages } from "./ArticleImages"
 import { RichText } from "./RichText"
 
 export const ArticleRows = ({item}) => {
-  console.log({item})
+  // console.log({item})
   const columns = item.columns
   // console.log({columns})
   return (
@@ -13,19 +13,19 @@ export const ArticleRows = ({item}) => {
         columns.map( column => {
           // console.log({column})
           return column.items.map( (itemColumn,index) => {
-          //  console.log({itemColumn})
-            if (itemColumn.type === 'richText') {
+           console.log({itemColumn})
+            if (itemColumn.type === 'Texto Editable') {
               return <RichText key={itemColumn.order_column} itemColumn={itemColumn} item={item} index={index}/>
             }
-            if (itemColumn.type === 'imagenes') {
+            if (itemColumn.type === 'Imagenes') {
               return <ArticleImages key={itemColumn.order_column} itemColumn={itemColumn} />
             }
-            // if (itemColumn.type === 'acordion') {
-            //   return <ArticleAccordion key={itemColumn.order_column} itemColumn={itemColumn} />
-            // }
-            // if (itemColumn.type === 'botones') {
-            //   return <ArticleButtons   key={itemColumn.order_column} itemColumn={itemColumn} />
-            // }
+            if (itemColumn.type === 'Lista Desplegable') {
+              return <ArticleAccordion key={itemColumn.order_column} itemColumn={itemColumn} />
+            }
+            if (itemColumn.type === 'Botones') {
+              return <ArticleButtons   key={itemColumn.order_column} itemColumn={itemColumn} />
+            }
 
           } )
         } )

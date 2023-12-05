@@ -4,7 +4,7 @@ import SocialMedia from "./SocialMedia";
 import Link from "next/link";
 
 const Footer = ({ data }) => {
-  console.log({data})
+  // console.log({data})
   const { pages } = data;
   return (
     <footer className="bg-gradient-image shadow relative bottom-0 w-full pb-[2px]">

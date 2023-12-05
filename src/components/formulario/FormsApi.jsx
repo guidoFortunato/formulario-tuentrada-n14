@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 
 export const FormsApi = ({ dataForm, lengthSteps }) => {
   const { handleSubmit, nextStep, stepsEstaticos, currentStep, reset } = useContext(FormContext);
-
+  console.log({dataForm})
   const { steps } = dataForm;
   const newSteps = [...stepsEstaticos, ...steps];
   const router = useRouter();
@@ -42,6 +42,9 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
     if (!(currentStep + 1 === lengthSteps)) {
       nextStep();
     }
+    // if (dataForm.checkHaveTickets ) {
+      
+    // }
     if (currentStep + 1 === lengthSteps) {
       // const info = await getDataPrueba( `https://testapi.tuentrada.com/api/v1/atencion-cliente/form` );
       
