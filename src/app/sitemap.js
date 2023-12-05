@@ -4,7 +4,7 @@ import { getDataPrueba } from "@/helpers/getInfoTest";
 export default async function sitemap() {
     const request = await getDataPrueba("https://testapi.tuentrada.com/api/v1/atencion-cliente/sitemap/ayuda.tuentrada.com");
   
-    const posts = request.data.map( item => {
+    const posts = request.data.urls.map( item => {
       return {
         url: item.site,
         lastModified: item.date
