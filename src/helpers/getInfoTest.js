@@ -28,8 +28,6 @@ export async function getTokenPrueba( email = "gfortunato@tuentrada.com", passwo
   }
 }
 
-
-
 export async function getDataPrueba(url) {
   try {
     const { token } = await getTokenPrueba();
@@ -49,9 +47,10 @@ export async function getDataPrueba(url) {
     // console.log({getDataPrueba: data})
     return data;
   } catch (error) {
-    console.log("error prueba");
+    console.log({error}, "error prueba");
   }
 }
+
 export async function getDataCache(url) {
   try {
     const { token } = await getTokenPrueba();
@@ -71,7 +70,7 @@ export async function getDataCache(url) {
     // console.log({dataCache: data})
     return data;
   } catch (error) {
-    console.log("error prueba");
+    console.log({error}, "error prueba");
   }
 }
 
@@ -142,7 +141,7 @@ export async function getDataPruebaStorage(url) {
       return data;
     }
   } catch (error) {
-    console.log("error prueba");
+    console.log({error}, "error prueba");
   }
 }
 
@@ -165,6 +164,6 @@ export async function sendDataPost(url, email) {
     const data = await res.json();
     return data;
   } catch (error) {
-    console.log("error prueba");
+    console.log({error}, "error prueba");
   }
 }

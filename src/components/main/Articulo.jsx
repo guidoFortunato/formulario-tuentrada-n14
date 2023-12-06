@@ -6,8 +6,9 @@ import { ArticleRows } from "./ArticleRows";
 
 const Articulo = ({ params = "", dataArticle = {}, data = {} }) => {
   const dataArticleForm = dataArticle.form;
-  console.log({dataArticleForm})
+  console.log({dataArticle})
   const { rows } = dataArticle;
+  console.log({rows})
   // console.log({ rows });
   // console.log({ item: rows[1].columns[0].items.length });
 
