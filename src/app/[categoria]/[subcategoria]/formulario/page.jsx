@@ -29,7 +29,7 @@ async function FormPage({ params }) {
 
   const info = await getDataPrueba( `https://testapi.tuentrada.com/api/v1/atencion-cliente/article/${params.subcategoria}/form` );
   const dataForm = info.data;
-  console.log({formPage: dataForm.steps})
+  // console.log({formPage: dataForm.steps})
 
   return (
     <>

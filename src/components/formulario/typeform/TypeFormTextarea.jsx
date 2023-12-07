@@ -4,6 +4,7 @@ import { FormContext } from "@/context/FormContext";
 export const TypeFormTextarea = ({ item }) => {
   const { register, errors } = useContext(FormContext);
   const name = (item.name).toLowerCase().split(' ').join('_')
+  console.log({item})
 
   return (
     <div>

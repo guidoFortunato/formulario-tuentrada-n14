@@ -7,7 +7,7 @@ import { getDataPrueba, sendDataPost } from "@/helpers/getInfoTest";
 
 export const Form1 = ({lengthSteps, dataForm }) => {
 
-  console.log({dataForm: dataForm.steps})  
+  // console.log({dataForm: dataForm.steps})  
 
   const { register, handleSubmit, errors, watch, nextStep, handleContacto, reset } = useContext(FormContext); 
   

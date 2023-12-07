@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { FormContext } from "@/context/FormContext";
 
-export const TypeFormSelect = ({ item }) => {
+export const TypeFormRadio = ({ item }) => {
   const { register, errors, watch } = useContext(FormContext);
   const name = item.name.toLowerCase().split(" ").join("_");
   // const optionsSelect = item.options.map((item) => ({
@@ -23,14 +23,30 @@ export const TypeFormSelect = ({ item }) => {
       >
         {item.name} { item.required === 1 && <span className="text-red-500">*</span> }
       </label>
-      <select {...register(name)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark w-full block p-2.5 mt-2">
-       
-        {item.options.map((option) => (
-          <option value={option} key={option} >
-            {option}
-          </option>
-        ))}
-      </select>
+      {
+        item.options.map( option => (
+          <input
+            key={option}
+            type="radio"
+            value={option}
+            name={name}
+            id={name}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark block w-full p-2.5"
+            placeholder={item.placeholder}
+            {...register(name, {
+              required: {
+                value: item.required === 1 ? true : false,
+                message: "Este campo es obligatorio", //`El ${item.name.toLowerCase()} es obligatorio`,
+              },
+              pattern: {
+                value: item.pattern,
+                message: item.pattern !== null && `Ingrese un texto válido`,
+              },
+            })}
+          />
+
+        ) )
+      }
 
 
       {watch(name) ? (

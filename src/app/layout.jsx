@@ -25,6 +25,7 @@ export default async function RootLayout({ children }) {
   // console.log({dataCache})
   return (
     <html lang="es">
+      
       <body
         className={`${inter.className} flex flex-col min-h-[100vh] m-0`}
         suppressHydrationWarning={true}
@@ -38,6 +39,7 @@ export default async function RootLayout({ children }) {
           {children}
           <Footer data={dataCache} />
         </FormProvider>
+        
       </body>
     </html>
   );
