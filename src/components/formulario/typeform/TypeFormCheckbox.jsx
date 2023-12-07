@@ -8,7 +8,7 @@ export const TypeFormCheckbox = ({ item }) => {
   //   value: item,
   //   label: item,
   // }));
-  console.log({item})
+  // console.log({item})
 
   // const { field } = useController({ name: name, control });
 
@@ -76,12 +76,12 @@ export const TypeFormCheckbox = ({ item }) => {
             )}
           </>
         ) : null
-      ) : null}
+      ) : null} */}
       {errors[name] && (
         <span className="text-red-600 text-sm block mt-1">
           {errors[name].message}
         </span>
-      )} */}
+      )}
     </div>
   );
 };

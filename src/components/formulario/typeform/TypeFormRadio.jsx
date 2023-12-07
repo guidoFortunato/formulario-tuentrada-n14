@@ -18,9 +18,9 @@ export const TypeFormRadio = ({ item }) => {
 
   return (
     <div>
-      <h3 className="mb-4 text-sm font-medium text-gray-900 dark:text-white">
+      <span className="mb-4 text-sm font-medium text-gray-900 dark:text-white">
         {item.name} {item.required === 1 && <span className="text-red-500">*</span>}
-      </h3>
+      </span>
       <ul className="w-48 text-sm font-medium text-gray-900 ">
        {
         item.options.map( option => (

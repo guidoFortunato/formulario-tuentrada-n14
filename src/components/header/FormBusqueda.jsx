@@ -27,18 +27,24 @@ export const FormBusqueda = () => {
           const res = await getDataPrueba(
             `https://testapi.tuentrada.com/api/v1/atencion-cliente/search/article/${value}`
           );
-          console.log({ res });
-          if (res.data.articles.length > 0) {
+          // console.log({ res });
+          if (res.data?.articles?.length > 0) {
             setIsOpen(true);
             setError(false);
-          } else {
+          } 
+          if (res.errors) {
             setIsOpen(false);
             setError(true);
+            
           }
+          
           setData(res.data.articles);
         }
       } catch (err) {
-        console.log(err);
+       console.error({
+        err,
+        message: "No se encontraron datos"
+       })
       } finally {
         setLoading(false); // Desactivar indicador de carga
       }
@@ -91,7 +97,11 @@ export const FormBusqueda = () => {
     <form onSubmit={onSubmit} className="relative">
       <div className="relative">
         <input
-          className={`block w-full p-4 text-sm ${ loading ? "text-gray-300" : "text-gray-900" } border ${ loading ? "border-gray-100" : "border-gray-300" } rounded-lg bg-white focus:ring-blue-light`}
+          className={`block w-full p-4 text-sm ${
+            loading ? "text-gray-300" : "text-gray-900"
+          } border ${
+            loading ? "border-gray-100" : "border-gray-300"
+          } rounded-lg bg-white focus:ring-blue-light`}
           name="search"
           type="text"
           placeholder="¿Qué estás buscando?..."
@@ -160,10 +170,7 @@ export const FormBusqueda = () => {
               <section key={item.id}>
                 <ul>
                   <li>
-                    <Link
-                      href={ item.slug}
-                      onClick={handleClick}
-                    >
+                    <Link href={item.slug} onClick={handleClick}>
                       <div className=" flex items-center cursor-pointer hover:bg-blue-light hover:text-white gap-4 p-4 ">
                         <svg
                           className="w-3 h-3 mr-4"
@@ -180,7 +187,9 @@ export const FormBusqueda = () => {
                             d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
                           />
                         </svg>
-                        <h3 className="text-sm font-semibold">{item.title} - {item.category}</h3>
+                        <h3 className="text-sm font-semibold">
+                          {item.title} - {item.category}
+                        </h3>
                       </div>
                     </Link>
                   </li>

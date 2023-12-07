@@ -5,6 +5,7 @@ import { BotonSiguiente } from "./BotonSiguiente";
 import { TypeFormCheckbox, TypeFormFile, TypeFormInput, TypeFormRadio, TypeFormSelect, TypeFormTextarea } from "./typeform";
 import { alertaSuccess } from "@/helpers/Alertas";
 import { useRouter } from "next/navigation";
+import { sendDataTickets } from "@/helpers/getInfoTest";
 
 export const FormsApi = ({ dataForm, lengthSteps }) => {
   const { handleSubmit, nextStep, stepsEstaticos, currentStep, reset } = useContext(FormContext);
@@ -12,8 +13,14 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
   const { steps } = dataForm;
   const newSteps = [...stepsEstaticos, ...steps];
   const router = useRouter();
-  // console.log({newSteps})
+  const stepNow = newSteps[currentStep]
+  
+  // console.log({categoryId})
 
+
+
+  // console.log({stepNow})
+  // console.log({currentStep})
 
   const renderForms =
     newSteps.length > 2 &&
@@ -46,8 +53,14 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
 
   const onSubmit = async (data, event) => {
     event.preventDefault();
-    console.log({data})
+    // console.log({data})
     if (!(currentStep + 1 === lengthSteps)) {
+      if (stepNow.checkHaveTickets === 1) {
+        const { categoryId } = stepNow
+        const keyCategory = Object.keys(categoryId)[0];
+        const info = await sendDataTickets( `https://testapi.tuentrada.com/api/v1/atencion-cliente/search/tickets`, data.email, keyCategory );
+        console.log({info})
+      }
       nextStep();
     }
     // if (dataForm.checkHaveTickets ) {
