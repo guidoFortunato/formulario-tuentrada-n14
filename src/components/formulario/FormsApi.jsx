@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { FormContext } from "@/context/FormContext";
 import { BotonVolver } from "./BotonVolver";
 import { BotonSiguiente } from "./BotonSiguiente";
-import { TypeFormFile, TypeFormInput, TypeFormRadio, TypeFormSelect, TypeFormTextarea } from "./typeform";
+import { TypeFormCheckbox, TypeFormFile, TypeFormInput, TypeFormRadio, TypeFormSelect, TypeFormTextarea } from "./typeform";
 import { alertaSuccess } from "@/helpers/Alertas";
 import { useRouter } from "next/navigation";
 
@@ -21,7 +21,7 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
       // console.log({currentStep, index})
       if (currentStep === index + 2) {
         return item.fields.map((itemField, index) => {
-          console.log({itemField})
+          // console.log({itemField})
           if (itemField.type === "input") {
             return <TypeFormInput item={itemField} key={index} />;
           }
@@ -36,6 +36,9 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
           }
           if (itemField.type === "radio") {
             return <TypeFormRadio item={itemField} key={index} />;
+          }
+          if (itemField.type === "checkbox") {
+            return <TypeFormCheckbox item={itemField} key={index} />;
           }
         });
       }

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { FormContext } from "@/context/FormContext";
 
-export const TypeFormRadio = ({ item }) => {
+export const TypeFormCheckbox = ({ item }) => {
   const { register, errors, watch } = useContext(FormContext);
   const name = item.name.toLowerCase().split(" ").join("_");
   // const optionsSelect = item.options.map((item) => ({
@@ -18,17 +18,17 @@ export const TypeFormRadio = ({ item }) => {
 
   return (
     <div>
-      <h3 className="mb-4 text-sm font-medium text-gray-900 dark:text-white">
+      <span className="mb-4 text-sm font-medium text-gray-900 dark:text-white">
         {item.name} {item.required === 1 && <span className="text-red-500">*</span>}
-      </h3>
+      </span>
       <ul className="w-48 text-sm font-medium text-gray-900 ">
        {
         item.options.map( option => (
           <li className="w-full" key={option}>
-          <div className="flex items-center ps-3">
+          <div className="flex items-center">
             <input
               id={option}
-              type="radio"
+              type="checkbox"
               value={option}
               name={name}
               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
@@ -53,7 +53,7 @@ export const TypeFormRadio = ({ item }) => {
        
       </ul>
 
-      {watch(name) ? (
+      {/* {watch(name) ? (
         watch(name).slice(0, 2).toLowerCase() === "ot" ? (
           <>
             <input
@@ -81,7 +81,7 @@ export const TypeFormRadio = ({ item }) => {
         <span className="text-red-600 text-sm block mt-1">
           {errors[name].message}
         </span>
-      )}
+      )} */}
     </div>
   );
 };
