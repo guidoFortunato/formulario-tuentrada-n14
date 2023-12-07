@@ -10,6 +10,28 @@ export const alertaWarning = (text = "Debe ingresar un texto") => {
   });
 };
 
+export const alertaTickets = (
+  text = "Gracias por contactarte",
+  ticket = "",
+  dateCreated="",
+  status=""
+) => {
+  Swal.fire({
+    icon: "success",
+    allowOutsideClick: false,
+    html: ` <div style="text-align: center;">
+        <b>${text}<br></b><br>
+        <span style="color: #6bbf59;">Tu número de ticket es: ${ticket}<br></span><br>
+        <span style="color: #000;">Fue creado el ${dateCreated}<br></span><br>
+        <span style="color: #000;">El status es ${status}<br></span><br>
+         </div>`,
+    // timer: 3000,
+    confirmButtonColor: "#444444", // dataInfoGeneral.backgroundButton
+    // iconColor: "#F7AC08",
+  });
+};
+
+
 export const alertaSuccess = (
   text = "Gracias por contactarte",
   ticket = "Tu número de seguimiento es:",

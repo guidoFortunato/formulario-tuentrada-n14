@@ -3,7 +3,7 @@ import { FormContext } from "@/context/FormContext";
 import { BotonVolver } from "./BotonVolver";
 import { BotonSiguiente } from "./BotonSiguiente";
 import { TypeFormCheckbox, TypeFormFile, TypeFormInput, TypeFormRadio, TypeFormSelect, TypeFormTextarea } from "./typeform";
-import { alertaSuccess } from "@/helpers/Alertas";
+import { alertaSuccess, alertaTickets } from "@/helpers/Alertas";
 import { useRouter } from "next/navigation";
 import { sendDataTickets } from "@/helpers/getInfoTest";
 
@@ -59,7 +59,10 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
         const { categoryId } = stepNow
         const keyCategory = Object.keys(categoryId)[0];
         const info = await sendDataTickets( `https://testapi.tuentrada.com/api/v1/atencion-cliente/search/tickets`, data.email, keyCategory );
-        console.log({info})
+        const ticketNumber = info.data.tickets[0].number
+        const status = info.data.tickets[0].status
+        const date = info.data.tickets[0].dateCreated
+        alertaTickets("Gracias por contactarte", ticketNumber, date, status)
       }
       nextStep();
     }
