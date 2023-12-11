@@ -2,22 +2,28 @@ import { useContext } from "react";
 import { FormContext } from "@/context/FormContext";
 import { BotonVolver } from "./BotonVolver";
 import { BotonSiguiente } from "./BotonSiguiente";
-import { TypeFormCheckbox, TypeFormFile, TypeFormInput, TypeFormRadio, TypeFormSelect, TypeFormTextarea } from "./typeform";
+import {
+  TypeFormCheckbox,
+  TypeFormFile,
+  TypeFormInput,
+  TypeFormRadio,
+  TypeFormSelect,
+  TypeFormTextarea,
+} from "./typeform";
 import { alertaSuccess, alertaTickets } from "@/helpers/Alertas";
 import { useRouter } from "next/navigation";
 import { sendDataTickets } from "@/helpers/getInfoTest";
 
 export const FormsApi = ({ dataForm, lengthSteps }) => {
-  const { handleSubmit, nextStep, stepsEstaticos, currentStep, reset } = useContext(FormContext);
+  const { handleSubmit, nextStep, stepsEstaticos, currentStep, reset } =
+    useContext(FormContext);
   // console.log({dataForm})
   const { steps } = dataForm;
   const newSteps = [...stepsEstaticos, ...steps];
   const router = useRouter();
-  const stepNow = newSteps[currentStep]
-  
-  // console.log({categoryId})
+  const stepNow = newSteps[currentStep];
 
-
+  console.log({ stepNow });
 
   // console.log({stepNow})
   // console.log({currentStep})
@@ -54,26 +60,30 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
   const onSubmit = async (data, event) => {
     event.preventDefault();
     // console.log({data})
-    if (!(currentStep + 1 === lengthSteps)) {
-      if (stepNow.checkHaveTickets === 1) {
-        const { categoryId } = stepNow
-        const keyCategory = Object.keys(categoryId)[0];
-        const info = await sendDataTickets( `https://testapi.tuentrada.com/api/v1/atencion-cliente/search/tickets`, data.email, keyCategory );
-        const ticketNumber = info.data.tickets[0].number
-        const status = info.data.tickets[0].status
-        const date = info.data.tickets[0].dateCreated
-        alertaTickets("Gracias por contactarte", ticketNumber, date, status)
+    if (stepNow.checkHaveTickets === 1) {
+      const { categoryId } = stepNow;
+      const keyCategory = Object.keys(categoryId)[0];
+      const info = await sendDataTickets( `https://testapi.tuentrada.com/api/v1/atencion-cliente/search/tickets`, data.email, keyCategory );
+      console.log({ info });
+      if (info?.data?.tickets[0].closeForm) {
+        const ticketNumber = info?.data?.tickets[0].number;
+        const status = info?.data?.tickets[0].status;
+        const date = info?.data?.tickets[0].dateCreated;
+        alertaTickets("Gracias por contactarte", ticketNumber, date, status);
+        reset();
+        router.push("/");
+        return;
       }
+    }
+    if (!(currentStep + 1 === lengthSteps)) {
       nextStep();
     }
-    // if (dataForm.checkHaveTickets ) {
-      
-    // }
+
     if (currentStep + 1 === lengthSteps) {
-      // const info = await getDataPrueba( `https://testapi.tuentrada.com/api/v1/atencion-cliente/form` );
-      
+      // const info = await getDataPrueba( `https://testapi.tuentrada.com/api/v1/atencion-cliente/create/form` );
+
       console.log("se envia form final");
-      console.log({data})
+      console.log({ data });
       alertaSuccess();
       reset();
       router.push("/");

@@ -9,13 +9,15 @@ export const ButtonLike = ({ name, handleLike, handleDisLike, handleOpinion, res
     if (result) {
       // console.log({result})
       handleLike();
-      await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/article/${params.subcategoria}/like/1`);
+      // await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/article/${params.subcategoria}/like/1`);
+      await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/category/${params.categoria}/article/${params.subcategoria}/like/0`);
       
     }
     if (!result) {
       // console.log({result})
       handleDisLike();
-      await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/article/${params.subcategoria}/like/0`);
+      // await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/article/${params.subcategoria}/like/0`);
+      await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/category/${params.categoria}/article/${params.subcategoria}/like/1`);
       
     }
   };

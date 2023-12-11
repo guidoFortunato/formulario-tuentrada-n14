@@ -21,7 +21,7 @@ export const ArticleRows = ({ item }) => {
       {columns.map((column) => {
         // console.log({column})
         return column.items.map((itemColumn, index) => {
-           console.log({itemColumn})
+          //  console.log({itemColumn})
           if (itemColumn.type === "richText") {
             return (
               <RichText
