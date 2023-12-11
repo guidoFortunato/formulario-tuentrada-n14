@@ -4,13 +4,13 @@ import { ButtonFormulario } from "./like/ButtonFormulario";
 import Link from "next/link";
 import { ArticleRows } from "./ArticleRows";
 
-const Articulo = ({ params = "", dataArticle = {}, data = {} }) => {
+const Articulo = ({ params = "", dataArticle = {}, data = {}, dataMostViews = [] }) => {
   const dataArticleForm = dataArticle.form;
-  console.log({dataArticle})
-  const { rows } = dataArticle;
-  console.log({rows})
+  // console.log({dataMostViews})
+  const rows = dataArticle.rows;
+  // console.log({rows})
   // console.log({ rows });
-  // console.log({ item: rows[1].columns[0].items.length });
+
 
   // const mergedData = dataArticle.content?.map((contentItem) => {
   //   const matchingImage = data.images?.find(
@@ -31,7 +31,7 @@ const Articulo = ({ params = "", dataArticle = {}, data = {} }) => {
   //   };
   // });
 
-  // console.log({mergedData});
+
   return (
     <>
       <div className=" container mx-auto bg-main-image bg-no-repeat bg-left-50 pb-10 px-10 md:px-20 flex-1">
@@ -104,13 +104,13 @@ const Articulo = ({ params = "", dataArticle = {}, data = {} }) => {
         )}
 
         <div className="flex justify-evenly mt-24 ">
-          {data?.mostViews?.length > 0 && (
+          {dataMostViews.length > 0 && (
             <div>
               <h4 className="text-blue-dark font-semibold mb-2 text-lg">
                 Artículos más vistos
               </h4>
               <ol className="text-sm">
-                {data.mostViews.slice(0, 5).map((item) => (
+                {dataMostViews.slice(0, 5).map((item) => (
                   <li key={item.id} className="text-blue-dark">
                     ▸
                     <Link className="underline text-base" href={item.slug}>
