@@ -14,7 +14,7 @@ export const FormBusqueda = () => {
   const [loading, setLoading] = useState(false);
   const searchTimer = useRef(null);
   const [error, setError] = useState(false);
- 
+
   // console.log({ data });
   // console.log({ isOpen });
 
@@ -31,20 +31,19 @@ export const FormBusqueda = () => {
           if (res.data?.articles?.length > 0) {
             setIsOpen(true);
             setError(false);
-          } 
+          }
           if (res.errors) {
             setIsOpen(false);
             setError(true);
-            
           }
-          
+
           setData(res.data.articles);
         }
       } catch (err) {
-       console.error({
-        err,
-        message: "No se encontraron datos"
-       })
+        console.error({
+          err,
+          message: "No se encontraron datos",
+        });
       } finally {
         setLoading(false); // Desactivar indicador de carga
       }
@@ -165,13 +164,14 @@ export const FormBusqueda = () => {
           ref={panelRef}
         >
           {data.map((item) => {
-           
             return (
               <section key={item.id}>
                 <ul>
                   <li>
-                    <Link href={`/${item.category.slug}/${item.slug}`} onClick={()=>handleClick(item)}>
-                      { console.log(`URL a navegar: ${item.category.slug}/${item.slug}`)}
+                    <Link
+                      href={`/${item.category.slug}/${item.slug}`}
+                      onClick={() => handleClick(item)}
+                    >
                       <div className=" flex items-center cursor-pointer hover:bg-blue-light hover:text-white gap-4 p-4 ">
                         <svg
                           className="w-3 h-3 mr-4"
