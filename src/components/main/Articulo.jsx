@@ -110,17 +110,17 @@ const Articulo = ({ params = "", dataArticle = {}, data = {}, dataMostViews = []
           </>
         )}
 
-        <div className="flex justify-evenly mt-24 ">
+        <div className="flex justify-evenly mt-10">
           {dataMostViews.length > 0 && (
             <div>
-              <h4 className="text-blue-dark font-semibold mb-2 text-lg">
+              <h4 className="text-blue-dark font-semibold mb-2 text-xl">
                 Artículos más vistos
               </h4>
               <ol className="text-sm">
                 {dataMostViews.slice(0, 5).map((item) => (
-                  <li key={item.id} className="text-blue-dark">
+                  <li key={item.id} className="text-blue-dark mb-1">
                     ▸
-                    <Link className="underline text-base" href={item.slug}>
+                    <Link className="hover:underline text-sm" href={item.slug}>
                       {item.title}
                     </Link>
                   </li>
@@ -130,14 +130,14 @@ const Articulo = ({ params = "", dataArticle = {}, data = {}, dataMostViews = []
           )}
           {dataArticle?.articleChild?.length > 0 && (
             <div>
-              <h4 className="text-blue-dark text-lg font-semibold mb-2 ">
+              <h4 className="text-blue-dark text-xl font-semibold mb-2 ">
                 Artículos relacionados
               </h4>
               <ol className="text-sm">
                 {dataArticle?.articleChild?.slice(0, 5).map((item) => (
-                  <li key={item.id} className="text-blue-dark">
+                  <li key={item.id} className="text-blue-dark mb-1">
                     ▸
-                    <Link className="underline text-base" href={item.slug}>
+                    <Link className="hover:underline text-sm " href={item.slug}>
                       {item.title}
                     </Link>
                   </li>
