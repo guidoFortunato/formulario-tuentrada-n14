@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
-import { sendDataTickets } from "@/helpers/getInfoTest";
+import { createForm, getDataTickets } from "@/helpers/getInfoTest";
 import { FormContext } from "@/context/FormContext";
 import { alertaSuccess, alertaTickets } from "@/helpers/Alertas";
 import { TypeFormCheckbox, TypeFormFile, TypeFormGlpi, TypeFormInput, TypeFormRadio, TypeFormSelect, TypeFormTextarea } from "./typeform";
@@ -8,7 +8,7 @@ import { BotonSiguiente } from "./BotonSiguiente";
 import { BotonVolver } from "./BotonVolver";
 
 export const FormsApi = ({ dataForm, lengthSteps }) => {
-  const { handleSubmit, nextStep, stepsEstaticos, currentStep, reset } = useContext(FormContext);
+  const { handleSubmit, nextStep, stepsEstaticos, currentStep, reset, glpiSubCategory } = useContext(FormContext);
   const { steps } = dataForm;
   const newSteps = [...stepsEstaticos, ...steps];
   const router = useRouter();
@@ -53,35 +53,71 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
 
   const onSubmit = async (data, event) => {
     event.preventDefault();
-    const { categoryId } = stepNow;
-    let glpiSubCategory;
-    // console.log({data})
+   
+    
+    
     if (stepNow.checkHaveTickets === 1) {
-      const keyCategory = Object.keys(categoryId)[0];
-      const info = await sendDataTickets( `https://testapi.tuentrada.com/api/v1/atencion-cliente/search/tickets`, data.email, keyCategory );
-      console.log({ info });
-      if (info?.data?.tickets.length > 0) {
-        if (info?.data?.tickets[0].closeForm) {
-          const ticketNumber = info?.data?.tickets[0].number;
-          const status = info?.data?.tickets[0].status;
-          const date = info?.data?.tickets[0].dateCreated;
-          alertaTickets("Gracias por contactarte", ticketNumber, date, status);
-          reset();
-          router.push("/");
-          return;
-        }        
+
+      if (glpiSubCategory === "") {
+        const { categoryId } = stepNow;
+        const keyCategory = Object.keys(categoryId)[0];
+        const info = await getDataTickets( `https://testapi.tuentrada.com/api/v1/atencion-cliente/search/tickets`, data.email, keyCategory);
+        console.log({ infoCategoryId: info });
+        if (info?.data?.tickets?.length > 0) {
+  
+          if (info?.data?.tickets[0].closeForm) {
+            const ticketNumber = info?.data?.tickets[0].number;
+            const status = info?.data?.tickets[0].status;
+            const date = info?.data?.tickets[0].dateCreated;
+            alertaTickets("Gracias por contactarte", ticketNumber, date, status);
+            reset();
+            router.push("/");
+            return;
+          } 
+  
+        }       
       }
+
+      if (glpiSubCategory !== "") {
+        
+        const info = await getDataTickets( `https://testapi.tuentrada.com/api/v1/atencion-cliente/search/tickets`, data.email, glpiSubCategory.id);
+        console.log({ infoGlpiSubCategoryId: info })  
+
+        if (info?.data?.tickets?.length > 0) {  
+          if (info?.data?.tickets[0].closeForm) {
+            const ticketNumber = info?.data?.tickets[0].number;
+            const status = info?.data?.tickets[0].status;
+            const date = info?.data?.tickets[0].dateCreated;
+            alertaTickets("Gracias por contactarte", ticketNumber, date, status);
+            reset();
+            router.push("/");
+            return;
+          } 
+  
+        }
+      }
+
+      
+
     }
+
     if (!(currentStep + 1 === lengthSteps)) {
       nextStep();
     }
 
     if (currentStep + 1 === lengthSteps) {
       console.log({ dataFinal: data });
-      // if()
-     
-      const { email, name } = data
-      // const info = await sendDataTickets( `https://testapi.tuentrada.com/api/v1/atencion-cliente/create/form`, email, name, "prueba crear form",  );
+      console.log({ glpiSubCategory })
+
+      if (glpiSubCategory === "") {
+        const { categoryId } = stepNow;
+        const keyCategory = Object.keys(categoryId)[0];
+        await createForm( `https://testapi.tuentrada.com/api/v1/atencion-cliente/create/form`, data.email, data.name, "prueba crear form", keyCategory );
+        
+      }
+      if (glpiSubCategory !== "") {        
+        await createForm( `https://testapi.tuentrada.com/api/v1/atencion-cliente/create/form`, data.email, data.name, "prueba crear form", glpiSubCategory.id );        
+      }     
 
       console.log("se envia form final");
       alertaSuccess();

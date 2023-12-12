@@ -168,7 +168,32 @@ export async function sendDataEmail(url, email) {
   }
 }
 
-export async function sendDataTickets(url, email, name, content, itilcategoriesId) {
+export async function getDataTickets(url, email, itilcategoriesId) {
+  const { token } = await getTokenPrueba();
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      cache: 'no-store',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        itilcategoriesId
+      }),
+    });
+
+    // console.log({sendDataPost: res})
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log({error}, "error prueba");
+  }
+}
+
+
+export async function createForm(url, email, name, content, itilcategoriesId) {
   const { token } = await getTokenPrueba();
   try {
     const res = await fetch(url, {

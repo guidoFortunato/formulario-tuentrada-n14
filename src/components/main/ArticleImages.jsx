@@ -14,8 +14,7 @@ export const ArticleImages = ({ itemColumn }) => {
               width={700}
               height={700}
               className="rounded-lg"
-              style={{ width: "auto", height: "auto",}}
-
+              style={{ width: "auto", height: "auto" }}
             />
           </Link>
         ) : (
@@ -23,12 +22,10 @@ export const ArticleImages = ({ itemColumn }) => {
             key={itemColumn.image?.src}
             src={itemColumn.image?.src}
             alt={itemColumn.alt}
-           
             width={700}
             height={700}
             className="rounded-lg"
             style={{ width: "auto", height: "auto" }}
-
           />
         )}
       </div>

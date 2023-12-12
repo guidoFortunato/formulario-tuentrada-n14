@@ -3,11 +3,10 @@ import { createContext, useState } from "react";
 import { useForm } from "react-hook-form";
 export const FormContext = createContext();
 
-
-
 const FormProvider = ({ children }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [dataContacto, setDataContacto] = useState(null);
+  const [glpiSubCategory, setGlpiSubCategory] = useState("");
 
   const {
     formState: { errors },
@@ -16,7 +15,7 @@ const FormProvider = ({ children }) => {
     reset,
     setValue,
     watch,
-    control
+    control,
   } = useForm();
 
   const stepsEstaticos = [
@@ -129,7 +128,10 @@ const FormProvider = ({ children }) => {
     setDataContacto(contacto);
   };
 
-  
+  const handleGlpiSubCategory = (subcategory) => {
+    setGlpiSubCategory(subcategory);
+  };
+
   const nextStep = () => {
     setCurrentStep((prev) => prev + 1);
   };
@@ -153,6 +155,8 @@ const FormProvider = ({ children }) => {
         setValue,
         stepsEstaticos,
         watch,
+        glpiSubCategory,
+        handleGlpiSubCategory,
       }}
     >
       {children}
