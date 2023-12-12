@@ -168,7 +168,7 @@ export async function sendDataEmail(url, email) {
   }
 }
 
-export async function sendDataTickets(url, email, itilcategoriesId) {
+export async function sendDataTickets(url, email, name, content, itilcategoriesId) {
   const { token } = await getTokenPrueba();
   try {
     const res = await fetch(url, {
@@ -180,6 +180,8 @@ export async function sendDataTickets(url, email, itilcategoriesId) {
       },
       body: JSON.stringify({
         email,
+        name,
+        content,
         itilcategoriesId
       }),
     });

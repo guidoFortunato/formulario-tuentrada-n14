@@ -1,23 +1,14 @@
 import { useContext } from "react";
-import { FormContext } from "@/context/FormContext";
-import { BotonVolver } from "./BotonVolver";
-import { BotonSiguiente } from "./BotonSiguiente";
-import {
-  TypeFormCheckbox,
-  TypeFormFile,
-  TypeFormInput,
-  TypeFormRadio,
-  TypeFormSelect,
-  TypeFormTextarea,
-} from "./typeform";
-import { alertaSuccess, alertaTickets } from "@/helpers/Alertas";
 import { useRouter } from "next/navigation";
 import { sendDataTickets } from "@/helpers/getInfoTest";
+import { FormContext } from "@/context/FormContext";
+import { alertaSuccess, alertaTickets } from "@/helpers/Alertas";
+import { TypeFormCheckbox, TypeFormFile, TypeFormGlpi, TypeFormInput, TypeFormRadio, TypeFormSelect, TypeFormTextarea } from "./typeform";
+import { BotonSiguiente } from "./BotonSiguiente";
+import { BotonVolver } from "./BotonVolver";
 
 export const FormsApi = ({ dataForm, lengthSteps }) => {
-  const { handleSubmit, nextStep, stepsEstaticos, currentStep, reset } =
-    useContext(FormContext);
-  // console.log({dataForm})
+  const { handleSubmit, nextStep, stepsEstaticos, currentStep, reset } = useContext(FormContext);
   const { steps } = dataForm;
   const newSteps = [...stepsEstaticos, ...steps];
   const router = useRouter();
@@ -47,6 +38,9 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
           if (itemField.type === "select") {
             return <TypeFormSelect item={itemField} key={index} />;
           }
+          if (itemField.type === "subCategoryGlpi") {
+            return <TypeFormGlpi item={itemField} key={index} />;
+          }
           if (itemField.type === "radio") {
             return <TypeFormRadio item={itemField} key={index} />;
           }
@@ -59,20 +53,23 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
 
   const onSubmit = async (data, event) => {
     event.preventDefault();
+    const { categoryId } = stepNow;
+    let glpiSubCategory;
     // console.log({data})
     if (stepNow.checkHaveTickets === 1) {
-      const { categoryId } = stepNow;
       const keyCategory = Object.keys(categoryId)[0];
       const info = await sendDataTickets( `https://testapi.tuentrada.com/api/v1/atencion-cliente/search/tickets`, data.email, keyCategory );
       console.log({ info });
-      if (info?.data?.tickets[0].closeForm) {
-        const ticketNumber = info?.data?.tickets[0].number;
-        const status = info?.data?.tickets[0].status;
-        const date = info?.data?.tickets[0].dateCreated;
-        alertaTickets("Gracias por contactarte", ticketNumber, date, status);
-        reset();
-        router.push("/");
-        return;
+      if (info?.data?.tickets.length > 0) {
+        if (info?.data?.tickets[0].closeForm) {
+          const ticketNumber = info?.data?.tickets[0].number;
+          const status = info?.data?.tickets[0].status;
+          const date = info?.data?.tickets[0].dateCreated;
+          alertaTickets("Gracias por contactarte", ticketNumber, date, status);
+          reset();
+          router.push("/");
+          return;
+        }        
       }
     }
     if (!(currentStep + 1 === lengthSteps)) {
@@ -80,10 +77,13 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
     }
 
     if (currentStep + 1 === lengthSteps) {
-      // const info = await getDataPrueba( `https://testapi.tuentrada.com/api/v1/atencion-cliente/create/form` );
+      console.log({ dataFinal: data });
+      // if()
+     
+      const { email, name } = data
+      // const info = await sendDataTickets( `https://testapi.tuentrada.com/api/v1/atencion-cliente/create/form`, email, name, "prueba crear form",  );
 
       console.log("se envia form final");
-      console.log({ data });
       alertaSuccess();
       reset();
       router.push("/");
