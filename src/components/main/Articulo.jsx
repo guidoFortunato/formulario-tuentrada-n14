@@ -4,6 +4,7 @@ import { ButtonFormulario } from "./like/ButtonFormulario";
 import Link from "next/link";
 import { ArticleRows } from "./ArticleRows";
 
+
 const Articulo = ({ params = "", dataArticle = {}, data = {}, dataMostViews = [] }) => {
   const dataArticleForm = dataArticle.form;
   // console.log({dataMostViews})
@@ -35,9 +36,15 @@ const Articulo = ({ params = "", dataArticle = {}, data = {}, dataMostViews = []
   return (
     <>
       <div className=" container mx-auto bg-main-image bg-no-repeat bg-left-50 pb-10 px-10 md:px-20 flex-1">
-        <h2 className="text-2xl text-blue-dark font-semibold mb-10">
-          {dataArticle?.title}
+   
+        <div className="mb-5">
+        <h2 className="text-2xl text-blue-dark font-semibold">
+        {dataArticle?.title} 
         </h2>
+        <span className="text-sm text-gray-500  mb-10 italic">
+         Devoluciones » Protege TuEntrada
+        </span>
+        </div>
         {/* si se agrega la columna lateral agregar al section lg:grid-cols-6 */}
         {/* <section className="w-full grid grid-cols-1   gap-5 lg:gap-3 mx-auto mt-4 mb-10">
           <div className="col-span-4 order-2 lg:order-1">
