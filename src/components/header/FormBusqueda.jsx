@@ -14,7 +14,7 @@ export const FormBusqueda = () => {
   const [loading, setLoading] = useState(false);
   const searchTimer = useRef(null);
   const [error, setError] = useState(false);
-
+ 
   // console.log({ data });
   // console.log({ isOpen });
 
@@ -79,12 +79,12 @@ export const FormBusqueda = () => {
     // console.log({ item });
     setIsOpen(false);
     setValue("");
-    // setSlug(item.slug);
+    // setSlug(item.category.slug);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("enter");
+    // console.log("enter");
     if (!value.trim()) {
       alertaWarning();
       return;
@@ -165,12 +165,13 @@ export const FormBusqueda = () => {
           ref={panelRef}
         >
           {data.map((item) => {
-            // console.log({ item });
+           
             return (
               <section key={item.id}>
                 <ul>
                   <li>
-                    <Link href={item.slug} onClick={handleClick}>
+                    <Link href={`/${item.category.slug}/${item.slug}`} onClick={()=>handleClick(item)}>
+                      { console.log(`URL a navegar: ${item.category.slug}/${item.slug}`)}
                       <div className=" flex items-center cursor-pointer hover:bg-blue-light hover:text-white gap-4 p-4 ">
                         <svg
                           className="w-3 h-3 mr-4"
@@ -188,7 +189,7 @@ export const FormBusqueda = () => {
                           />
                         </svg>
                         <h3 className="text-sm font-semibold">
-                          {item.title} - {item.category}
+                          {item.title} - {item.category.name}
                         </h3>
                       </div>
                     </Link>

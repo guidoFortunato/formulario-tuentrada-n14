@@ -2,7 +2,7 @@ import dompurify from "isomorphic-dompurify";
 
 export const RichText = ({ itemColumn, item, index }) => {
   const sanitizer = dompurify.sanitize;
-  console.log({index})
+  // console.log({index})
 
   const title = itemColumn.titleOrLabel;
   const description = itemColumn.description;
