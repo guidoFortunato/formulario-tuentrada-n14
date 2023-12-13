@@ -9,14 +9,28 @@ export const ArticleRows = ({ item }) => {
   // console.log({columns})
   return (
     <section
-      className={`grid ${item.width === "100%" && "grid-cols-1"} ${
-        item.width === "50%-50%" && "grid-cols-1 md:grid-cols-2 gap-4"
-      } ${item.width === "33%-33%-33%" && "grid-cols-1 lg:grid-cols-3 gap-6"} ${
+      className={`grid 
+      ${item.width === "100%" && "grid-cols-1"} 
+      ${item.width === "50%-50%" && "grid-cols-1 md:grid-cols-2 gap-4"} 
+      ${item.width === "33%-33%-33%" && "grid-cols-1 lg:grid-cols-3 gap-6"}
+      ${
         item.width === "25%-25%-25%-25%" &&
         "grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
-      } ${
-        item.width === "25%-75%" && "grid-cols-1 lg:grid-cols-3 lg:gap-6 gap-0"
-      } mb-3`}
+      } 
+      ${
+        (item.width === "25%-75%" || item.width === "75%-25%") &&
+        "grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6"
+      }
+      ${
+        (item.width === "50%-25%-25%" || item.width === "25%-25%-50%") &&
+        "grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6 "
+      } 
+      ${
+        (item.width === "67%-33%" || item.width === "33%-67%") &&
+        "grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-6"
+      } 
+      mb-3      
+      `}
     >
       {columns.map((column) => {
         // console.log({column})
@@ -37,6 +51,8 @@ export const ArticleRows = ({ item }) => {
               <ArticleImages
                 key={itemColumn.order_column}
                 itemColumn={itemColumn}
+                item={item}
+                index={index}
               />
             );
           }
@@ -53,6 +69,8 @@ export const ArticleRows = ({ item }) => {
               <ArticleButtons
                 key={itemColumn.order_column}
                 itemColumn={itemColumn}
+                item={item}
+                index={index}
               />
             );
           }

@@ -1,23 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export const ArticleImages = ({ itemColumn }) => {
+export const ArticleImages = ({ itemColumn, index, item }) => {
+  if (item.width === "33%-67%" ) {
+    console.log({index})
+    console.log({item})
+  }
+
   return (
-    <>
-      <div className="flex justify-evenly relative">
-        {itemColumn.link ? (
-          <Link href={itemColumn.link} target={itemColumn.target}>
-            <Image
-              key={itemColumn.image?.src}
-              src={itemColumn.image?.src}
-              alt={itemColumn.alt}
-              width={700}
-              height={700}
-              className="rounded-lg"
-              style={{ width: "auto", height: "auto" }}
-            />
-          </Link>
-        ) : (
+    <div
+    // flex justify-evenly relative 
+      className={` 
+      ${item.width === "25%-75%" ? (index === 0 ? "" : "col-span-2") : ""} 
+      ${item.width === "75%-25%" ? (index === 0 ? "col-span-2" : "") : ""}
+      ${item.width === "50%-25%-25%" ? (index === 0 ? "col-span-2" : "") : ""}
+      ${item.width === "25%-25%-50%" ? (index === 2 ? "col-span-2" : "") : ""}
+      ${item.width === "67%-33%" ? (index === 0 ? "col-span-3" : "col-span-2") : ""}
+      ${item.width === "33%-67%" ? (index === 0 ? "col-span-2" : "col-span-3") : ""}       
+      `}
+    >
+      {itemColumn.link ? (
+        <Link href={itemColumn.link} target={itemColumn.target}>
           <Image
             key={itemColumn.image?.src}
             src={itemColumn.image?.src}
@@ -27,8 +30,18 @@ export const ArticleImages = ({ itemColumn }) => {
             className="rounded-lg"
             style={{ width: "auto", height: "auto" }}
           />
-        )}
-      </div>
-    </>
+        </Link>
+      ) : (
+        <Image
+          key={itemColumn.image?.src}
+          src={itemColumn.image?.src}
+          alt={itemColumn.alt}
+          width={700}
+          height={700}
+          className="rounded-lg"
+          style={{ width: "auto", height: "auto" }}
+        />
+      )}
+    </div>
   );
 };
