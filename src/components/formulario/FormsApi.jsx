@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useRouter } from "next/navigation";
 import { createForm, getDataTickets } from "@/helpers/getInfoTest";
 import { FormContext } from "@/context/FormContext";
-import { alertaSuccess, alertaTickets } from "@/helpers/Alertas";
+import { alertSuccessTickets, alertTickets } from "@/helpers/Alertas";
 import { TypeFormCheckbox, TypeFormFile, TypeFormGlpi, TypeFormInput, TypeFormRadio, TypeFormSelect, TypeFormTextarea } from "./typeform";
 import { BotonSiguiente } from "./BotonSiguiente";
 import { BotonVolver } from "./BotonVolver";
@@ -14,7 +14,7 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
   const router = useRouter();
   const stepNow = newSteps[currentStep];
 
-  console.log({ stepNow });
+  // console.log({ stepNow });
 
   // console.log({stepNow})
   // console.log({currentStep})
@@ -68,8 +68,9 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
           if (info?.data?.tickets[0].closeForm) {
             const ticketNumber = info?.data?.tickets[0].number;
             const status = info?.data?.tickets[0].status;
-            const date = info?.data?.tickets[0].dateCreated;
-            alertaTickets("Gracias por contactarte", ticketNumber, date, status);
+            const fecha = new Date(info?.data?.tickets[0].dateCreated).toLocaleDateString().split('/')[1] + "/" + new Date(info?.data?.tickets[0].dateCreated).toLocaleDateString().split('/')[0] + "/" + new Date(info?.data?.tickets[0].dateCreated).toLocaleDateString().split('/')[2]
+            const date = fecha + " a las " + new Date(info?.data?.tickets[0].dateCreated).toLocaleTimeString().split(' ')[0];
+            alertTickets(ticketNumber, date, status);
             reset();
             router.push("/");
             return;
@@ -87,8 +88,9 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
           if (info?.data?.tickets[0].closeForm) {
             const ticketNumber = info?.data?.tickets[0].number;
             const status = info?.data?.tickets[0].status;
-            const date = info?.data?.tickets[0].dateCreated;
-            alertaTickets("Gracias por contactarte", ticketNumber, date, status);
+            const fecha = new Date(info?.data?.tickets[0].dateCreated).toLocaleDateString().split('/')[1] + "/" + new Date(info?.data?.tickets[0].dateCreated).toLocaleDateString().split('/')[0] + "/" + new Date(info?.data?.tickets[0].dateCreated).toLocaleDateString().split('/')[2]
+            const date = fecha + " a las " + new Date(info?.data?.tickets[0].dateCreated).toLocaleTimeString().split(' ')[0];
+            alertTickets(ticketNumber, date, status);
             reset();
             router.push("/");
             return;
@@ -106,21 +108,26 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
     }
 
     if (currentStep + 1 === lengthSteps) {
+      let numberTicket;
       console.log({ dataFinal: data });
-      console.log({ glpiSubCategory })
+      // console.log({ glpiSubCategory })
+
 
       if (glpiSubCategory === "") {
         const { categoryId } = stepNow;
         const keyCategory = Object.keys(categoryId)[0];
-        await createForm( `https://testapi.tuentrada.com/api/v1/atencion-cliente/create/form`, data.email, data.name, "prueba crear form", keyCategory );
-        
+        const info = await createForm( `https://testapi.tuentrada.com/api/v1/atencion-cliente/create/form`, data.email, data.name, "prueba crear form", keyCategory );
+        console.log({infoFinal: info})
+        numberTicket = info?.data?.ticketNumber
       }
       if (glpiSubCategory !== "") {        
-        await createForm( `https://testapi.tuentrada.com/api/v1/atencion-cliente/create/form`, data.email, data.name, "prueba crear form", glpiSubCategory.id );        
+        const info = await createForm( `https://testapi.tuentrada.com/api/v1/atencion-cliente/create/form`, data.email, data.name, "prueba crear form", glpiSubCategory.id );
+        console.log({infoFinal: info})
+        numberTicket = info?.data?.ticketNumber       
       }     
 
       console.log("se envia form final");
-      alertaSuccess();
+      alertSuccessTickets(numberTicket);
       reset();
       router.push("/");
     }
