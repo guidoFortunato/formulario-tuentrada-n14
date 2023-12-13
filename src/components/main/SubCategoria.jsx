@@ -1,9 +1,12 @@
 "use client";
 
 import AccordionSubCat from "./AccordionSubCat";
+import dompurify from "isomorphic-dompurify";
 
 const SubCategoria = ({ category, params }) => {
   const subCategories = category?.subCategories;
+  const sanitizer = dompurify.sanitize;
+  // console.log({category})
 
   return (
     <div className="container mx-auto bg-main-image bg-no-repeat bg-left-50 pb-10 px-10 md:px-20 flex-1">
@@ -11,9 +14,15 @@ const SubCategoria = ({ category, params }) => {
         <h2 className="text-2xl text-blue-dark font-semibold">
           {category?.name}
         </h2>
-        <span className="text-sm text-gray-500   italic">
-          Soy la descripción de la categoría
-        </span>
+        <div
+        className="text-sm text-gray-500 italic"
+        dangerouslySetInnerHTML={{
+          __html: sanitizer(category?.reference),
+        }}
+      ></div>
+        {/* <span className="text-sm text-gray-500 italic">
+          {category?.reference}
+        </span> */}
       </div>
       {subCategories?.length > 0 &&
         subCategories.map((item) => (

@@ -27,9 +27,9 @@ const Subcategoria = async ({ params }) => {
   const category = info?.data?.category;
   // console.log({subcategoria: info})
   return (
-    <>
+    
       <SubCategoria category={category} params={params}/>
-    </>
+    
   );
 };
 

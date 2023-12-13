@@ -29,12 +29,12 @@ const ItemSubCategorie = async({ params }) => {
   const info = await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/category/${params.categoria}/article/${params.subcategoria}`);
   const infoMostViews = await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/articles/most-view`);
   // console.log({infoMostViews})
-  // console.log({ItemSubCategorie: info})
+  console.log({ItemSubCategorie: info})
   // console.log({dataArticle: info.data?.article})
   return (
-    <>
+    
       <Articulo params={params} data={info?.data} dataArticle={info?.data?.article}  dataMostViews={infoMostViews?.data?.mostViews} />
-    </>
+   
   );
 };
 export default ItemSubCategorie;

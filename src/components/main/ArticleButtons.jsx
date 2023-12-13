@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const ArticleButtons = ({ itemColumn }) => {
-  console.log({ itemColumn });
+  // console.log({ itemColumn });
 
   const title = itemColumn.titleOrLabel;
   const link = itemColumn.link;

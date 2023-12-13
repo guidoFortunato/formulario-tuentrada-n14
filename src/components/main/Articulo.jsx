@@ -5,33 +5,17 @@ import Link from "next/link";
 import { ArticleRows } from "./ArticleRows";
 
 
-const Articulo = ({ params = "", dataArticle = {}, data = {}, dataMostViews = [] }) => {
+const Articulo = ({ params, dataArticle = {}, dataMostViews = [] }) => {
   const dataArticleForm = dataArticle.form;
   // console.log({dataMostViews})
   const rows = dataArticle.rows;
   // console.log({rows})
-  // console.log({ rows });
+  // console.log({ params });
 
 
-  // const mergedData = dataArticle.content?.map((contentItem) => {
-  //   const matchingImage = data.images?.find(
-  //     (image) => image.alt === contentItem.slug
-  //   );
-
-  //   return {
-  //     slug: contentItem.slug,
-  //     title: contentItem.title,
-  //     description: contentItem.description,
-  //     images: matchingImage
-  //       ? {
-  //           srcset: matchingImage.srcset,
-  //           src: matchingImage.src,
-  //           alt: matchingImage.alt,
-  //         }
-  //       : null,
-  //   };
-  // });
-
+  const titleCategory = params.categoria.slice(0,1).toUpperCase() + params.categoria.split('-').join(' ').slice(1).toLowerCase();
+  
+  // const titleSubCategory = params.categoria.slice(0,1).toUpperCase() + params.categoria.slice(1).toLowerCase();
 
   return (
     <>
@@ -42,7 +26,8 @@ const Articulo = ({ params = "", dataArticle = {}, data = {}, dataMostViews = []
         {dataArticle?.title} 
         </h2>
         <span className="text-sm text-gray-500  mb-10 italic">
-         Devoluciones » Protege TuEntrada
+        {titleCategory} » {dataArticle.title}
+         
         </span>
         </div>
         {/* si se agrega la columna lateral agregar al section lg:grid-cols-6 */}
