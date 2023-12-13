@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export const ArticleImages = ({ itemColumn }) => {
+export const ArticleImages = ({ itemColumn, colSpan }) => {
   return (
     <>
-      <div className="flex justify-evenly relative">
+      <div className={`flex justify-evenly relative ${colSpan}`}>
         {itemColumn.link ? (
           <Link href={itemColumn.link} target={itemColumn.target}>
             <Image

@@ -1,6 +1,6 @@
 import dompurify from "isomorphic-dompurify";
 
-export const RichText = ({ itemColumn, item, index }) => {
+export const RichText = ({ itemColumn, item, index, colSpan }) => {
   const sanitizer = dompurify.sanitize;
   // console.log({index})
 
@@ -8,7 +8,7 @@ export const RichText = ({ itemColumn, item, index }) => {
   const description = itemColumn.description;
 
   return (
-    <div className={`${ item.width === "25%-75%" && "col-span-2"}`}>
+    <div className={colSpan}>
       <h3 className="text-blue-dark font-semibold mb-2">{title}</h3>
       <div
         dangerouslySetInnerHTML={{
