@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useRouter } from "next/navigation";
 import { createForm, getDataTickets } from "@/helpers/getInfoTest";
 import { FormContext } from "@/context/FormContext";
-import { alertSuccessTickets, alertTickets } from "@/helpers/Alertas";
+import { alertSuccessTickets, alertTickets, alertaWarningTickets } from "@/helpers/Alertas";
 import { TypeFormCheckbox, TypeFormFile, TypeFormGlpi, TypeFormInput, TypeFormRadio, TypeFormSelect, TypeFormTextarea } from "./typeform";
 import { BotonSiguiente } from "./BotonSiguiente";
 import { BotonVolver } from "./BotonVolver";
@@ -53,7 +53,7 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
 
   const onSubmit = async (data, event) => {
     event.preventDefault();
-   
+    // console.log({glpiSubCategory})
     
     
     if (stepNow.checkHaveTickets === 1) {
@@ -62,14 +62,16 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
         const { categoryId } = stepNow;
         const keyCategory = Object.keys(categoryId)[0];
         const info = await getDataTickets( `https://testapi.tuentrada.com/api/v1/atencion-cliente/search/tickets`, data.email, keyCategory);
-        console.log({ infoCategoryId: info });
+        // console.log({ infoCategoryId: info });
         if (info?.data?.tickets?.length > 0) {
   
           if (info?.data?.tickets[0].closeForm) {
             const ticketNumber = info?.data?.tickets[0].number;
-            const status = info?.data?.tickets[0].status;
-            const fecha = new Date(info?.data?.tickets[0].dateCreated).toLocaleDateString().split('/')[1] + "/" + new Date(info?.data?.tickets[0].dateCreated).toLocaleDateString().split('/')[0] + "/" + new Date(info?.data?.tickets[0].dateCreated).toLocaleDateString().split('/')[2]
-            const date = fecha + " a las " + new Date(info?.data?.tickets[0].dateCreated).toLocaleTimeString().split(' ')[0];
+            const status = info?.data?.tickets[0].status;            
+            const fecha = new Date(info?.data?.tickets[0].dateCreated).toLocaleDateString()
+            const time1 = new Date(info?.data?.tickets[0].dateCreated).toLocaleTimeString().split(' ')[0].split(":")[0]
+            const time2 = new Date(info?.data?.tickets[0].dateCreated).toLocaleTimeString().split(' ')[0].split(":")[1]
+            const date = `${fecha} - ${time1}:${time2} hs`;
             alertTickets(ticketNumber, date, status);
             reset();
             router.push("/");
@@ -89,7 +91,9 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
             const ticketNumber = info?.data?.tickets[0].number;
             const status = info?.data?.tickets[0].status;
             const fecha = new Date(info?.data?.tickets[0].dateCreated).toLocaleDateString().split('/')[1] + "/" + new Date(info?.data?.tickets[0].dateCreated).toLocaleDateString().split('/')[0] + "/" + new Date(info?.data?.tickets[0].dateCreated).toLocaleDateString().split('/')[2]
-            const date = fecha + " a las " + new Date(info?.data?.tickets[0].dateCreated).toLocaleTimeString().split(' ')[0];
+            const time1 = new Date(info?.data?.tickets[0].dateCreated).toLocaleTimeString().split(' ')[0].split(":")[0]
+            const time2 = new Date(info?.data?.tickets[0].dateCreated).toLocaleTimeString().split(' ')[0].split(":")[1]
+            const date = `${fecha} - ${time1}:${time2} hs`;
             alertTickets(ticketNumber, date, status);
             reset();
             router.push("/");
@@ -98,9 +102,6 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
   
         }
       }
-
-      
-
     }
 
     if (!(currentStep + 1 === lengthSteps)) {
@@ -108,28 +109,43 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
     }
 
     if (currentStep + 1 === lengthSteps) {
-      let numberTicket;
-      console.log({ dataFinal: data });
+      let numberTicket;      
       // console.log({ glpiSubCategory })
-
 
       if (glpiSubCategory === "") {
         const { categoryId } = stepNow;
         const keyCategory = Object.keys(categoryId)[0];
-        const info = await createForm( `https://testapi.tuentrada.com/api/v1/atencion-cliente/create/form`, data.email, data.name, "prueba crear form", keyCategory );
-        console.log({infoFinal: info})
+        const info = await createForm( `https://testapi.tuentrada.com/api/v1/atencion-cliente/create/form`, data.email, "Categoria + Titulo del Articulo", "prueba crear form", keyCategory );
+        if (!info.status) {
+          alertaWarningTickets()
+          reset();
+          router.push("/");
+          return
+        }
         numberTicket = info?.data?.ticketNumber
-      }
-      if (glpiSubCategory !== "") {        
-        const info = await createForm( `https://testapi.tuentrada.com/api/v1/atencion-cliente/create/form`, data.email, data.name, "prueba crear form", glpiSubCategory.id );
+        alertSuccessTickets(numberTicket);
         console.log({infoFinal: info})
-        numberTicket = info?.data?.ticketNumber       
-      }     
+      }
 
-      console.log("se envia form final");
-      alertSuccessTickets(numberTicket);
+      if (glpiSubCategory !== "") {        
+        const info = await createForm( `https://testapi.tuentrada.com/api/v1/atencion-cliente/create/form`, data.email, "Categoria + Titulo del Articulo", "prueba crear form", glpiSubCategory.id );
+        console.log({infoFinal: info})
+        if (!info.status) {
+          console.log({infoFinal: info})
+          alertaWarningTickets()
+          reset();
+          router.push("/");
+          return
+        }
+        numberTicket = info?.data?.ticketNumber
+        alertSuccessTickets(numberTicket);
+        console.log({infoFinal: info})
+      } 
+
+      console.log({ dataFinal: data, message: "se envia form final" });
       reset();
       router.push("/");
+      
     }
   };
 

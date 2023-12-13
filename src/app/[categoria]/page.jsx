@@ -15,7 +15,7 @@ export const generateMetadata = ({params})=>{
     primerParte = "TuEntrada"
     title = primerParte + resto.slice(9)
   }
-  // console.log({title})
+ 
   return {
     title: title
   }
@@ -26,10 +26,8 @@ const Subcategoria = async ({ params }) => {
   const info = await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/category/${params.categoria}`);
   const category = info?.data?.category;
   // console.log({subcategoria: info})
-  return (
-    
-      <SubCategoria category={category} params={params}/>
-    
+  return (    
+      <SubCategoria category={category} params={params}/>    
   );
 };
 
