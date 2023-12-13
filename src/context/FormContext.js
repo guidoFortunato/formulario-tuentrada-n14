@@ -7,6 +7,7 @@ const FormProvider = ({ children }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [dataContacto, setDataContacto] = useState(null);
   const [glpiSubCategory, setGlpiSubCategory] = useState("");
+  const [subtitleArticle, setSubtitleArticle] = useState("");
 
   const {
     formState: { errors },
@@ -128,6 +129,10 @@ const FormProvider = ({ children }) => {
     setDataContacto(contacto);
   };
 
+  const handleSubtitleArticle = (name) => {
+    setSubtitleArticle(name);
+  };
+
   const handleGlpiSubCategory = (subcategory) => {
     setGlpiSubCategory(subcategory);
   };
@@ -135,6 +140,7 @@ const FormProvider = ({ children }) => {
   const nextStep = () => {
     setCurrentStep((prev) => prev + 1);
   };
+
   const prevStep = () => {
     setCurrentStep((prev) => prev - 1);
   };
@@ -157,6 +163,8 @@ const FormProvider = ({ children }) => {
         watch,
         glpiSubCategory,
         handleGlpiSubCategory,
+        handleSubtitleArticle,
+        subtitleArticle,
       }}
     >
       {children}

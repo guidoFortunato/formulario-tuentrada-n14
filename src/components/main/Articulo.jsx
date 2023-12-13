@@ -1,34 +1,30 @@
-
 import { RespuestaLike } from "./like/RespuestaLike";
 import { ButtonFormulario } from "./like/ButtonFormulario";
 import Link from "next/link";
 import { ArticleRows } from "./ArticleRows";
-
+import { ArticleSubtitle } from "./ArticleSubtitle";
 
 const Articulo = ({ params, dataArticle = {}, dataMostViews = [] }) => {
   const dataArticleForm = dataArticle.form;
   // console.log({dataMostViews})
   const rows = dataArticle.rows;
-  // console.log({rows})
-  // console.log({ params });
+  // console.log({ rows });
+  // console.log({ dataArticle });
 
+  const titleCategory =
+    params.categoria.slice(0, 1).toUpperCase() +
+    params.categoria.split("-").join(" ").slice(1).toLowerCase();
 
-  const titleCategory = params.categoria.slice(0,1).toUpperCase() + params.categoria.split('-').join(' ').slice(1).toLowerCase();
-  
   // const titleSubCategory = params.categoria.slice(0,1).toUpperCase() + params.categoria.slice(1).toLowerCase();
 
   return (
     <>
       <div className=" container mx-auto bg-main-image bg-no-repeat bg-left-50 pb-10 px-10 md:px-20 flex-1">
-   
         <div className="mb-5">
-        <h2 className="text-2xl text-blue-dark font-semibold">
-        {dataArticle?.title} 
-        </h2>
-        <span className="text-sm text-gray-500  mb-10 italic">
-        {titleCategory} » {dataArticle.title}
-         
-        </span>
+          <h2 className="text-2xl text-blue-dark font-semibold">
+            {dataArticle?.title}
+          </h2>
+          {/* <ArticleSubtitle titleCategory={titleCategory} /> */}
         </div>
         {/* si se agrega la columna lateral agregar al section lg:grid-cols-6 */}
         {/* <section className="w-full grid grid-cols-1   gap-5 lg:gap-3 mx-auto mt-4 mb-10">

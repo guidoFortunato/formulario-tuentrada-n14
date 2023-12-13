@@ -3,7 +3,7 @@ import Articulo from "@/components/main/Articulo";
 import { getDataPrueba } from "@/helpers/getInfoTest";
 
 export const generateMetadata = ({params})=>{
-  // console.log({paramsMetadata: params})
+  
   let primerLetra;
   let resto;
   let title;
@@ -17,24 +17,18 @@ export const generateMetadata = ({params})=>{
     primerParte = "TuEntrada"
     title = primerParte + resto.slice(9)
   }
-  // console.log({title})
+
   return {
     title: title
   }
 }
 
 const ItemSubCategorie = async({ params }) => {
-  // console.log({params})
-  // const info = await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/article/${params.subcategoria}`);
   const info = await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/category/${params.categoria}/article/${params.subcategoria}`);
   const infoMostViews = await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/articles/most-view`);
-  // console.log({infoMostViews})
-  console.log({ItemSubCategorie: info})
-  // console.log({dataArticle: info.data?.article})
-  return (
-    
-      <Articulo params={params} data={info?.data} dataArticle={info?.data?.article}  dataMostViews={infoMostViews?.data?.mostViews} />
-   
+
+  return (    
+      <Articulo params={params} data={info?.data} dataArticle={info?.data?.article}  dataMostViews={infoMostViews?.data?.mostViews} />   
   );
 };
 export default ItemSubCategorie;

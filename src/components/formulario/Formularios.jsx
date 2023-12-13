@@ -1,11 +1,18 @@
 "use client";
 
+import { useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { FormContext } from "@/context/FormContext";
 import { FormStep, Steps } from ".";
-import { useEffect } from "react";
 import { Loader } from "../loading";
 
-export const Formularios = ({ dataForm }) => {
+export const Formularios = ({ dataForm, params }) => {
+  const { subtitleArticle } = useContext(FormContext);
+  // console.log({subtitleArticle})
+
+  const category = params.categoria.slice(0,1).toUpperCase() + params.categoria.split('-').join(' ').slice(1).toLowerCase()
+  const subCategory = params.subcategoria.slice(0,1).toUpperCase() + params.subcategoria.split('-').join(' ').slice(1).toLowerCase()
+
   
   const router = useRouter()
   useEffect(() => {
@@ -27,11 +34,11 @@ export const Formularios = ({ dataForm }) => {
        Completá la información
       </h2>
       <span className="text-sm text-gray-500   italic">
-      Devoluciones » Protege TuEntrada » No me puedo loguear
+       
+      {/* {category} » {subtitleArticle.length > 0 && ` » ${subtitleArticle}`} {subCategory} */}
         </span>
      </div>
       <Steps dataForm={dataForm} />
-
       <FormStep dataForm={dataForm} />
     </div>
   );

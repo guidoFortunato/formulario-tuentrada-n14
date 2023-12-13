@@ -10,6 +10,15 @@ export const alertaWarning = (text = "Debe ingresar un texto") => {
   });
 };
 
+export const alertaWarningTickets = (text = "No se pudo tomar el reclamo, intente nuevamente mas tarde") => {
+  Swal.fire({
+    icon: "error",
+    html: `<b>${text}</b>`,
+    timer: 2000,
+    confirmButtonColor: "#444444", // dataInfoGeneral.backgroundButton
+  });
+};
+
 export const alertTickets = (
   ticket = "",
   dateCreated="",
@@ -22,7 +31,7 @@ export const alertTickets = (
         <b>Tenes consultas pendientes aún no respondidas<br></b><br>
         <span>Tu número de ticket es: <span style="color: #6bbf59;">${ticket}</span> </span><br><br>        
         <span style="color: #000;">Fue creado el <b>${dateCreated}</b><br></span><br>
-        <span style="color: #000;">El status es: <b style="color: #c88449;">${status}</b><br></span><br>
+        <span style="color: #000;">El estado es: <b style="color: #c88449;">${status}</b><br></span><br>
          </div>`,
     // timer: 3000,
     confirmButtonColor: "#444444", // dataInfoGeneral.backgroundButton
