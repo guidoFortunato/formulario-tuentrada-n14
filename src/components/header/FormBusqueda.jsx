@@ -40,10 +40,10 @@ export const FormBusqueda = () => {
           setData(res.data.articles);
         }
       } catch (err) {
-        console.error({
-          err,
-          message: "No se encontraron datos",
-        });
+        // console.error({
+        //   err,
+        //   message: "No se encontraron datos",
+        // });
       } finally {
         setLoading(false); // Desactivar indicador de carga
       }
