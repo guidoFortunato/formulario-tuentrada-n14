@@ -15,6 +15,38 @@ const Articulo = ({ params, dataArticle = {}, dataMostViews = [] }) => {
     params.categoria.split("-").join(" ").slice(1).toLowerCase();
 
   // const titleSubCategory = params.categoria.slice(0,1).toUpperCase() + params.categoria.slice(1).toLowerCase();
+  const data = {
+    comentario: "a",
+    dni: "37417530",
+    email: "gfortunato@tuentrada.com",
+    emailConfirm: "gfortunato@tuentrada.com",
+    fecha_de_compra: "2023-11-30T17:17",
+    lastname: "Fortunato",
+    name: "Guido",
+    número_de_expediente: "",
+    seleccione_la_tarjeta: "VISA",
+    subir_archivo: { length: 0 }, // Asumí que subir_archivo es un objeto FileList, ajusta según tus necesidades
+  };
+
+  const excludedKeys = "emailConfirm";
+  const keys = Object.keys(data).filter((key) => key !== excludedKeys);
+  const prueba = keys?.map((item, index) => (
+    <tr key={index}>
+      <th
+        style={{
+          border: "1px solid #ddd",
+          padding: "10px",
+          backgroundColor: "#f2f2f2",
+        }}
+      >
+        {item.slice(0, 1).toUpperCase() +
+          item.split("_").join(" ").toLowerCase().slice(1)}
+      </th>
+      <td style={{ border: "1px solid #ddd", padding: "10px" }}>
+        {data[item]}
+      </td>
+    </tr>
+  ));
 
   return (
     <>
@@ -25,40 +57,34 @@ const Articulo = ({ params, dataArticle = {}, dataMostViews = [] }) => {
           </h2>
           {/* <ArticleSubtitle titleCategory={titleCategory} /> */}
         </div>
-        {/* si se agrega la columna lateral agregar al section lg:grid-cols-6 */}
-        {/* <section className="w-full grid grid-cols-1   gap-5 lg:gap-3 mx-auto mt-4 mb-10">
-          <div className="col-span-4 order-2 lg:order-1">
-            {mergedData?.map((item, index) => (
-              <div key={item.title}>
-                <h3
-                  id={`subtitulo-${index + 1}`}
-                  className="text-lg font-semibold text-blue-dark my-5"
-                >
-                  {item.title}
-                </h3>
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: sanitizer(item.description),
-                  }}
-                ></span>
 
-                {item.images !== null && (
-                  <Image
-                    key={item.images.title}
-                    src={item.images.src}
-                    alt="TuEntrada"
-                    width={600}
-                    height={400}
-                    priority
-                    className="rounded-lg border border-gray-300 mt-10 "
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-        </section> */}
         {rows &&
           rows.map((item) => <ArticleRows key={item.name} item={item} />)}
+
+        {/* <div>
+          <div style={{ maxidth: "600px" }}>
+            <div
+              style={{
+                fontSize: " 18px",
+                fontWeight: "bold",
+                marginBottom: "20px",
+              }}
+            >
+              prueba
+            </div>
+
+            <table
+              style={{
+                width: "100%",
+                borderCollapse: "collapse",
+                marginTop: "20px",
+              }}
+            >
+              <tbody>{prueba}</tbody>
+             
+            </table>
+          </div>
+        </div> */}
 
         <hr />
         {dataArticle?.enableHelpful === 1 && (
@@ -100,7 +126,10 @@ const Articulo = ({ params, dataArticle = {}, dataMostViews = [] }) => {
                 {dataMostViews.slice(0, 5).map((item) => (
                   <li key={item.id} className="text-blue-dark mb-2">
                     ▸
-                    <Link className="hover:underline text-sm" href={`/${item.category.slug}/${item.slug}`}>                  
+                    <Link
+                      className="hover:underline text-sm"
+                      href={`/${item.category.slug}/${item.slug}`}
+                    >
                       {item.title}
                     </Link>
                   </li>

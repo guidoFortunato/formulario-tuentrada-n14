@@ -65,19 +65,30 @@ export const alertPruebaTickets = (value) => {
         <span>Tu número de ticket es: <span style="color: #6bbf59;">Info:</span> </span><br><br>  
 
         <div style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  margin: 0; padding: 0;">
-          <div style="max-width: 600px; margin: 0 auto;">
-            <div style="font-size: 18px; font-weight: bold; margin-bottom: 20px;">
-             Prueba
-            </div>
-    
-            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-            
-          ${value}
-              
-            </table>
-
+        <div style="max-width: 600px; margin: 0 auto;">
+          <div style="font-size: 18px; font-weight: bold; margin-bottom: 20px;">
+            prueba
           </div>
-        </div> 
+  
+          <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+          <tbody>
+          <tr key={index}>
+          ${value?.map((item, index) => (
+            <>
+              <th style="border: 1px solid #ddd; padding: 10px; background-color: #f2f2f2;">
+               prueba
+              </th>
+              <td style="border: 1px solid #ddd; padding: 10px;">
+             prueba
+              </td>
+                  </>
+          ))}
+          </tr>
+          </tbody>
+          </table>
+
+        </div>
+      </div>
         
         </div>`,
     // timer: 3000,
