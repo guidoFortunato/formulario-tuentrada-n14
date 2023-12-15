@@ -91,15 +91,15 @@ const Articulo = ({ params, dataArticle = {}, dataMostViews = [] }) => {
           </>
         )}
 
-        <div className="flex justify-evenly mt-10">
+        <div className="flex flex-col items-center md:items-start md:justify-evenly md:flex-row mt-10">
           {dataMostViews.length > 0 && (
-            <div>
+            <div className="mb-8 md:mb-0">
               <h4 className="text-blue-dark font-semibold mb-2 text-xl">
                 Artículos más vistos
               </h4>
               <ol className="text-sm">
                 {dataMostViews.slice(0, 5).map((item) => (
-                  <li key={item.id} className="text-blue-dark mb-1">
+                  <li key={item.id} className="text-blue-dark mb-2">
                     ▸
                     <Link className="hover:underline text-sm" href={item.slug}>
                       {item.title}
@@ -116,7 +116,7 @@ const Articulo = ({ params, dataArticle = {}, dataMostViews = [] }) => {
               </h4>
               <ol className="text-sm">
                 {dataArticle?.articleChild?.slice(0, 5).map((item) => (
-                  <li key={item.id} className="text-blue-dark mb-1">
+                  <li key={item.id} className="text-blue-dark mb-2">
                     ▸
                     <Link className="hover:underline text-sm " href={item.slug}>
                       {item.title}
