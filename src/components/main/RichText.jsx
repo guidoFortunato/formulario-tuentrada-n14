@@ -1,6 +1,6 @@
 import dompurify from "isomorphic-dompurify";
 
-export const RichText = ({ itemColumn, item, index }) => {
+export const RichText = ({ itemColumn, item, index, colSpan }) => {
   const sanitizer = dompurify.sanitize;
   // console.log({index})
 
