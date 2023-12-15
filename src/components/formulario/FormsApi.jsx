@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { createForm, getDataTickets } from "@/helpers/getInfoTest";
 import { FormContext } from "@/context/FormContext";
 import {
+  alertPruebaTickets,
   alertSuccessTickets,
   alertTickets,
   alertaWarningTickets,
@@ -19,7 +20,7 @@ import {
 import { BotonSiguiente } from "./BotonSiguiente";
 import { BotonVolver } from "./BotonVolver";
 
-export const FormsApi = ({ dataForm, lengthSteps }) => {
+export const FormsApi = ({ dataForm, lengthSteps, category, subCategory }) => {
   const {
     handleSubmit,
     nextStep,
@@ -27,17 +28,14 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
     currentStep,
     reset,
     glpiSubCategory,
-    errorInput,
     handleErrorInput,
-    selectDefaultValue
+    selectDefaultValue,
   } = useContext(FormContext);
 
   const { steps } = dataForm;
   const newSteps = [...stepsEstaticos, ...steps];
   const router = useRouter();
   const stepNow = newSteps[currentStep];
-
-  // console.log({ stepNow });
 
   // console.log({stepNow})
   // console.log({currentStep})
@@ -78,18 +76,35 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
   const onSubmit = async (data, event) => {
     event.preventDefault();
     // console.log({glpiSubCategory})
-    console.log({selectDefaultValue})
+    // console.log({selectDefaultValue})
     console.log({ data });
-  
+    const excludedKeys = "emailConfirm";
+    const keys = Object.keys(data).filter((key) => key !== excludedKeys);
+    const rows = keys?.map((item, index) => (
+      <tr key={index}>
+        <th style="border: 1px solid #ddd; padding: 10px; background-color: #f2f2f2;">
+          {item.slice(0, 1).toUpperCase() +
+            item.split("_").join(" ").toLowerCase().slice(1)}
+        </th>
+        <td style="border: 1px solid #ddd; padding: 10px;">{data[item]}</td>
+      </tr>
+    ));
+
+    console.log({rows})
+
+    const prueba = {
+
+    }
 
     if (selectDefaultValue === "defaultValue") {
-      console.log('selectDefaultValue === "defaultValue"')
-      handleErrorInput(true)
-      return
+      console.log('selectDefaultValue === "defaultValue"');
+      handleErrorInput(true);
+      return;
     }
-    
-   
-   
+
+    alertPruebaTickets(``)
+
+    return
 
     if (stepNow.checkHaveTickets === 1) {
       if (glpiSubCategory === "") {
@@ -182,7 +197,20 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
           `https://testapi.tuentrada.com/api/v1/atencion-cliente/create/form`,
           data.email,
           "Categoria + Titulo del Articulo",
-          "prueba crear form",
+          `<div style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  margin: 0; padding: 0;">
+          <div style="max-width: 600px; margin: 0 auto;">
+            <div style="font-size: 18px; font-weight: bold; margin-bottom: 20px;">
+              ${category} - ${subCategory}
+            </div>
+    
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            
+          ${rows}
+              
+            </table>
+
+          </div>
+        </div>`,
           keyCategory
         );
         console.log({ info });
@@ -202,7 +230,20 @@ export const FormsApi = ({ dataForm, lengthSteps }) => {
           `https://testapi.tuentrada.com/api/v1/atencion-cliente/create/form`,
           data.email,
           "Categoria + Titulo del Articulo",
-          "prueba crear form",
+          `<div style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  margin: 0; padding: 0;">
+          <div style="max-width: 600px; margin: 0 auto;">
+            <div style="font-size: 18px; font-weight: bold; margin-bottom: 20px;">
+              ${category} - ${subCategory}
+            </div>
+    
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            
+            ${rows}
+              
+            </table>
+
+          </div>
+        </div>`,
           glpiSubCategory.id
         );
         console.log({ info });

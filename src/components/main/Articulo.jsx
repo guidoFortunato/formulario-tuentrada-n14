@@ -2,7 +2,6 @@ import { RespuestaLike } from "./like/RespuestaLike";
 import { ButtonFormulario } from "./like/ButtonFormulario";
 import Link from "next/link";
 import { ArticleRows } from "./ArticleRows";
-import { ArticleSubtitle } from "./ArticleSubtitle";
 
 const Articulo = ({ params, dataArticle = {}, dataMostViews = [] }) => {
   const dataArticleForm = dataArticle.form;
@@ -101,7 +100,7 @@ const Articulo = ({ params, dataArticle = {}, dataMostViews = [] }) => {
                 {dataMostViews.slice(0, 5).map((item) => (
                   <li key={item.id} className="text-blue-dark mb-2">
                     ▸
-                    <Link className="hover:underline text-sm" href={item.slug}>
+                    <Link className="hover:underline text-sm" href={`/${item.category.slug}/${item.slug}`}>                  
                       {item.title}
                     </Link>
                   </li>

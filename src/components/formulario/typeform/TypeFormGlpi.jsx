@@ -4,7 +4,7 @@ import { FormContext } from "@/context/FormContext";
 export const TypeFormGlpi = ({ item }) => {
   const { register, errors, handleGlpiSubCategory, handleErrorInput, errorInput, handleSelectDefaultValue, glpiSubCategory} = useContext(FormContext);
   const name = item.name.toLowerCase().split(" ").join("_");
-  console.log({glpiSubCategory})
+  // console.log({glpiSubCategory})
   const handleSelectChange = (e) => {
     
     if(e.target.value === "Selecciona una opción"){

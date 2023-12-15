@@ -55,3 +55,34 @@ export const alertSuccessTickets = (
     // iconColor: "#F7AC08",
   });
 };
+
+export const alertPruebaTickets = (value) => {
+  Swal.fire({
+    icon: "success",
+    allowOutsideClick: false,
+    html: ` <div style="text-align: center;">
+        <b>Gracias por contactarte<br></b><br>
+        <span>Tu número de ticket es: <span style="color: #6bbf59;">Info:</span> </span><br><br>  
+
+        <div style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  margin: 0; padding: 0;">
+          <div style="max-width: 600px; margin: 0 auto;">
+            <div style="font-size: 18px; font-weight: bold; margin-bottom: 20px;">
+             Prueba
+            </div>
+    
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            
+          ${value}
+              
+            </table>
+
+          </div>
+        </div> 
+        
+        </div>`,
+    // timer: 3000,
+    confirmButtonColor: "#444444", // dataInfoGeneral.backgroundButton
+    // iconColor: "#F7AC08",
+  });
+};
+
