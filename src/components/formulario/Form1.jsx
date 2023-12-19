@@ -1,22 +1,23 @@
 "use client";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import { FormContext } from "@/context/FormContext";
 import { BotonSiguiente, BotonVolver } from ".";
 import { getDataPrueba, sendDataEmail } from "@/helpers/getInfoTest";
 
 export const Form1 = ({ lengthSteps, dataForm }) => {
-  // console.log({dataForm: dataForm.steps})
+  
+  const { register,  handleSubmit,  errors,  watch,  nextStep,  handleContacto,  reset } = useContext(FormContext);
+  const [captcha, setCaptcha] = useState("");
+  const [errorRecaptcha, setErrorRecaptcha] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    errors,
-    watch,
-    nextStep,
-    handleContacto,
-    reset,
-  } = useContext(FormContext);
+  const handleRecaptcha = (e) => {
+    setCaptcha(e)
+    setErrorRecaptcha(false)
+  }
+
+
 
   useEffect(() => {
     handleContacto(null);
@@ -25,6 +26,12 @@ export const Form1 = ({ lengthSteps, dataForm }) => {
 
   const onSubmit = async (data, event) => {
     event.preventDefault();
+    if (captcha === "") {
+      setErrorRecaptcha(true)
+      console.log('falta clickear en el captcha')
+      return
+    }
+    
     console.log("se envia form 1");
     const info = await sendDataEmail(
       "https://testapi.tuentrada.com/api/v1/atencion-cliente/search/contact",
@@ -47,7 +54,7 @@ export const Form1 = ({ lengthSteps, dataForm }) => {
 
   return (
     <form className="mt-10" onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid gap-4 mb-4 sm:grid-cols-2">
+      <div className="grid gap-4 mb-4 grid-cols-1 sm:grid-cols-2">
         <div>
           <label
             htmlFor="email"
@@ -108,6 +115,14 @@ export const Form1 = ({ lengthSteps, dataForm }) => {
           {errors.emailConfirm && (
             <span className="text-red-600 text-sm block mt-1">
               {errors.emailConfirm.message}
+            </span>
+          )}
+        </div>
+        <div className="mx-auto md:mx-0">
+          <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY} onChange={handleRecaptcha} />
+          {errorRecaptcha && (
+            <span className="text-red-600 text-sm block mt-1">
+              Este campo es obligatorio
             </span>
           )}
         </div>
