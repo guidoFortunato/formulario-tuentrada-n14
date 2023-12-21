@@ -1,61 +1,21 @@
-import Image from "next/image";
 import React from "react";
 
-const SocialMedia = () => {
+const SocialMedia = ({ data }) => {
   return (
     <div className=" flex justify-center space-x-4 mt-2">
-      <a
-        href="https://www.facebook.com/tuentrada"
-        target="_blank"
-        title="Follow us on Facebook"
-        className="text-blue-600 hover:text-blue-800"
-      >
-        <Image
-          src="https://tuentrada.com/experiencia/nazaries/facebook.svg"
-          alt="facebook"
-          width={24}
-          height={24}
-        />
-      </a>
-      <a
-        href="https://twitter.com/tuentrada"
-        target="_blank"
-        title="Follow us on Twitter"
-        className="text-blue-600 hover:text-blue-800"
-      >
-        <Image
-          src="https://tuentrada.com/experiencia/nazaries/twitter.svg"
-          alt="twitter"
-          width={24}
-          height={24}
-        />
-      </a>
-      <a
-        href="https://www.youtube.com/channel/UCWBDAowyYqIzDzhkUWYP_3w/videos"
-        target="_blank"
-        title="Follow us on YouTube"
-        className="text-red-600 hover:text-red-800"
-      >
-        <Image
-          src="https://tuentrada.com/experiencia/nazaries/youtube.svg"
-          alt="youtube"
-          width={24}
-          height={24}
-        />
-      </a>
-      <a
-        href="https://www.instagram.com/tuentrada"
-        target="_blank"
-        title="Follow us on Instagram"
-        className="text-pink-600 hover:text-pink-800"
-      >
-        <Image
-          src="https://tuentrada.com/experiencia/nazaries/instagram.svg"
-          alt="instagram"
-          width={24}
-          height={24}
-        />
-      </a>
+      {data.socialNetworks.map((item) => (
+        <a
+          key={item.id}
+          href={item.href}
+          target="_blank"
+          title={`Seguinos en ${item.type}`}
+        >
+          <svg xmlns={item.xmlns} fill={item.fill} viewBox={item.viewBox} width={item.width} height={item.height} >
+          <g transform="scale(8.53333,8.53333)"><path d={item.path} /></g> 
+          </svg>
+          
+        </a>
+      ))} 
     </div>
   );
 };

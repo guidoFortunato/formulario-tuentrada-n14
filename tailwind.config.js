@@ -9,8 +9,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-image': 'linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0)), url("https://preprod.tuentrada.com/themes/custom/tu_entrada_theme/images/background_footer.png")',
-        'main-image': 'url("https://preprod.tuentrada.com/themes/custom/tu_entrada_theme/images/background_feature_tours.png")'
+        'gradient-image': 'linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0)), url("https://www.tuentrada.com/experiencia/ayuda-consulta/background-footer.jpg")',
+        'main-image': 'url("https://www.tuentrada.com/experiencia/ayuda-consulta/background-main.png")'
       },
       gradientColorStops: {
         "blue-dark": "#1955A5",

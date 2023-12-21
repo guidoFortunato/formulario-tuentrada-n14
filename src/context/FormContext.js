@@ -5,12 +5,20 @@ export const FormContext = createContext();
 
 const FormProvider = ({ children }) => {
   const [currentStep, setCurrentStep] = useState(0);
+  const [dataContacto, setDataContacto] = useState(null);
+  const [glpiSubCategory, setGlpiSubCategory] = useState("");
+  const [subtitleArticle, setSubtitleArticle] = useState("");
+  const [selectDefaultValue, setSelectDefaultValue] = useState("");
+  const [errorInput, setErrorInput] = useState(false);
+
   const {
-    register,
-    handleSubmit,
     formState: { errors },
-    watch,
+    handleSubmit,
+    register,
     reset,
+    setValue,
+    watch,
+    control,
   } = useForm();
 
   const stepsEstaticos = [
@@ -33,7 +41,8 @@ const FormProvider = ({ children }) => {
           subtype: "text",
           options: null,
           placeholder: "Ingrese su email",
-          pattern: /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/,
+          pattern:
+            /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/,
           helperText: null,
           min: null,
           max: null,
@@ -118,9 +127,30 @@ const FormProvider = ({ children }) => {
     },
   ];
 
+  const handleContacto = (contacto) => {
+    setDataContacto(contacto);
+  };
+
+  const handleErrorInput = (boolean) => {
+    setErrorInput(boolean);
+  };
+
+  const handleSelectDefaultValue = (value) => {
+    setSelectDefaultValue(value);
+  };
+
+  const handleSubtitleArticle = (name) => {
+    setSubtitleArticle(name);
+  };
+
+  const handleGlpiSubCategory = (subcategory) => {
+    setGlpiSubCategory(subcategory);
+  };
+
   const nextStep = () => {
     setCurrentStep((prev) => prev + 1);
   };
+
   const prevStep = () => {
     setCurrentStep((prev) => prev - 1);
   };
@@ -128,15 +158,27 @@ const FormProvider = ({ children }) => {
   return (
     <FormContext.Provider
       value={{
-        register,
-        handleSubmit,
-        errors,
-        watch,
-        reset,
+        control,
         currentStep,
+        dataContacto,
+        errors,
+        handleContacto,
+        handleSubmit,
         nextStep,
         prevStep,
+        register,
+        reset,
+        setValue,
         stepsEstaticos,
+        watch,
+        glpiSubCategory,
+        handleGlpiSubCategory,
+        handleSubtitleArticle,
+        subtitleArticle,
+        handleErrorInput,
+        errorInput,
+        selectDefaultValue,
+        handleSelectDefaultValue,
       }}
     >
       {children}

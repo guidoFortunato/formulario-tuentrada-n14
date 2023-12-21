@@ -1,41 +1,72 @@
 "use client";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import { FormContext } from "@/context/FormContext";
 import { BotonSiguiente, BotonVolver } from ".";
-import { getDataPrueba } from "@/helpers/getInfoTest";
+import { getDataPrueba, sendDataEmail } from "@/helpers/getInfoTest";
 
-export const Form1 = ({dataForm, lengthSteps }) => {
-
-  // console.log({dataForm})  
-
-  const { register, handleSubmit, errors, watch, reset, nextStep } = useContext(FormContext); 
+export const Form1 = ({ lengthSteps, dataForm }) => {
   
-  
+  const { register,  handleSubmit,  errors,  watch,  nextStep,  handleContacto,  reset } = useContext(FormContext);
+  const [captcha, setCaptcha] = useState("");
+  const [errorRecaptcha, setErrorRecaptcha] = useState(false);
+
+  const handleRecaptcha = (e) => {
+    setCaptcha(e)
+    setErrorRecaptcha(false)
+  }
+
+
+
+  useEffect(() => {
+    handleContacto(null);
+    reset();
+  }, []);
+
   const onSubmit = async (data, event) => {
     event.preventDefault();
-    const info = await getDataPrueba(`https://testapi.tuentrada.com/api/v1/atencion-cliente/contact/a.r.hamze@live.coma`);
-    console.log({ info });
+    if (captcha === "") {
+      setErrorRecaptcha(true)
+      console.log('falta clickear en el captcha')
+      return
+    }
+    
     console.log("se envia form 1");
+    const info = await sendDataEmail(
+      "https://testapi.tuentrada.com/api/v1/atencion-cliente/search/contact",
+      data.email
+    );
+    // console.log({ info });
     console.log({ data });
+    if (info?.status) {
+      handleContacto({
+        id: info.data.contact.id,
+        document: info.data.contact.document,
+        first_name: info.data.contact.first_name,
+        last_name: info.data.contact.last_name,
+        phone_number1: info.data.contact.phone_number1,
+      });
+    }
+
     nextStep();
-    // reset()
   };
 
   return (
     <form className="mt-10" onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid gap-4 mb-4 sm:grid-cols-2">
+      <div className="grid gap-4 mb-4 grid-cols-1 sm:grid-cols-2">
         <div>
           <label
             htmlFor="email"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Email
+            Email <span className="text-red-500">*</span>
           </label>
           <input
+            type="text"
             name="email"
             id="email"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 block w-full p-2.5"
             placeholder="Ingrese su email"
             {...register("email", {
               required: {
@@ -60,12 +91,13 @@ export const Form1 = ({dataForm, lengthSteps }) => {
             htmlFor="emailConfirm"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Confirmación de Email
+            Confirmación de Email <span className="text-red-500">*</span>
           </label>
           <input
+            type="text"
             name="emailConfirm"
             id="emailConfirm"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-300 focus:border-blue-dark block w-full p-2.5"
             placeholder="Repita su email"
             {...register("emailConfirm", {
               required: {
@@ -83,6 +115,14 @@ export const Form1 = ({dataForm, lengthSteps }) => {
           {errors.emailConfirm && (
             <span className="text-red-600 text-sm block mt-1">
               {errors.emailConfirm.message}
+            </span>
+          )}
+        </div>
+        <div className="mx-auto md:mx-0">
+          <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY} onChange={handleRecaptcha} />
+          {errorRecaptcha && (
+            <span className="text-red-600 text-sm block mt-1">
+              Este campo es obligatorio
             </span>
           )}
         </div>

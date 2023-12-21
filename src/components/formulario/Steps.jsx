@@ -1,5 +1,6 @@
-import { FormContext } from "@/context/FormContext";
 import { useContext } from "react";
+import { useRouter } from 'next/router'
+import { FormContext } from "@/context/FormContext";
 
 export const Steps = ({ dataForm }) => {
   const { currentStep, stepsEstaticos } = useContext(FormContext);

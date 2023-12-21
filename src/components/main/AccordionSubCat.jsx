@@ -1,14 +1,15 @@
 "use client";
 
+import { useContext, useState } from "react";
 import Link from "next/link";
-import { useState } from "react";
+import { FormContext } from "@/context/FormContext";
 
-const AccordionSubCat = ({ name, slug, articles, params }) => {
+const AccordionSubCat = ({ name = "", articles = [], params }) => {
+  const { handleSubtitleArticle } = useContext(FormContext);
   const [open, setOpen] = useState(false);
 
   // console.log({ articles });
-  // console.log({ params });
-
+  
   const handleClick = (e) => {
     setOpen((prevstate) => !prevstate);
   };
@@ -54,12 +55,13 @@ const AccordionSubCat = ({ name, slug, articles, params }) => {
         aria-labelledby="accordion-flush-heading-1"
       >
         <div className="py-5 border-b border-gray-200">
-          {articles.length > 0 &&
+          {articles?.length > 0 &&
             articles.map((item) => (
-              <p className="text-gray-500" key={item.id}>
+              <p className="text-gray-500 mb-1" key={item.id}>
                 <Link
                   href={`${params.categoria}/${item.slug}`}
-                  className="text-blue-dark hover:underline"
+                  className="text-blue-dark hover:underline text-sm"
+                  onClick={()=>handleSubtitleArticle(name)}
                 >
                   ▸{item.title}
                 </Link>
